@@ -87,9 +87,9 @@ Ensure the following architecture is preserved:
 *   **Framework**: React 18+ (Functional) + TypeScript (Strict).
 *   **Styling**: Vanilla CSS Modules/Variables. **NO Tailwind**.
 *   **Linting**: ESLint Flat Config (`eslint.config.js`) + `jsx-a11y` (Accessibility) + `prettier`.
-*   **Testing**:
-    *   *Unit*: Vitest (Components).
-    *   *E2E*: Playwright (Critical User Journeys). Config: `baseURL: 'http://localhost:5173'`.
+*   **Testing (The Crown Jewel)**:
+    *   **Unit**: [Vitest](https://vitest.dev/) (Jest-compatible). **MANDATE**: 100% Component Coverage.
+    *   **E2E**: Playwright (Critical User Journeys). Config: `baseURL: 'http://localhost:5173'`.
 *   **Internationalization (i18n)**: `react-i18next`. Supported: EN, DE, HU.
 *   **Internationalization (i18n)**: `react-i18next`. Supported: EN, DE, HU.
 

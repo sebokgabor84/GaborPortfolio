@@ -42,3 +42,21 @@ Once connected, the Agent can:
 
 ---
 *Verified as part of the GaborPortfolio QA Standard.*
+
+## 4. Unit Testing Strategy (Vitest)
+We use **Vitest** for fast, "Jest-compatible" unit testing.
+
+### Running Tests
+*   `npm test`: Runs all tests in watch mode.
+*   `npm run test:ci`: Runs once (for CI/CD).
+
+### Writing Tests
+Follow the pattern `Component.test.tsx` alongside the component.
+*   **Mocking i18n**: The `src/setupTests.ts` globally mocks `react-i18next`. Use `vi.mock` in individual files only if you need to spy on specific functions like `changeLanguage`.
+*   **User Interactions**: Use `@testing-library/user-event` for realistic clicks and typing.
+
+### Critical Coverage Areas
+1.  **Language Switching**: `LanguageDial.test.tsx` verifies the i18n trigger.
+2.  **Navigation**: `SocialDock.test.tsx` verifies external link security (`noopener noreferrer`).
+3.  **Core Logic**: `Gauge.test.tsx` and `ProjectCard.test.tsx`.
+
