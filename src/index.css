@@ -1,0 +1,66 @@
+:root {
+  /* Steampunk Palette */
+  --color-bg-dark: #121010;
+  --color-bg-panel: #1e1c1a;
+  --color-copper: #b87333;
+  --color-copper-dim: #8a5a2e;
+  --color-gold: #d4af37;
+  --color-brass: #b5a642;
+  --color-text-main: #e0dacc;
+  --color-text-dim: #a8a090;
+  --color-danger: #8a2a2a;
+  --color-success: #2a8a4a;
+
+  /* Fonts */
+  --font-heading: 'Courier New', Courier, monospace; /* Mechanical typewriter feel */
+  --font-body: system-ui, -apple-system, sans-serif;
+  --font-digital: 'Courier New', monospace;
+
+  /* Effects */
+  --shadow-panel: 0 4px 20px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(0, 0, 0, 0.5);
+  --border-metal: 2px solid var(--color-copper);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-main);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(184, 115, 51, 0.05) 0%, transparent 50%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.1) 0px,
+      rgba(0, 0, 0, 0.1) 2px,
+      transparent 2px,
+      transparent 10px
+    );
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-copper-dim);
+  border: 1px solid var(--color-bg-dark);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-copper);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-gold);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
