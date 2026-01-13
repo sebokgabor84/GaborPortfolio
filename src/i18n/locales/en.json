@@ -1,0 +1,39 @@
+{
+    "hero": {
+        "role": "QA Specialist | Master Brewer | Craftsman",
+        "download_cv": "Download CV"
+    },
+    "cockpit": {
+        "title": "Mission Control Status",
+        "kpi_bugs": "Bugs Squashed",
+        "kpi_uptime": "Uptime",
+        "kpi_liters": "Liters Fermented",
+        "kpi_decor": "Decor Created",
+        "kpi_renovation": "Renovation",
+        "kpi_visitors": "Live Visitors"
+    },
+    "projects": {
+        "section_title": "Featured Projects",
+        "click_hint": "CLICK TO INITIALIZE",
+        "qa": {
+            "title": "QA Automation Framework",
+            "desc": "A robust end-to-end testing suite built for high-traffic eCommerce platforms. Reduced regression testing time by 60% and caught critical payment gateway bugs before production."
+        },
+        "brewing": {
+            "title": "SYI Professional Brewing Kit",
+            "desc": "Designed and built a custom semi-automated brewing system. Features temperature control, magnetic drive pumps, and a capacity of 50L per batch."
+        },
+        "wedding": {
+            "title": "Wedding Gates & Decor",
+            "desc": "Handcrafted hexagonal wedding arches and rustic decor. Welding, woodworking, and structural design for client events."
+        },
+        "house": {
+            "title": "The House Rebuild",
+            "desc": "Complete renovation of a 1970s Austrian Hunter-style home. Installed floor heating, modernized insulation, and preserved the classic aesthetic."
+        }
+    },
+    "footer": {
+        "rights": "Built with React & Vite.",
+        "tagline": "Engineered to last."
+    }
+}

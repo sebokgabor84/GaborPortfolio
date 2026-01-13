@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Gauge } from './Gauge';
 import { FaBug, FaBeer, FaHammer, FaHome, FaUsers, FaEye } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 export const Cockpit: React.FC = () => {
   const [visitors, setVisitors] = useState(1);
+  const { t } = useTranslation();
 
   // Mock live visitor increment
   useEffect(() => {
@@ -24,7 +26,7 @@ export const Cockpit: React.FC = () => {
     >
       <h2 style={{ marginBottom: '2rem', fontSize: '2rem' }}>
         <span style={{ borderBottom: '2px solid var(--color-copper)', paddingBottom: '0.5rem' }}>
-          Mission Control Status
+          {t('cockpit.title')}
         </span>
       </h2>
 
@@ -36,12 +38,12 @@ export const Cockpit: React.FC = () => {
           justifyContent: 'center',
         }}
       >
-        <Gauge label="Bugs Squashed" value={1337} icon={<FaBug />} color="success" />
-        <Gauge label="Uptime" value={99.9} unit="%" icon={<FaEye />} color="gold" />
-        <Gauge label="Liters Fermented" value={450} unit="L" icon={<FaBeer />} color="copper" />
-        <Gauge label="Decor Created" value={42} icon={<FaHammer />} color="gold" />
-        <Gauge label="Renovation" value={85} unit="%" icon={<FaHome />} color="copper" />
-        <Gauge label="Live Visitors" value={visitors} icon={<FaUsers />} color="success" />
+        <Gauge label={t('cockpit.kpi_bugs')} value={1337} icon={<FaBug />} color="success" />
+        <Gauge label={t('cockpit.kpi_uptime')} value={99.9} unit="%" icon={<FaEye />} color="gold" />
+        <Gauge label={t('cockpit.kpi_liters')} value={450} unit="L" icon={<FaBeer />} color="copper" />
+        <Gauge label={t('cockpit.kpi_decor')} value={42} icon={<FaHammer />} color="gold" />
+        <Gauge label={t('cockpit.kpi_renovation')} value={85} unit="%" icon={<FaHome />} color="copper" />
+        <Gauge label={t('cockpit.kpi_visitors')} value={visitors} icon={<FaUsers />} color="success" />
       </div>
     </section>
   );

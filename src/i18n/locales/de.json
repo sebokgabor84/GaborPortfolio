@@ -1,0 +1,39 @@
+{
+    "hero": {
+        "role": "QA Spezialist | Braumeister | Handwerker",
+        "download_cv": "Lebenslauf Herunterladen"
+    },
+    "cockpit": {
+        "title": "Missionskontrolle",
+        "kpi_bugs": "Käfer Zerquetscht",
+        "kpi_uptime": "Betriebszeit",
+        "kpi_liters": "Liter Gebraut",
+        "kpi_decor": "Dekor Erstellt",
+        "kpi_renovation": "Renovierung",
+        "kpi_visitors": "Besucher Live"
+    },
+    "projects": {
+        "section_title": "Ausgewählte Projekte",
+        "click_hint": "KLICKEN ZUM STARTEN",
+        "qa": {
+            "title": "QA Automatisierungs-Framework",
+            "desc": "Eine robuste End-to-End-Testsuite für hochfrequentierte E-Commerce-Plattformen. Reduzierte die Regressionszeit um 60% und verhinderte kritische Fehler im Zahlungsgateway."
+        },
+        "brewing": {
+            "title": "SYI Profi-Brauanlage",
+            "desc": "Entwicklung und Bau einer halbautomatischen Brauanlage. Verfügt über Temperaturregelung, Magnetpumpen und eine Kapazität von 50L pro Charge."
+        },
+        "wedding": {
+            "title": "Hochzeitstore & Dekor",
+            "desc": "Handgefertigte hexagonale Hochzeitsbögen und rustikales Dekor. Schweißen, Holzbearbeitung und strukturelles Design für Kundenveranstaltungen."
+        },
+        "house": {
+            "title": "Der Hausumbau",
+            "desc": "Komplettsanierung eines österreichischen Jägerhauses aus den 70ern. Installation von Fußbodenheizung, moderne Dämmung und Erhaltung der klassischen Ästhetik."
+        }
+    },
+    "footer": {
+        "rights": "Erstellt mit React & Vite.",
+        "tagline": "Gebaut für die Ewigkeit."
+    }
+}

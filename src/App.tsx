@@ -2,10 +2,16 @@ import { Cockpit } from './components/Cockpit/Cockpit';
 import { ProjectCard } from './components/ProjectSection/ProjectCard';
 import { SocialDock } from './components/Social/SocialDock';
 import { DebugGuide } from './components/Guide/DebugGuide';
+import { LanguageDial } from './components/LanguageSwitch/LanguageDial';
+import { useTranslation } from 'react-i18next';
 
 function App() {
+  const { t } = useTranslation();
+
   return (
     <div style={{ paddingBottom: '5rem' }}>
+      <LanguageDial />
+
       {/* Hero Section */}
       <header style={{
         textAlign: 'center',
@@ -25,7 +31,7 @@ function App() {
           margin: '0 auto 2rem auto',
           textShadow: '0 2px 4px #000'
         }}>
-          QA Specialist | Master Brewer | Craftsman
+          {t('hero.role')}
         </p>
 
         <SocialDock />
@@ -44,7 +50,7 @@ function App() {
             letterSpacing: '1px',
             boxShadow: '0 0 15px rgba(184, 115, 51, 0.5)'
           }}>
-            Download CV
+            {t('hero.download_cv')}
           </button>
         </div>
       </header>
@@ -60,36 +66,36 @@ function App() {
           fontSize: '2.5rem',
           color: 'var(--color-text-main)'
         }}>
-          Featured Projects
+          {t('projects.section_title')}
         </h2>
 
         <ProjectCard
-          title="QA Automation Framework"
-          description="A robust end-to-end testing suite built for high-traffic eCommerce platforms. Reduced regression testing time by 60% and caught critical payment gateway bugs before production."
+          title={t('projects.qa.title')}
+          description={t('projects.qa.desc')}
           videoId="dQw4w9WgXcQ"
           tags={['QA', 'Automation', 'Cypress', 'TypeScript']}
           thumbnailSrc="/assets/thumb-qa.png"
         />
 
         <ProjectCard
-          title="SYI Professional Brewing Kit"
-          description="Designed and built a custom semi-automated brewing system. Features temperature control, magnetic drive pumps, and a capacity of 50L per batch."
+          title={t('projects.brewing.title')}
+          description={t('projects.brewing.desc')}
           videoId="dQw4w9WgXcQ"
           tags={['Engineering', 'IoT', 'Brewing']}
           thumbnailSrc="/assets/thumb-brewing.png"
         />
 
         <ProjectCard
-          title="Wedding Gates & Decor"
-          description="Handcrafted hexagonal wedding arches and rustic decor. Welding, woodworking, and structural design for client events."
+          title={t('projects.wedding.title')}
+          description={t('projects.wedding.desc')}
           videoId="dQw4w9WgXcQ"
           tags={['Craftsmanship', 'Welding', 'Design']}
           thumbnailSrc="/assets/thumb-wedding.png"
         />
 
         <ProjectCard
-          title="The House Rebuild"
-          description="Complete renovation of a 1970s Austrian Hunter-style home. Installed floor heating, modernized insulation, and preserved the classic aesthetic."
+          title={t('projects.house.title')}
+          description={t('projects.house.desc')}
           videoId="dQw4w9WgXcQ"
           tags={['Renovation', 'Project Management', 'Construction']}
           thumbnailSrc="/assets/thumb-house.png"
@@ -108,8 +114,8 @@ function App() {
           marginTop: '4rem',
         }}
       >
-        <p>&copy; {new Date().getFullYear()} Gabor Seboek. Built with React & Vite.</p>
-        <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>Engineered to last.</p>
+        <p>&copy; {new Date().getFullYear()} Gabor Seboek. {t('footer.rights')}</p>
+        <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>{t('footer.tagline')}</p>
       </footer>
     </div>
   );

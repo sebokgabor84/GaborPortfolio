@@ -34,6 +34,7 @@ We chose tools that scream **reliability** and **performance**:
 
 *   **Core**: [React 18](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) (Strict Mode Enabled).
 *   **Build System**: [Vite](https://vitejs.dev/) (Next-gen frontend tooling).
+*   **Internationalization**: Multi-language support (English, German, Hungarian) via `react-i18next`.
 *   **Styling**: **Vanilla CSS Modules** + CSS Variables. (We don't hide behind Tailwind; we architect our own Design Systems).
 *   **Testing (The Crown Jewel)**:
     *   **Unit**: [Vitest](https://vitest.dev/) (Jest-compatible).

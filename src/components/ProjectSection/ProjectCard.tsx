@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 interface ProjectCardProps {
   title: string;
@@ -11,6 +12,7 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, videoId, tags, thumbnailSrc }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <div style={{
@@ -91,7 +93,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, vi
               fontSize: '0.9rem',
               fontFamily: 'var(--font-digital)'
             }}>
-              CLICK TO INITIALIZE
+              {t('projects.click_hint')}
             </div>
           </button>
         ) : (

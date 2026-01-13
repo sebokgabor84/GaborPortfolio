@@ -90,6 +90,8 @@ Ensure the following architecture is preserved:
 *   **Testing**:
     *   *Unit*: Vitest (Components).
     *   *E2E*: Playwright (Critical User Journeys). Config: `baseURL: 'http://localhost:5173'`.
+*   **Internationalization (i18n)**: `react-i18next`. Supported: EN, DE, HU.
+*   **Internationalization (i18n)**: `react-i18next`. Supported: EN, DE, HU.
 
 ---
 

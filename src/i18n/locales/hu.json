@@ -1,0 +1,39 @@
+{
+    "hero": {
+        "role": "QA Szakértő | Sörfőző Mester | Kézműves",
+        "download_cv": "Önéletrajz Letöltése"
+    },
+    "cockpit": {
+        "title": "Küldetésirányítás",
+        "kpi_bugs": "Javított Hibák",
+        "kpi_uptime": "Rendelkezésre Állás",
+        "kpi_liters": "Erjesztett Liter",
+        "kpi_decor": "Készített Dekor",
+        "kpi_renovation": "Felújítás",
+        "kpi_visitors": "Élő Látogatók"
+    },
+    "projects": {
+        "section_title": "Kiemelt Projektek",
+        "click_hint": "KATTINTS AZ INDÍTÁSHOZ",
+        "qa": {
+            "title": "QA Automatizálási Keretrendszer",
+            "desc": "Robusztus end-to-end teszt suite nagy forgalmú e-kereskedelmi platformokhoz. 60%-kal csökkentette a regressziós tesztelési időt, és kritikus fizetési hibákat előzött meg."
+        },
+        "brewing": {
+            "title": "SYI Professzionális Sörfőző Szett",
+            "desc": "Egyedi félautomata főzőrendszer tervezése és építése. Hőmérséklet-szabályozással, mágneses szivattyúkkal és 50L kapacitással."
+        },
+        "wedding": {
+            "title": "Esküvői Kapuk & Dekoráció",
+            "desc": "Kézzel készített hexagonális esküvői boltívek és rusztikus dekoráció. Hegesztés, famegmunkálás és szerkezeti tervezés rendezvényekre."
+        },
+        "house": {
+            "title": "A Házfelújítás",
+            "desc": "Egy 1970-es évekbeli osztrák vadászház teljes felújítása. Padlófűtés telepítése, modern szigetelés és a klasszikus esztétika megőrzése."
+        }
+    },
+    "footer": {
+        "rights": "React & Vite alapokon.",
+        "tagline": "Időtállóságra tervezve."
+    }
+}
