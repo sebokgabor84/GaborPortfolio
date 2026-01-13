@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { ProjectCard } from './ProjectCard';
+import userEvent from '@testing-library/user-event';
 
 describe('ProjectCard Component', () => {
     const mockProps = {
@@ -23,11 +24,19 @@ describe('ProjectCard Component', () => {
         expect(screen.getByText('#Vite')).toBeInTheDocument();
     });
 
-    it('renders video iframe with correct src', () => {
+    it('renders video iframe with correct src', async () => {
+        const user = userEvent.setup();
         render(<ProjectCard {...mockProps} />);
+
+        // Verify button exists first
+        const playButton = screen.getByLabelText(`Play video: ${mockProps.title}`);
+        expect(playButton).toBeInTheDocument();
+
+        // Click to load iframe
+        await user.click(playButton);
 
         const iframe = screen.getByTitle('Awesome Project');
         expect(iframe).toBeInTheDocument();
-        expect(iframe).toHaveAttribute('src', 'https://www.youtube.com/embed/12345');
+        expect(iframe).toHaveAttribute('src', expect.stringContaining('https://www.youtube.com/embed/12345'));
     });
 });
