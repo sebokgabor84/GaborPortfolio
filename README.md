@@ -22,6 +22,10 @@ Recruiters asking "Can you code/test/architect?" --> **Just run this repo.**
 *   **360-Degree Validation**: Includes a robust **Playwright E2E Suite** covering Critical User Journeys (CUJs).
 *   **Agent-Native**: Built with a "DebugGuide" component that enables AI Agents (via Chrome MCP) to debug the site in real-time.
 
+## 🎥 Live Showcase (30s Tour)
+Watch the "Elegant Steampunk" design in action (Smooth Scroll & Video Facade Pattern):
+![Website Tour Review](public/assets/showcase_tour.webp)
+
 ---
 
 ## 🛠 The "Stainless Steel" Tech Stack
@@ -43,7 +47,6 @@ We chose tools that scream **reliability** and **performance**:
 ### 1. The "Cockpit" Dashboard
 A visual "Mission Control" displaying real-time (mocked) metrics found in `src/components/Cockpit`.
 
-### 2. The Video Wall (Facade Pattern)
 We use a **Facade Pattern** for video embedding in `src/components/ProjectSection`.
 *   *Optimization*: High-Res GenAI Thumbnails load first. YouTube Iframe only loads on interaction (`onClick`).
 *   *A11y*: Interactive elements use semantic `<button>` tags.
