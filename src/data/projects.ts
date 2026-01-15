@@ -49,7 +49,7 @@ export const projects: ProjectDefinition[] = [
         enabled: true,
     },
 
-    // NEW - Placeholder projects (can be enabled when content is ready)
+    // NEW - Enabled projects
     {
         id: 'beekeeping',
         titleKey: 'projects.beekeeping.title',
@@ -57,7 +57,7 @@ export const projects: ProjectDefinition[] = [
         videoId: 'dQw4w9WgXcQ',
         tags: ['Beekeeping', 'Sustainability', 'Nature'],
         thumbnailSrc: '/assets/thumb-beekeeping.png',
-        enabled: false, // Disabled until thumbnail is generated
+        enabled: true,
     },
     {
         id: 'breadmaking',
@@ -66,6 +66,6 @@ export const projects: ProjectDefinition[] = [
         videoId: 'dQw4w9WgXcQ',
         tags: ['Fermentation', 'Bread', 'Artisan'],
         thumbnailSrc: '/assets/thumb-bread.png',
-        enabled: false, // Disabled until thumbnail is generated
+        enabled: true,
     },
 ];
