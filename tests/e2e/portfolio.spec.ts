@@ -13,7 +13,7 @@ test.describe('GaborPortfolio 360 Validation', () => {
 
         // Check Hero Text
         await expect(page.getByRole('heading', { name: 'Gabor Seboek' })).toBeVisible();
-        await expect(page.getByText('QA Specialist | Master Brewer | Craftsman')).toBeVisible();
+        await expect(page.getByText(/QA Specialist.*Brewer/)).toBeVisible(); // Flexible match for updated skills
 
         // Check Metrics (Cockpit)
         await expect(page.getByText('Mission Control Status')).toBeVisible();

@@ -1,6 +1,6 @@
 {
     "hero": {
-        "role": "QA Szakértő | Sörfőző Mester | Kézműves",
+        "role": "QA Szakértő | Sörfőző Mester | Méhész | Hegesztő | Kenyérsütő | Apa & Férj",
         "download_cv": "Önéletrajz Letöltése"
     },
     "cockpit": {
@@ -10,7 +10,11 @@
         "kpi_liters": "Erjesztett Liter",
         "kpi_decor": "Készített Dekor",
         "kpi_renovation": "Felújítás",
-        "kpi_visitors": "Élő Látogatók"
+        "kpi_visitors": "Élő Látogatók",
+        "kpi_honey": "Betakarított Méz",
+        "kpi_welds": "Elektródás Hegesztések",
+        "kpi_loaves": "Sütött Kenyerek",
+        "kpi_family": "Családtagok"
     },
     "projects": {
         "section_title": "Kiemelt Projektek",
@@ -25,11 +29,19 @@
         },
         "wedding": {
             "title": "Esküvői Kapuk & Dekoráció",
-            "desc": "Kézzel készített hexagonális esküvői boltívek és rusztikus dekoráció. Hegesztés, famegmunkálás és szerkezeti tervezés rendezvényekre."
+            "desc": "Kézzel készített hexagonális esküvői boltívek és rusztikus dekoráció. Hagyományos elektródás hegesztés, famegmunkálás és szerkezeti tervezés."
         },
         "house": {
             "title": "A Házfelújítás",
             "desc": "Egy 1970-es évekbeli osztrák vadászház teljes felújítása. Padlófűtés telepítése, modern szigetelés és a klasszikus esztétika megőrzése."
+        },
+        "beekeeping": {
+            "title": "A Méhészet",
+            "desc": "Méhkaptárak kezelése hagyományos és modern módszerekkel. Mézkinyerés, méhegészség-monitoring és fenntartható méhészeti gyakorlatok."
+        },
+        "breadmaking": {
+            "title": "Kézműves Kovászos Kenyér",
+            "desc": "A fermentáció művészetének elsajátítása. Természetes kovász, hosszú érlelési ciklusok és a tökéletes kéreg keresése."
         }
     },
     "footer": {

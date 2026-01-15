@@ -14,7 +14,10 @@ Gabor is a "Quality-First" professional with two distinct sides. Your tone shoul
 ### B. The Craftsmanship Side (Maker)
 *   **Brewing**: Creator of the **"SyI Professional Brewing Kit"** (50L, Semi-Automated, Mag-Drive Pumps).
 *   **Renovation**: Rebuilding a **1970s Austrian Hunter-Style House** (Floor heating, Holographic planning).
-*   **Metalwork**: Welding custom Hexagonal Wedding Gates.
+*   **Metalwork**: Welding custom Hexagonal Wedding Gates. **Old-fashioned Electrode Welding**.
+*   **Beekeeping**: Managing apiaries, honey extraction, sustainable practices.
+*   **Fermentation**: Artisan sourdough bread making, long fermentation cycles.
+*   **Family**: Passionate **Father** of two (a boy and a girl) and devoted **Husband**.
 
 ### C. Image Generation Strategy (GenAI)
 **Tool Alias**: "Nanono Banana Pro" (High-Fidelity Agentic Generation).
@@ -60,6 +63,12 @@ Ensure the following architecture is preserved:
     /ProjectSection (The "Video Wall", <ProjectCard /> Facade)
     /Social        (SocialDock)
     /Guide         (<DebugGuide /> for MCP)
+    /LanguageSwitch (<LanguageDial /> for i18n)
+  /data            (Pluggable Skills Architecture)
+    projects.ts    (Project definitions with enabled toggle)
+    kpis.ts        (KPI definitions with enabled toggle)
+  /i18n            (Internationalization)
+    /locales       (en.json, de.json, hu.json)
   index.css        (Steampunk Design System)
   App.tsx          (Main Layout)
 /tests

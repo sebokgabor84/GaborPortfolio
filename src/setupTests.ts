@@ -27,7 +27,7 @@ const enTranslations = {
 // Mock react-i18next
 vi.mock('react-i18next', () => ({
     useTranslation: () => ({
-        t: (key: string) => (enTranslations as any)[key] || key,
+        t: (key: string) => (enTranslations as Record<string, string>)[key] || key,
         i18n: {
             changeLanguage: vi.fn(),
             language: 'en-US',

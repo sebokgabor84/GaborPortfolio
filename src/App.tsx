@@ -4,9 +4,12 @@ import { SocialDock } from './components/Social/SocialDock';
 import { DebugGuide } from './components/Guide/DebugGuide';
 import { LanguageDial } from './components/LanguageSwitch/LanguageDial';
 import { useTranslation } from 'react-i18next';
+import { projects } from './data/projects';
 
 function App() {
   const { t } = useTranslation();
+
+  const enabledProjects = projects.filter((p) => p.enabled);
 
   return (
     <div style={{ paddingBottom: '5rem' }}>
@@ -58,7 +61,7 @@ function App() {
       {/* The Cockpit */}
       <Cockpit />
 
-      {/* Projects Section */}
+      {/* Projects Section - Data Driven */}
       <main style={{ maxWidth: '1000px', margin: '4rem auto', padding: '0 1rem' }}>
         <h2 style={{
           textAlign: 'center',
@@ -69,37 +72,16 @@ function App() {
           {t('projects.section_title')}
         </h2>
 
-        <ProjectCard
-          title={t('projects.qa.title')}
-          description={t('projects.qa.desc')}
-          videoId="dQw4w9WgXcQ"
-          tags={['QA', 'Automation', 'Cypress', 'TypeScript']}
-          thumbnailSrc="/assets/thumb-qa.png"
-        />
-
-        <ProjectCard
-          title={t('projects.brewing.title')}
-          description={t('projects.brewing.desc')}
-          videoId="dQw4w9WgXcQ"
-          tags={['Engineering', 'IoT', 'Brewing']}
-          thumbnailSrc="/assets/thumb-brewing.png"
-        />
-
-        <ProjectCard
-          title={t('projects.wedding.title')}
-          description={t('projects.wedding.desc')}
-          videoId="dQw4w9WgXcQ"
-          tags={['Craftsmanship', 'Welding', 'Design']}
-          thumbnailSrc="/assets/thumb-wedding.png"
-        />
-
-        <ProjectCard
-          title={t('projects.house.title')}
-          description={t('projects.house.desc')}
-          videoId="dQw4w9WgXcQ"
-          tags={['Renovation', 'Project Management', 'Construction']}
-          thumbnailSrc="/assets/thumb-house.png"
-        />
+        {enabledProjects.map((project) => (
+          <ProjectCard
+            key={project.id}
+            title={t(project.titleKey)}
+            description={t(project.descKey)}
+            videoId={project.videoId}
+            tags={project.tags}
+            thumbnailSrc={project.thumbnailSrc}
+          />
+        ))}
 
         <DebugGuide />
       </main>

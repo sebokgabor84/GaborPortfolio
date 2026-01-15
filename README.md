@@ -56,7 +56,13 @@ We use a **Facade Pattern** for video embedding in `src/components/ProjectSectio
 Hidden in the codebase (and visible in the UI) is `src/components/Guide/DebugGuide.tsx`.
 *   *Innovation*: A self-documenting module that teaches developers/agents how to connect to the Chrome DevTools Protocol for live debugging.
 
-### 4. Proof of Verification (Visual Audit)
+### 4. Pluggable Skills Architecture
+Want to add a new skill? Just add an entry to `src/data/projects.ts` or `src/data/kpis.ts` and set `enabled: true`.
+*   *Data-Driven*: Projects and KPIs are rendered dynamically from TypeScript arrays.
+*   *i18n Ready*: Each skill has translation keys for EN, DE, HU.
+*   *Toggle-Friendly*: Enable/disable skills without touching component code.
+
+### 5. Proof of Verification (Visual Audit)
 We don't just say it works; we prove it.
 ![QA Audit Evidence](public/assets/qa_audit_evidence.webp)
 *Above: An automated Agent auditing the "QA Automation Framework" card for interaction and console errors.*

@@ -1,6 +1,6 @@
 {
     "hero": {
-        "role": "QA Spezialist | Braumeister | Handwerker",
+        "role": "QA Spezialist | Braumeister | Imker | Schweißer | Brotbäcker | Vater & Ehemann",
         "download_cv": "Lebenslauf Herunterladen"
     },
     "cockpit": {
@@ -10,7 +10,11 @@
         "kpi_liters": "Liter Gebraut",
         "kpi_decor": "Dekor Erstellt",
         "kpi_renovation": "Renovierung",
-        "kpi_visitors": "Besucher Live"
+        "kpi_visitors": "Besucher Live",
+        "kpi_honey": "Honig Geerntet",
+        "kpi_welds": "Elektroden Schweißnähte",
+        "kpi_loaves": "Brote Gebacken",
+        "kpi_family": "Familienmitglieder"
     },
     "projects": {
         "section_title": "Ausgewählte Projekte",
@@ -25,11 +29,19 @@
         },
         "wedding": {
             "title": "Hochzeitstore & Dekor",
-            "desc": "Handgefertigte hexagonale Hochzeitsbögen und rustikales Dekor. Schweißen, Holzbearbeitung und strukturelles Design für Kundenveranstaltungen."
+            "desc": "Handgefertigte hexagonale Hochzeitsbögen und rustikales Dekor. Altmodisches Elektrodenschweißen, Holzbearbeitung und strukturelles Design."
         },
         "house": {
             "title": "Der Hausumbau",
             "desc": "Komplettsanierung eines österreichischen Jägerhauses aus den 70ern. Installation von Fußbodenheizung, moderne Dämmung und Erhaltung der klassischen Ästhetik."
+        },
+        "beekeeping": {
+            "title": "Die Imkerei",
+            "desc": "Bewirtschaftung von Bienenstöcken mit traditionellen und modernen Methoden. Honiggewinnung, Bienengesundheitsüberwachung und nachhaltige Imkerei."
+        },
+        "breadmaking": {
+            "title": "Handwerker-Sauerteig",
+            "desc": "Die Kunst der Fermentation beherrschen. Natürliche Sauerteigstarter, lange Gärzyklen und das Streben nach der perfekten Kruste."
         }
     },
     "footer": {

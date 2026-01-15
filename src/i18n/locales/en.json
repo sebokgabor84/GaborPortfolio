@@ -1,6 +1,6 @@
 {
     "hero": {
-        "role": "QA Specialist | Master Brewer | Craftsman",
+        "role": "QA Specialist | Master Brewer | Beekeeper | Welder | Bread Maker | Father & Husband",
         "download_cv": "Download CV"
     },
     "cockpit": {
@@ -10,7 +10,11 @@
         "kpi_liters": "Liters Fermented",
         "kpi_decor": "Decor Created",
         "kpi_renovation": "Renovation",
-        "kpi_visitors": "Live Visitors"
+        "kpi_visitors": "Live Visitors",
+        "kpi_honey": "Honey Harvested",
+        "kpi_welds": "Electrode Welds",
+        "kpi_loaves": "Loaves Baked",
+        "kpi_family": "Family Members"
     },
     "projects": {
         "section_title": "Featured Projects",
@@ -25,11 +29,19 @@
         },
         "wedding": {
             "title": "Wedding Gates & Decor",
-            "desc": "Handcrafted hexagonal wedding arches and rustic decor. Welding, woodworking, and structural design for client events."
+            "desc": "Handcrafted hexagonal wedding arches and rustic decor. Old-fashioned electrode welding, woodworking, and structural design for client events."
         },
         "house": {
             "title": "The House Rebuild",
             "desc": "Complete renovation of a 1970s Austrian Hunter-style home. Installed floor heating, modernized insulation, and preserved the classic aesthetic."
+        },
+        "beekeeping": {
+            "title": "The Apiary",
+            "desc": "Managing beehives with traditional and modern methods. Honey extraction, bee health monitoring, and sustainable beekeeping practices."
+        },
+        "breadmaking": {
+            "title": "Artisan Sourdough",
+            "desc": "Mastering the art of fermentation. Natural sourdough starters, long fermentation cycles, and the pursuit of the perfect crust."
         }
     },
     "footer": {

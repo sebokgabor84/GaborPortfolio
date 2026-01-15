@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Gauge } from './Gauge';
-import { FaBug, FaBeer, FaHammer, FaHome, FaUsers, FaEye } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
+import { kpis } from '../../data/kpis';
 
 export const Cockpit: React.FC = () => {
   const [visitors, setVisitors] = useState(1);
@@ -14,6 +14,8 @@ export const Cockpit: React.FC = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  const enabledKpis = kpis.filter((k) => k.enabled);
 
   return (
     <section
@@ -33,17 +35,21 @@ export const Cockpit: React.FC = () => {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '2rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+          gap: '1.5rem',
           justifyContent: 'center',
         }}
       >
-        <Gauge label={t('cockpit.kpi_bugs')} value={1337} icon={<FaBug />} color="success" />
-        <Gauge label={t('cockpit.kpi_uptime')} value={99.9} unit="%" icon={<FaEye />} color="gold" />
-        <Gauge label={t('cockpit.kpi_liters')} value={450} unit="L" icon={<FaBeer />} color="copper" />
-        <Gauge label={t('cockpit.kpi_decor')} value={42} icon={<FaHammer />} color="gold" />
-        <Gauge label={t('cockpit.kpi_renovation')} value={85} unit="%" icon={<FaHome />} color="copper" />
-        <Gauge label={t('cockpit.kpi_visitors')} value={visitors} icon={<FaUsers />} color="success" />
+        {enabledKpis.map((kpi) => (
+          <Gauge
+            key={kpi.id}
+            label={t(kpi.labelKey)}
+            value={kpi.isDynamic ? visitors : kpi.value}
+            unit={kpi.unit}
+            icon={<kpi.icon />}
+            color={kpi.color}
+          />
+        ))}
       </div>
     </section>
   );

@@ -13,15 +13,20 @@ export const DebugGuide: React.FC = () => {
             background: 'rgba(0, 0, 0, 0.3)',
             overflow: 'hidden'
         }}>
-            <div
+            <button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-expanded={isOpen}
                 style={{
                     padding: '1rem 2rem',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    background: 'rgba(184, 115, 51, 0.1)'
+                    background: 'rgba(184, 115, 51, 0.1)',
+                    border: 'none',
+                    width: '100%',
+                    color: 'inherit',
+                    font: 'inherit'
                 }}
             >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -29,7 +34,7 @@ export const DebugGuide: React.FC = () => {
                     <h3 style={{ margin: 0, color: 'var(--color-gold)' }}>Dev Guide: Real-Time Debugging</h3>
                 </div>
                 {isOpen ? <FaChevronUp /> : <FaChevronDown />}
-            </div>
+            </button>
 
             {isOpen && (
                 <div style={{ padding: '2rem', color: 'var(--color-text-main)', lineHeight: '1.6' }}>
