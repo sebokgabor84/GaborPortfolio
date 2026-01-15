@@ -62,7 +62,7 @@ function App() {
       <Cockpit />
 
       {/* Projects Section - Data Driven */}
-      <main style={{ maxWidth: '1000px', margin: '4rem auto', padding: '0 1rem' }}>
+      <main id="main-content" style={{ maxWidth: '1000px', margin: '4rem auto', padding: '0 1rem' }}>
         <h2 style={{
           textAlign: 'center',
           marginBottom: '3rem',

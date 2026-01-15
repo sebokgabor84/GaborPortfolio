@@ -114,7 +114,36 @@ To enable the Agent to see and debug the page in real-time:
 
 ---
 
-## 4. Key Components & Implementation Details
+## 5. SEO Best Practices (Search Engine Optimization)
+All builds must follow these SEO standards:
+
+### A. Meta Tags (in `index.html`)
+*   **Title**: `<title>` with primary keywords (60 chars max).
+*   **Description**: `<meta name="description">` (155 chars max).
+*   **Keywords**: Relevant terms separated by commas.
+*   **Robots**: `index, follow` for public pages.
+
+### B. Open Graph & Twitter Cards
+*   `og:title`, `og:description`, `og:image`, `og:url` for social sharing.
+*   `twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`.
+
+### C. Structured Data (JSON-LD)
+*   **Schema.org Person** schema with `name`, `jobTitle`, `knowsAbout`.
+*   Enables rich snippets in Google Search results.
+
+### D. Semantic HTML
+*   Use `<header>`, `<main>`, `<footer>`, `<section>`, `<article>`.
+*   Single `<h1>` per page with proper heading hierarchy.
+*   Skip-link for keyboard accessibility: `<a href="#main-content">`.
+
+### E. Performance
+*   `<link rel="preconnect">` for external resources.
+*   `<link rel="dns-prefetch">` for YouTube embeds.
+*   Noscript fallback for JavaScript-disabled browsers.
+
+---
+
+## 6. Key Components & Implementation Details
 
 ### A. The Cockpit ("Mission Control")
 *   **Function**: A dashboard of mocked KPIs (Bugs Squashed, Liters Fermented).

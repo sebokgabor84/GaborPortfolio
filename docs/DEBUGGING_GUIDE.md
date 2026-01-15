@@ -60,3 +60,18 @@ Follow the pattern `Component.test.tsx` alongside the component.
 2.  **Navigation**: `SocialDock.test.tsx` verifies external link security (`noopener noreferrer`).
 3.  **Core Logic**: `Gauge.test.tsx` and `ProjectCard.test.tsx`.
 
+## 5. SEO Implementation
+The project follows strict SEO best practices:
+
+### Implemented in `index.html`
+*   **Meta Tags**: Title, description, keywords, author, robots.
+*   **Open Graph**: For Facebook/LinkedIn sharing (`og:title`, `og:image`, etc.).
+*   **Twitter Cards**: `summary_large_image` format.
+*   **JSON-LD Structured Data**: Person schema for Google rich snippets.
+*   **Performance**: Preconnect hints for Google Fonts and YouTube.
+*   **Accessibility**: Skip-link to main content.
+
+### Validation
+*   Google Rich Results Test: [https://search.google.com/test/rich-results](https://search.google.com/test/rich-results)
+*   Facebook Sharing Debugger: [https://developers.facebook.com/tools/debug/](https://developers.facebook.com/tools/debug/)
+
