@@ -19,7 +19,7 @@ function App() {
       <header style={{
         textAlign: 'center',
         padding: '8rem 1rem 6rem 1rem',
-        background: `linear-gradient(to bottom, rgba(18, 16, 16, 0.8), var(--color-bg-dark)), url('/assets/hero-cockpit.png')`,
+        background: `linear-gradient(to bottom, rgba(18, 16, 16, 0.8), var(--color-bg-dark)), url('/assets/hero-cockpit.webp')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         borderBottom: '2px solid var(--color-copper)'

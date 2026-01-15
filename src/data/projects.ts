@@ -16,7 +16,7 @@ export const projects: ProjectDefinition[] = [
         descKey: 'projects.qa.desc',
         videoId: 'dQw4w9WgXcQ',
         tags: ['QA', 'Automation', 'Cypress', 'TypeScript'],
-        thumbnailSrc: '/assets/thumb-qa.png',
+        thumbnailSrc: '/assets/thumb-qa.webp',
         enabled: true,
     },
 
@@ -27,7 +27,7 @@ export const projects: ProjectDefinition[] = [
         descKey: 'projects.brewing.desc',
         videoId: 'dQw4w9WgXcQ',
         tags: ['Engineering', 'IoT', 'Brewing'],
-        thumbnailSrc: '/assets/thumb-brewing.png',
+        thumbnailSrc: '/assets/thumb-brewing.webp',
         enabled: true,
     },
     {
@@ -36,7 +36,7 @@ export const projects: ProjectDefinition[] = [
         descKey: 'projects.wedding.desc',
         videoId: 'dQw4w9WgXcQ',
         tags: ['Craftsmanship', 'Welding', 'Design'],
-        thumbnailSrc: '/assets/thumb-wedding.png',
+        thumbnailSrc: '/assets/thumb-wedding.webp',
         enabled: true,
     },
     {
@@ -45,7 +45,7 @@ export const projects: ProjectDefinition[] = [
         descKey: 'projects.house.desc',
         videoId: 'dQw4w9WgXcQ',
         tags: ['Renovation', 'Project Management', 'Construction'],
-        thumbnailSrc: '/assets/thumb-house.png',
+        thumbnailSrc: '/assets/thumb-house.webp',
         enabled: true,
     },
 
@@ -56,7 +56,7 @@ export const projects: ProjectDefinition[] = [
         descKey: 'projects.beekeeping.desc',
         videoId: 'dQw4w9WgXcQ',
         tags: ['Beekeeping', 'Sustainability', 'Nature'],
-        thumbnailSrc: '/assets/thumb-beekeeping.png',
+        thumbnailSrc: '/assets/thumb-beekeeping.webp',
         enabled: true,
     },
     {
@@ -65,7 +65,7 @@ export const projects: ProjectDefinition[] = [
         descKey: 'projects.breadmaking.desc',
         videoId: 'dQw4w9WgXcQ',
         tags: ['Fermentation', 'Bread', 'Artisan'],
-        thumbnailSrc: '/assets/thumb-bread.png',
+        thumbnailSrc: '/assets/thumb-bread.webp',
         enabled: true,
     },
 ];
