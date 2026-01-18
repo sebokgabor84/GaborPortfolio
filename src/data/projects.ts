@@ -1,14 +1,6 @@
-export interface ProjectDefinition {
-    id: string;
-    titleKey: string; // i18n key
-    descKey: string; // i18n key
-    videoId: string;
-    tags: string[];
-    thumbnailSrc: string;
-    enabled: boolean;
-}
+import { type ProjectDTO, validateProjects } from './types';
 
-export const projects: ProjectDefinition[] = [
+const projectData: ProjectDTO[] = [
     // Tech Side
     {
         id: 'qa',
@@ -69,3 +61,5 @@ export const projects: ProjectDefinition[] = [
         enabled: true,
     },
 ];
+
+export const projects = validateProjects(projectData);
