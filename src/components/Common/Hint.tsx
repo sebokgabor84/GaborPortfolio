@@ -7,7 +7,7 @@ interface HintProps {
 
 export const Hint: React.FC<HintProps> = ({ children, message }) => {
     const [isVisible, setIsVisible] = useState(false);
-    const timerRef = useRef<NodeJS.Timeout | null>(null);
+    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const showHint = () => {
         setIsVisible(true);
@@ -41,27 +41,40 @@ export const Hint: React.FC<HintProps> = ({ children, message }) => {
         };
     }, []);
 
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            showHint();
+            const target = e.currentTarget as HTMLElement;
+            target.classList.add('hint-pulse');
+            setTimeout(() => target.classList.remove('hint-pulse'), 400);
+        }
+    };
+
     return (
-        <div
+        <span
             className="hint-container"
             onMouseEnter={showHint}
             onMouseLeave={hideHint}
             onFocus={showHint}
             onBlur={hideHint}
             onClick={handleClick}
-            style={{ position: 'relative', display: 'inline-flex' }}
+            onKeyDown={handleKeyDown}
+            role="button"
+            tabIndex={0}
+            style={{ position: 'relative', display: 'inline-flex', cursor: 'pointer' }}
         >
             {children}
             {isVisible && (
-                <div
+                <span
                     className="hint-bubble"
                     role="tooltip"
                     aria-live="polite"
                 >
-                    <div className="hint-arrow" />
+                    <span className="hint-arrow" />
                     {message}
-                </div>
+                </span>
             )}
-        </div>
+        </span>
     );
 };

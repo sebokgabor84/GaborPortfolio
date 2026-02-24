@@ -14,7 +14,8 @@ describe('Hint Component', () => {
 
     it('shows hint bubble on mouse enter and hides on mouse leave (desktop simulation)', () => {
         // Mock deskop width
-        global.innerWidth = 1024;
+        Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 1024 });
+        window.dispatchEvent(new Event('resize'));
 
         render(
             <Hint message="Coming Soon">
@@ -46,7 +47,8 @@ describe('Hint Component', () => {
 
     it('hides hint after delay on mobile (mobile simulation)', async () => {
         vi.useFakeTimers();
-        global.innerWidth = 390;
+        Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 390 });
+        window.dispatchEvent(new Event('resize'));
 
         render(
             <Hint message="Coming Soon">
