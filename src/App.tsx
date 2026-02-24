@@ -147,32 +147,37 @@ function App() {
           <a
             href="#about-this-page"
             style={{
-              color: 'var(--color-text-dim)',
-              fontSize: 'clamp(0.85rem, 2.5vw, 1rem)',
+              background: 'transparent',
+              color: 'var(--color-copper)',
+              border: '2px solid var(--color-copper)',
+              padding: '1.2rem 2rem',
+              fontSize: '1.1rem',
+              fontWeight: 'bold',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
               textDecoration: 'none',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '0.5rem',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 0 10px rgba(184, 115, 51, 0.2)',
               width: '100%',
               maxWidth: '320px',
-              padding: '0.8rem 2rem',
-              borderRadius: '4px',
-              border: '1px solid var(--color-copper-dim)',
-              transition: 'all 0.3s ease',
-              fontFamily: 'var(--font-digital)',
-              textTransform: 'uppercase',
-              letterSpacing: '1px',
+              minHeight: '3.5rem'
             }}
             onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(184, 115, 51, 0.1)';
+              e.currentTarget.style.boxShadow = '0 0 20px rgba(184, 115, 51, 0.4)';
               e.currentTarget.style.color = 'var(--color-gold)';
               e.currentTarget.style.borderColor = 'var(--color-gold)';
-              e.currentTarget.style.background = 'rgba(212, 175, 55, 0.05)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = 'var(--color-text-dim)';
-              e.currentTarget.style.borderColor = 'var(--color-copper-dim)';
               e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.boxShadow = '0 0 10px rgba(184, 115, 51, 0.2)';
+              e.currentTarget.style.color = 'var(--color-copper)';
+              e.currentTarget.style.borderColor = 'var(--color-copper)';
             }}
           >
             {t('hero.learn_more')} ↓
