@@ -1,7 +1,8 @@
 {
     "hero": {
         "role": "QA Szakértő | Sörfőző Mester | Méhész | Hegesztő | Kenyérsütő | Apa & Férj",
-        "download_cv": "Önéletrajz Letöltése"
+        "download_cv": "Önéletrajz Letöltése",
+        "view_code": "Forráskód"
     },
     "cockpit": {
         "title": "Küldetésirányítás",

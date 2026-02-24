@@ -58,7 +58,12 @@ function App() {
 
         <SocialDock />
 
-        <div style={{ marginTop: '3rem' }}>
+        <div style={{
+          marginTop: '3rem',
+          display: 'flex',
+          gap: '1.5rem',
+          justifyContent: 'center'
+        }}>
           <button style={{
             background: 'var(--color-copper)',
             color: '#000',
@@ -74,6 +79,42 @@ function App() {
           }}>
             {t('hero.download_cv')}
           </button>
+
+          <a
+            href="https://github.com/sebokgabor84/GaborPortfolio"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              background: 'transparent',
+              color: 'var(--color-copper)',
+              border: '2px solid var(--color-copper)',
+              padding: '1rem 2rem',
+              fontSize: '1.2rem',
+              fontWeight: 'bold',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
+              textDecoration: 'none',
+              display: 'inline-block',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 0 10px rgba(184, 115, 51, 0.2)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(184, 115, 51, 0.1)';
+              e.currentTarget.style.boxShadow = '0 0 20px rgba(184, 115, 51, 0.4)';
+              e.currentTarget.style.color = 'var(--color-gold)';
+              e.currentTarget.style.borderColor = 'var(--color-gold)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.boxShadow = '0 0 10px rgba(184, 115, 51, 0.2)';
+              e.currentTarget.style.color = 'var(--color-copper)';
+              e.currentTarget.style.borderColor = 'var(--color-copper)';
+            }}
+          >
+            {t('hero.view_code')}
+          </a>
         </div>
       </header>
 

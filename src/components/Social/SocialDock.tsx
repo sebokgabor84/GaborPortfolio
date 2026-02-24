@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaLinkedin, FaInstagram, FaFacebook, FaTiktok, FaXTwitter } from 'react-icons/fa6';
+import { FaLinkedin, FaInstagram, FaFacebook, FaTiktok, FaXTwitter, FaGithub } from 'react-icons/fa6';
 
 const SocialIcon: React.FC<{ href: string; icon: React.ReactNode }> = ({ href, icon }) => (
   <a
@@ -49,6 +49,7 @@ export const SocialDock: React.FC = () => {
         marginTop: '2rem',
       }}
     >
+      <SocialIcon href="https://github.com/sebokgabor84/GaborPortfolio" icon={<FaGithub />} />
       <SocialIcon href="https://linkedin.com" icon={<FaLinkedin />} />
       <SocialIcon href="https://instagram.com" icon={<FaInstagram />} />
       <SocialIcon href="https://facebook.com" icon={<FaFacebook />} />

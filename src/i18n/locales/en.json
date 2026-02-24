@@ -1,7 +1,8 @@
 {
     "hero": {
         "role": "QA Specialist | Master Brewer | Beekeeper | Welder | Bread Maker | Father & Husband",
-        "download_cv": "Download CV"
+        "download_cv": "Download CV",
+        "view_code": "Source Code"
     },
     "cockpit": {
         "title": "Mission Control Status",

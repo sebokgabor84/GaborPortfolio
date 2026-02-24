@@ -1,7 +1,8 @@
 {
     "hero": {
         "role": "QA Spezialist | Braumeister | Imker | Schweißer | Brotbäcker | Vater & Ehemann",
-        "download_cv": "Lebenslauf Herunterladen"
+        "download_cv": "Lebenslauf Herunterladen",
+        "view_code": "Quellcode"
     },
     "cockpit": {
         "title": "Missionskontrolle",
