@@ -23,7 +23,7 @@ export const ScrollToTop: React.FC = () => {
             style={{
                 position: 'fixed',
                 bottom: 'clamp(1rem, 4vw, 2rem)',
-                left: 'clamp(1rem, 4vw, 2rem)',
+                right: 'clamp(1rem, 4vw, 2rem)',
                 zIndex: 1000,
                 width: '48px',
                 height: '48px',
