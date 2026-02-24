@@ -50,7 +50,7 @@ export const AboutThisPage: React.FC = () => {
                     flexDirection: 'column',
                     gap: '0.6rem',
                 }}>
-                    {['stack_ai', 'stack_arch', 'stack_deploy', 'stack_testing', 'stack_i18n'].map((key) => (
+                    {['stack_ai', 'stack_arch', 'stack_deploy', 'stack_testing', 'stack_a11y', 'stack_i18n'].map((key) => (
                         <li key={key} style={{
                             color: 'var(--color-text-dim)',
                             fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',

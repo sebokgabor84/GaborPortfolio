@@ -62,6 +62,7 @@
         "stack_arch": "🏗️ React + TypeScript + Vite — zero Tailwind, pure CSS craftsmanship",
         "stack_deploy": "🚀 Auto-deploys via Vercel on every git push",
         "stack_testing": "✅ Self-testing: ESLint (WCAG 2.2), Prettier, Vitest, Playwright E2E",
+        "stack_a11y": "♿ Accessibility-first: semantic HTML, ARIA roles, keyboard navigation, jsx-a11y linting",
         "stack_i18n": "🌍 Trilingual: English / Deutsch / Magyar",
         "cta_text": "Want a page like this? One that tests itself, deploys itself, and looks like it was forged in a steampunk workshop?",
         "build_title": "How This Page Builds Itself",

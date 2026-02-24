@@ -62,6 +62,7 @@
         "stack_arch": "🏗️ React + TypeScript + Vite — nulla Tailwind, tiszta CSS kézművesség",
         "stack_deploy": "🚀 Automatikus telepítés Vercelen minden git push-ra",
         "stack_testing": "✅ Self-testing: ESLint (WCAG 2.2), Prettier, Vitest, Playwright E2E",
+        "stack_a11y": "♿ Accessibility-first: szemantikus HTML, ARIA role-ok, keyboard navigáció, jsx-a11y linting",
         "stack_i18n": "🌍 Háromnyelvű: English / Deutsch / Magyar",
         "cta_text": "Szeretnél egy ilyen oldalt? Egyet, ami teszteli magát, deployolja magát, és úgy néz ki, mintha egy steampunk műhelyben kovácsolták volna?",
         "build_title": "Hogyan építi magát ez az oldal",
