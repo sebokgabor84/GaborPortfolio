@@ -12,6 +12,7 @@ import { SocialDock } from './components/Social/SocialDock';
 import { AboutThisPage } from './components/Guide/AboutThisPage';
 import { LanguageDial } from './components/LanguageSwitch/LanguageDial';
 import { Hint } from './components/Common/Hint';
+import { ScrollToTop } from './components/Common/ScrollToTop';
 import { useTranslation } from 'react-i18next';
 // 📦 Data Separation: We import raw project data from a separate file.
 // This keeps the UI logic clean and lets us add new projects just by editing a JSON-like list.
@@ -33,6 +34,7 @@ function App() {
   return (
     <div style={{ paddingBottom: '5rem' }}>
       <LanguageDial />
+      <ScrollToTop />
 
       {/* Hero Section */}
       <header style={{
