@@ -45,14 +45,18 @@ function App() {
         position: 'relative',
         overflow: 'hidden'
       }}>
-        <h1 style={{
-          fontSize: 'clamp(2.2rem, 10vw, 3.5rem)',
-          marginBottom: '1rem',
-          letterSpacing: 'clamp(2px, 1vw, 4px)',
-          textShadow: '0 0 20px #000',
-          lineHeight: '1.2'
-        }}>
-          Gabor Seboek
+        <h1
+          key={t('hero.name')}
+          style={{
+            fontSize: 'clamp(2.2rem, 10vw, 3.5rem)',
+            marginBottom: '1rem',
+            letterSpacing: 'clamp(2px, 1vw, 4px)',
+            textShadow: '0 0 20px #000',
+            lineHeight: '1.2',
+            animation: 'nameFadeIn 0.5s ease-out',
+          }}
+        >
+          {t('hero.name')}
         </h1>
         <p style={{
           fontSize: 'clamp(1.1rem, 4vw, 1.5rem)',
