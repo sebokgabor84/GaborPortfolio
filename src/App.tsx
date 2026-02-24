@@ -9,7 +9,7 @@
 import { Cockpit } from './components/Cockpit/Cockpit';
 import { ProjectCard } from './components/ProjectSection/ProjectCard';
 import { SocialDock } from './components/Social/SocialDock';
-import { DebugGuide } from './components/Guide/DebugGuide';
+import { AboutThisPage } from './components/Guide/AboutThisPage';
 import { LanguageDial } from './components/LanguageSwitch/LanguageDial';
 import { Hint } from './components/Common/Hint';
 import { useTranslation } from 'react-i18next';
@@ -143,6 +143,40 @@ function App() {
           >
             {t('hero.view_code')}
           </a>
+
+          <a
+            href="#about-this-page"
+            style={{
+              color: 'var(--color-text-dim)',
+              fontSize: 'clamp(0.85rem, 2.5vw, 1rem)',
+              textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              width: '100%',
+              maxWidth: '320px',
+              padding: '0.8rem 2rem',
+              borderRadius: '4px',
+              border: '1px solid var(--color-copper-dim)',
+              transition: 'all 0.3s ease',
+              fontFamily: 'var(--font-digital)',
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = 'var(--color-gold)';
+              e.currentTarget.style.borderColor = 'var(--color-gold)';
+              e.currentTarget.style.background = 'rgba(212, 175, 55, 0.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = 'var(--color-text-dim)';
+              e.currentTarget.style.borderColor = 'var(--color-copper-dim)';
+              e.currentTarget.style.background = 'transparent';
+            }}
+          >
+            {t('hero.learn_more')} ↓
+          </a>
         </div>
       </header>
 
@@ -176,7 +210,7 @@ function App() {
           />
         ))}
 
-        <DebugGuide />
+        <AboutThisPage />
       </main>
 
       {/* Footer */}

@@ -5,7 +5,8 @@
     "hero": {
         "role": "QA Szakértő | Sörfőző Mester | Méhész | Hegesztő | Kenyérsütő | Apa & Férj",
         "download_cv": "Önéletrajz Letöltése",
-        "view_code": "Forráskód"
+        "view_code": "Forráskód",
+        "learn_more": "Tudj Meg Többet"
     },
     "cockpit": {
         "title": "Küldetésirányítás",
@@ -51,5 +52,22 @@
     "footer": {
         "rights": "React & Vite alapokon.",
         "tagline": "Időtállóságra tervezve."
+    },
+    "about": {
+        "aria_label": "Az oldalról",
+        "title": "Miért létezik ez az oldal?",
+        "intro": "Ez nem egy sablon. Ez egy bemutató — egy QA mérnök építette, aki hétvégén hatszögletű esküvői kapukat hegeszt, 50 literes adag kézműves sört főz, és hajnali 4-kor kovászos kenyeret süt. Ha az Ön portfólióját egy húzd-és-ejtsd építővel készítették... beszélnünk kellene.",
+        "stack_ai": "🤖 MI-támogatott fejlesztéssel készült (Antigravity + Chrome MCP)",
+        "stack_arch": "🏗️ React + TypeScript + Vite — nulla Tailwind, tiszta CSS kézművesség",
+        "stack_deploy": "🚀 Automatikus telepítés Vercelen minden git push-ra",
+        "stack_testing": "✅ Öntesztelő: ESLint (WCAG 2.2), Prettier, Vitest, Playwright E2E",
+        "stack_i18n": "🌍 Háromnyelvű: English / Deutsch / Magyar",
+        "cta_text": "Szeretne egy ilyen oldalt? Egyet, ami teszteli magát, deployolja magát, és úgy néz ki, mintha egy steampunk műhelyben kovácsolták volna?",
+        "build_title": "Hogyan építi magát ez az oldal",
+        "build_p1": "Ennek az oldalnak minden funkcióját egy MI kódoló ágenssel (Antigravity) fejlesztettük, amely közvetlenül a böngészőhöz csatlakozik a Model Context Protocol (MCP) segítségével. Az ágens valós időben lát, kattint és debugol — mint a páros programozás, de a partnered sosem alszik.",
+        "build_p2": "Az .agent/ könyvtár tartalmazza a szabályokat, készségeket és persona-definíciókat, amelyek az MI-t irányítják. Push a main-re → Vercel építi → tesztek futnak → az oldal él. Nincs manuális telepítés. Nincsenek kifogások.",
+        "playwright_title": "Öngyógyító Playwright beállítás",
+        "playwright_p1": "Ezt az oldalt Playwright E2E tesztek védik, amelyek data-testid szelektorokat, automatikus várakozást és újrapróbálkozási logikát használnak — nincsenek törékeny CSS szelektorok, nincsenek sleep hackek. Így futtathatod őket:",
+        "playwright_p2": "Minden teszt szemantikus HTML-t és adatattribútumokat céloz meg, ami ellenállóvá teszi őket a vizuális újratervezésekkel szemben. A csomag a localhost:5173 ellen fut, és lefedi a kritikus felhasználói utakat minden nézetméreten."
     }
 }

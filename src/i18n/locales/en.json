@@ -5,7 +5,8 @@
     "hero": {
         "role": "QA Specialist | Master Brewer | Beekeeper | Welder | Bread Maker | Father & Husband",
         "download_cv": "Download CV",
-        "view_code": "Source Code"
+        "view_code": "Source Code",
+        "learn_more": "Learn More"
     },
     "cockpit": {
         "title": "Mission Control Status",
@@ -51,5 +52,22 @@
     "footer": {
         "rights": "Built with React & Vite.",
         "tagline": "Engineered to last."
+    },
+    "about": {
+        "aria_label": "About this page",
+        "title": "Why Does This Page Exist?",
+        "intro": "This isn't a template. It's a showcase — built by a QA engineer who welds hexagonal wedding gates on weekends, brews 50-liter batches of craft beer, and bakes sourdough bread at 4 AM. If your portfolio was built with a drag-and-drop builder... we should talk.",
+        "stack_ai": "🤖 Built with AI-assisted development (Antigravity + Chrome MCP)",
+        "stack_arch": "🏗️ React + TypeScript + Vite — zero Tailwind, pure CSS craftsmanship",
+        "stack_deploy": "🚀 Auto-deploys via Vercel on every git push",
+        "stack_testing": "✅ Self-testing: ESLint (WCAG 2.2), Prettier, Vitest, Playwright E2E",
+        "stack_i18n": "🌍 Trilingual: English / Deutsch / Magyar",
+        "cta_text": "Want a page like this? One that tests itself, deploys itself, and looks like it was forged in a steampunk workshop?",
+        "build_title": "How This Page Builds Itself",
+        "build_p1": "Every feature on this page was co-developed with an AI coding agent (Antigravity) connected directly to the browser via the Model Context Protocol (MCP). The agent can see, click, and debug in real-time — like pair programming, but your partner never sleeps.",
+        "build_p2": "The .agent/ directory contains the rules, skills, and persona definitions that guide the AI. Push to main → Vercel builds → tests run → site is live. No manual deployment. No excuses.",
+        "playwright_title": "Self-Healing Playwright Setup",
+        "playwright_p1": "This page is guarded by Playwright E2E tests that use data-testid selectors, auto-waiting, and retry logic — no brittle CSS selectors, no sleep hacks. Here's how to run them:",
+        "playwright_p2": "Every test targets semantic HTML and data attributes, making them resilient to visual redesigns. The suite runs against localhost:5173 and covers critical user journeys across all viewports."
     }
 }

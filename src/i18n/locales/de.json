@@ -5,7 +5,8 @@
     "hero": {
         "role": "QA Spezialist | Braumeister | Imker | Schweißer | Brotbäcker | Vater & Ehemann",
         "download_cv": "Lebenslauf Herunterladen",
-        "view_code": "Quellcode"
+        "view_code": "Quellcode",
+        "learn_more": "Mehr Erfahren"
     },
     "cockpit": {
         "title": "Missionskontrolle",
@@ -51,5 +52,22 @@
     "footer": {
         "rights": "Erstellt mit React & Vite.",
         "tagline": "Gebaut für die Ewigkeit."
+    },
+    "about": {
+        "aria_label": "Über diese Seite",
+        "title": "Warum existiert diese Seite?",
+        "intro": "Das ist kein Template. Das ist eine Demonstration — gebaut von einem QA-Ingenieur, der am Wochenende hexagonale Hochzeitstore schweißt, 50-Liter-Chargen Craft-Bier braut und um 4 Uhr morgens Sauerteigbrot backt. Wenn Ihr Portfolio mit einem Drag-and-Drop-Builder erstellt wurde... sollten wir reden.",
+        "stack_ai": "🤖 Entwickelt mit KI-gestützter Entwicklung (Antigravity + Chrome MCP)",
+        "stack_arch": "🏗️ React + TypeScript + Vite — kein Tailwind, reines CSS-Handwerk",
+        "stack_deploy": "🚀 Auto-Deployment über Vercel bei jedem Git Push",
+        "stack_testing": "✅ Selbsttestend: ESLint (WCAG 2.2), Prettier, Vitest, Playwright E2E",
+        "stack_i18n": "🌍 Dreisprachig: English / Deutsch / Magyar",
+        "cta_text": "Möchten Sie eine Seite wie diese? Eine, die sich selbst testet, selbst deployed und aussieht, als wäre sie in einer Steampunk-Werkstatt geschmiedet worden?",
+        "build_title": "Wie diese Seite sich selbst baut",
+        "build_p1": "Jedes Feature auf dieser Seite wurde mit einem KI-Coding-Agenten (Antigravity) entwickelt, der direkt über das Model Context Protocol (MCP) mit dem Browser verbunden ist. Der Agent kann in Echtzeit sehen, klicken und debuggen — wie Pair Programming, aber Ihr Partner schläft nie.",
+        "build_p2": "Das .agent/-Verzeichnis enthält die Regeln, Fähigkeiten und Persona-Definitionen, die die KI leiten. Push auf Main → Vercel baut → Tests laufen → Seite ist live. Kein manuelles Deployment. Keine Ausreden.",
+        "playwright_title": "Selbstheilendes Playwright-Setup",
+        "playwright_p1": "Diese Seite wird von Playwright E2E-Tests geschützt, die data-testid-Selektoren, Auto-Waiting und Retry-Logik verwenden — keine brüchigen CSS-Selektoren, keine Sleep-Hacks. So führen Sie sie aus:",
+        "playwright_p2": "Jeder Test zielt auf semantisches HTML und Datenattribute ab, was sie widerstandsfähig gegen visuelle Redesigns macht. Die Suite läuft gegen localhost:5173 und deckt kritische User Journeys über alle Viewports ab."
     }
 }

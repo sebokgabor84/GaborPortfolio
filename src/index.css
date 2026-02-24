@@ -169,3 +169,27 @@ h3 {
     box-shadow: 0 0 0px var(--color-gold);
   }
 }
+
+/* 
+  📖 Details/Summary (Native Collapsible)
+*/
+html {
+  scroll-behavior: smooth;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] summary {
+  border-bottom: 1px solid var(--color-copper-dim);
+}
+
+details summary:hover {
+  background: rgba(184, 115, 51, 0.12);
+}
+
+details summary:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: -2px;
+}
