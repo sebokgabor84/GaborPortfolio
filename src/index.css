@@ -4,6 +4,10 @@
   If we want to change the "Copper" color later, we only change it in this one spot.
   This is called the "Root Scope".
 */
+* {
+  box-sizing: border-box;
+}
+
 :root {
   /* Steampunk Palette */
   --color-bg-dark: #121010;
@@ -42,6 +46,9 @@ body {
   font-family: var(--font-body);
   /* Smoother text on Mac screens */
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
 
   /* 
     Advanced Background:

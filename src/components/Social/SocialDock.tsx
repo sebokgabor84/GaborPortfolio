@@ -39,7 +39,8 @@ export const SocialDock: React.FC = () => {
     <div
       style={{
         display: 'flex',
-        gap: '1.5rem',
+        gap: 'clamp(0.5rem, 3vw, 1.5rem)',
+        flexWrap: 'wrap',
         justifyContent: 'center',
         padding: '1rem',
         background: 'rgba(30, 28, 26, 0.8)',
@@ -47,6 +48,7 @@ export const SocialDock: React.FC = () => {
         borderRadius: '50px',
         border: '1px solid var(--color-copper-dim)',
         marginTop: '2rem',
+        maxWidth: '100%',
       }}
     >
       <SocialIcon href="https://github.com/sebokgabor84/GaborPortfolio" icon={<FaGithub />} />

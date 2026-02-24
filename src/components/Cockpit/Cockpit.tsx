@@ -35,9 +35,10 @@ export const Cockpit: React.FC = () => {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-          gap: '1.5rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+          gap: 'clamp(0.8rem, 3vw, 1.5rem)',
           justifyContent: 'center',
+          padding: '0 0.5rem'
         }}
       >
         {enabledKpis.map((kpi) => (

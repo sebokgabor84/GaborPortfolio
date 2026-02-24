@@ -19,16 +19,18 @@ export const LanguageDial: React.FC = () => {
     return (
         <div style={{
             position: 'fixed',
-            top: '1rem',
-            right: '1rem',
+            top: window.innerWidth < 768 ? '0.5rem' : '1rem',
+            right: window.innerWidth < 768 ? '0.5rem' : '1rem',
             zIndex: 1000,
-            background: 'rgba(0,0,0,0.8)',
-            padding: '0.5rem',
+            background: 'rgba(0,0,0,0.85)',
+            padding: '0.4rem',
             borderRadius: '8px',
             border: '1px solid var(--color-copper)',
             boxShadow: '0 0 10px rgba(0,0,0,0.5)',
             display: 'flex',
-            gap: '0.5rem'
+            gap: '0.4rem',
+            transform: window.innerWidth < 768 ? 'scale(0.85)' : 'none',
+            transformOrigin: 'top right'
         }}>
             {languages.map((lang) => (
                 <button

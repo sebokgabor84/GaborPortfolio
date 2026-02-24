@@ -23,7 +23,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, vi
       marginBottom: '3rem',
       boxShadow: 'var(--shadow-panel)',
       maxWidth: '800px',
-      margin: '0 auto 3rem auto'
+      margin: '0 auto 3rem auto',
+      width: '95%',
     }}>
       {/* Video Container (Responsive 16:9) */}
       <div style={{
