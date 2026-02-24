@@ -21,7 +21,7 @@ function App() {
   // 🪝 Component Hooks:
   // useTranslation is a "Hook" that lets us switch text between English/German/Hungarian.
   // It returns a function 't' that we wrap around text strings: t('hello') -> "Szia"
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   // 🔍 Data Logic:
   // Before rendering, we filter the list of projects to show only the ones marked 'enabled: true'.
@@ -45,7 +45,7 @@ function App() {
         position: 'relative',
         overflow: 'hidden'
       }}>
-        <div key={t('hero.name')} style={{ animation: 'langFade 0.4s ease' }}>
+        <div key={i18n.language} style={{ animation: 'langFade 0.4s ease' }}>
           <h1
             style={{
               fontSize: 'clamp(2.2rem, 10vw, 3.5rem)',
@@ -78,9 +78,10 @@ function App() {
             justifyContent: 'center',
             flexWrap: 'wrap',
             flexDirection: window.innerWidth < 600 ? 'column' : 'row',
-            alignItems: 'center'
+            alignItems: 'center',
+            padding: '0 1.5rem',
+            width: '100%',
           }}>
-            {/* Using a helper to avoid duplication of styles or using a class if it was available */}
             <Hint message={t('common.coming_soon')}>
               <button style={{
                 background: 'var(--color-copper)',
@@ -95,7 +96,6 @@ function App() {
                 letterSpacing: '1px',
                 boxShadow: '0 0 15px rgba(184, 115, 51, 0.5)',
                 width: '100%',
-                maxWidth: '320px',
                 minHeight: '3.5rem',
                 display: 'flex',
                 alignItems: 'center',
@@ -127,7 +127,7 @@ function App() {
                 transition: 'all 0.3s ease',
                 boxShadow: '0 0 10px rgba(184, 115, 51, 0.2)',
                 width: '100%',
-                maxWidth: '320px',
+                maxWidth: window.innerWidth < 600 ? 'none' : '320px',
                 minHeight: '3.5rem'
               }}
               onMouseEnter={(e) => {
@@ -166,7 +166,7 @@ function App() {
                 transition: 'all 0.3s ease',
                 boxShadow: '0 0 10px rgba(184, 115, 51, 0.2)',
                 width: '100%',
-                maxWidth: '320px',
+                maxWidth: window.innerWidth < 600 ? 'none' : '320px',
                 minHeight: '3.5rem'
               }}
               onMouseEnter={(e) => {
