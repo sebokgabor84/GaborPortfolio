@@ -11,6 +11,7 @@ import { ProjectCard } from './components/ProjectSection/ProjectCard';
 import { SocialDock } from './components/Social/SocialDock';
 import { DebugGuide } from './components/Guide/DebugGuide';
 import { LanguageDial } from './components/LanguageSwitch/LanguageDial';
+import { Hint } from './components/Common/Hint';
 import { useTranslation } from 'react-i18next';
 // 📦 Data Separation: We import raw project data from a separate file.
 // This keeps the UI logic clean and lets us add new projects just by editing a JSON-like list.
@@ -78,27 +79,29 @@ function App() {
           alignItems: 'center'
         }}>
           {/* Using a helper to avoid duplication of styles or using a class if it was available */}
-          <button style={{
-            background: 'var(--color-copper)',
-            color: '#000',
-            border: 'none',
-            padding: '1.2rem 2rem',
-            fontSize: '1.1rem',
-            fontWeight: 'bold',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
-            boxShadow: '0 0 15px rgba(184, 115, 51, 0.5)',
-            width: '100%',
-            maxWidth: '320px',
-            minHeight: '3.5rem',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            {t('hero.download_cv')}
-          </button>
+          <Hint message={t('common.coming_soon')}>
+            <button style={{
+              background: 'var(--color-copper)',
+              color: '#000',
+              border: 'none',
+              padding: '1.2rem 2rem',
+              fontSize: '1.1rem',
+              fontWeight: 'bold',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
+              boxShadow: '0 0 15px rgba(184, 115, 51, 0.5)',
+              width: '100%',
+              maxWidth: '320px',
+              minHeight: '3.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              {t('hero.download_cv')}
+            </button>
+          </Hint>
 
           <a
             href="https://github.com/sebokgabor84/GaborPortfolio"

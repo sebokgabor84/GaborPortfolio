@@ -1,4 +1,7 @@
 {
+    "common": {
+        "coming_soon": "Demnächst Verfügbar"
+    },
     "hero": {
         "role": "QA Spezialist | Braumeister | Imker | Schweißer | Brotbäcker | Vater & Ehemann",
         "download_cv": "Lebenslauf Herunterladen",
