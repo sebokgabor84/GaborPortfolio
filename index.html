@@ -90,10 +90,26 @@
     style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;">Skip to main
     content</a>
 
+  <!-- 
+    The "Root" Div:
+    This is the empty container where React will inject our entire application.
+    Think of it as the "frame" for our painting.
+  -->
   <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
 
-  <!-- Noscript Fallback -->
+  <!-- 
+    The Entry Point:
+    This loads our TypeScript Entry file (Main.tsx). 
+    'type="module"' tells the browser to treat this as modern JavaScript (ES Modules),
+    allowing us to use 'import' and 'export' statements directly.
+  -->
+  <script type="module" src="/src/Main.tsx"></script>
+
+  <!-- 
+    Noscript Fallback:
+    This is displayed only if the user has JavaScript disabled.
+    Since React requires JS, we must politely warn them here.
+  -->
   <noscript>
     <div style="padding: 2rem; text-align: center; background: #121010; color: #e0dacc;">
       <h1>Gabor Seboek - Professional Portfolio</h1>

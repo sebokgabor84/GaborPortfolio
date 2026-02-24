@@ -55,6 +55,8 @@ Evaluate the current file path or task and adopt the corresponding persona:
 
 ---
 
+---
+
 ## Pluggable Architecture Rules
 
 To add a new skill:

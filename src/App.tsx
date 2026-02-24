@@ -1,16 +1,34 @@
+// -----------------------------------------------------------------------------
+// 🧱 The "Grand Orchestrator" Component
+// -----------------------------------------------------------------------------
+// This file (as mentioned in main.tsx) is the top-level container for your specific UI.
+// While main.tsx sets up the 'React Environment' (providers, CSS), App.tsx defines
+// what the user actually SEES on the screen.
+// -----------------------------------------------------------------------------
+
 import { Cockpit } from './components/Cockpit/Cockpit';
 import { ProjectCard } from './components/ProjectSection/ProjectCard';
 import { SocialDock } from './components/Social/SocialDock';
 import { DebugGuide } from './components/Guide/DebugGuide';
 import { LanguageDial } from './components/LanguageSwitch/LanguageDial';
 import { useTranslation } from 'react-i18next';
+// 📦 Data Separation: We import raw project data from a separate file.
+// This keeps the UI logic clean and lets us add new projects just by editing a JSON-like list.
 import { projects } from './data/projects';
 
 function App() {
+  // 🪝 Component Hooks:
+  // useTranslation is a "Hook" that lets us switch text between English/German/Hungarian.
+  // It returns a function 't' that we wrap around text strings: t('hello') -> "Szia"
   const { t } = useTranslation();
 
+  // 🔍 Data Logic:
+  // Before rendering, we filter the list of projects to show only the ones marked 'enabled: true'.
   const enabledProjects = projects.filter((p) => p.enabled);
 
+  // 🖼️ The Render Return:
+  // Everything inside this 'return (...)' statement is JSX (JavaScript XML).
+  // It looks like HTML, but it's actually JavaScript functions creating elements.
   return (
     <div style={{ paddingBottom: '5rem' }}>
       <LanguageDial />
@@ -34,6 +52,7 @@ function App() {
           margin: '0 auto 2rem auto',
           textShadow: '0 2px 4px #000'
         }}>
+          {/* Using the translation hook to show dynamic text */}
           {t('hero.role')}
         </p>
 
@@ -62,6 +81,11 @@ function App() {
       <Cockpit />
 
       {/* Projects Section - Data Driven */}
+      {/* 
+        This is a 'data-driven' section. Instead of hardcoding 10 cards,
+        we 'map' over our filtered data array. For every project in the array,
+        React will automatically create one <ProjectCard /> component.
+      */}
       <main id="main-content" style={{ maxWidth: '1000px', margin: '4rem auto', padding: '0 1rem' }}>
         <h2 style={{
           textAlign: 'center',

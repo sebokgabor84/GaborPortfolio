@@ -1,3 +1,9 @@
+/* 
+  🎨 CSS Variables (Theming Engine)
+  Instead of repeating colors like '#b87333' everywhere, we define them ONCE here.
+  If we want to change the "Copper" color later, we only change it in this one spot.
+  This is called the "Root Scope".
+*/
 :root {
   /* Steampunk Palette */
   --color-bg-dark: #121010;
@@ -12,7 +18,8 @@
   --color-success: #2a8a4a;
 
   /* Fonts */
-  --font-heading: 'Courier New', Courier, monospace; /* Mechanical typewriter feel */
+  --font-heading: 'Courier New', Courier, monospace;
+  /* Mechanical typewriter feel */
   --font-body: system-ui, -apple-system, sans-serif;
   --font-digital: 'Courier New', monospace;
 
@@ -21,40 +28,63 @@
   --border-metal: 2px solid var(--color-copper);
 }
 
+/* 
+  🌍 Global Reset & Base Styles
+  These rules apply to the entire page ("body").
+  We remove default margins and set the global background/font.
+*/
 body {
   margin: 0;
   min-height: 100vh;
+  /* Using variables defined above */
   background-color: var(--color-bg-dark);
   color: var(--color-text-main);
   font-family: var(--font-body);
+  /* Smoother text on Mac screens */
   -webkit-font-smoothing: antialiased;
+
+  /* 
+    Advanced Background:
+    We combine a "Radial Gradient" (glow in the center)
+    with a "Repeating Linear Gradient" (diagonal lines) for texture.
+  */
   background-image:
     radial-gradient(circle at 50% 50%, rgba(184, 115, 51, 0.05) 0%, transparent 50%),
-    repeating-linear-gradient(
-      45deg,
+    repeating-linear-gradient(45deg,
       rgba(0, 0, 0, 0.1) 0px,
       rgba(0, 0, 0, 0.1) 2px,
       transparent 2px,
-      transparent 10px
-    );
+      transparent 10px);
 }
 
-/* Scrollbar */
+/* 
+  🖱️ Custom Scrollbar
+  Webkit browsers (Chrome, Safari) let us style the scrollbar.
+  Here we ensure it matches our dark steampunk theme.
+*/
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--color-bg-dark);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--color-copper-dim);
   border: 1px solid var(--color-bg-dark);
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-copper);
 }
 
+/* 
+  Typography
+  Targeting all Headers (h1, h2, h3) globally.
+  We give them the "Typewriter" font and a golden color.
+*/
 h1,
 h2,
 h3 {

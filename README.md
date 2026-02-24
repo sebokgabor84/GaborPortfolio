@@ -56,8 +56,17 @@ We use a **Facade Pattern** for video embedding in `src/components/ProjectSectio
 ### 3. The "Agent-Aware" Debug Mode
 Hidden in the codebase (and visible in the UI) is `src/components/Guide/DebugGuide.tsx`.
 *   *Innovation*: A self-documenting module that teaches developers/agents how to connect to the Chrome DevTools Protocol for live debugging.
+*   **Guide**: See [DEBUGGING_GUIDE.md](docs/DEBUGGING_GUIDE.md) for the "Shift-Left" protocol.
 
-### 4. Pluggable Skills Architecture
+### 4. Pluggable Skills Architecture (.agent System)
+This project is built on a **Dual-Nature** agentic framework.
+*   **The Rules** (`.agent/rules`): File-based routing that switches between "Maker" (Creative) and "QA Specialist" (Technical) personas.
+*   **The Skills** (`.agent/skills`): Modular capabilities like the `artisan_interview` which gathers project data.
+*   **The Hammer** (`.agent/commands`): A unified command that enforces strict quality gates (Lint -> Asset Check -> Test).
+*   **The Contract** (`src/data/types.ts`): Zod schemas (`ProjectDTOSchema`) that act as the gatekeeper between the Agent and the UI.
+*   **Visual Workflow**: See [Maker Extension Workflow](docs/architecture/maker_workflow.md) to understand how we map "User Intent" to "Deployment".
+
+### 5. Data-Driven Components
 Want to add a new skill? Just add an entry to `src/data/projects.ts` or `src/data/kpis.ts` and set `enabled: true`.
 *   *Data-Driven*: Projects and KPIs are rendered dynamically from TypeScript arrays.
 *   *i18n Ready*: Each skill has translation keys for EN, DE, HU.
@@ -99,9 +108,14 @@ Premise: You have `node` (v18+) installed.
 
 ## 📂 Documentation & Standards
 
-*   **Blueprint**: See `prompts/master_prompt.md` for the "Regeneration Protocol".
-*   **Handling Real-Time Debugging**: See `docs/DEBUGGING_GUIDE.md`.
-*   **Collaboration Protocol**: See `docs/COLLABORATION.md`.
+### 🧠 The "Brain" (Agentic Documentation)
+*   **Architecture**: [Maker Workflow Visualization](docs/architecture/maker_workflow.md) - How the Agent thinks.
+*   **Visualization Protocol**: [Mermaid Master Prompt](docs/architecture/mermaid_master_prompt.md) - How we generate diagrams.
+
+### 📘 Operational Guides
+*   **Handling Real-Time Debugging**: [DEBUGGING_GUIDE.md](docs/DEBUGGING_GUIDE.md) - MCP & Chrome Protocol.
+*   **Collaboration & QA**: [COLLABORATION.md](docs/COLLABORATION.md) - Definition of Done & Workflow.
+*   **Recruitment**: [Blueprint](prompts/master_prompt.md) - The "Regeneration Protocol".
 
 ---
 
