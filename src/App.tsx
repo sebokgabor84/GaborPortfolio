@@ -82,28 +82,30 @@ function App() {
             padding: '0 1.5rem',
             width: '100%',
           }}>
-            <Hint message={t('common.coming_soon')}>
-              <button style={{
-                background: 'var(--color-copper)',
-                color: '#000',
-                border: 'none',
-                padding: '1.2rem 2rem',
-                fontSize: '1.1rem',
-                fontWeight: 'bold',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                boxShadow: '0 0 15px rgba(184, 115, 51, 0.5)',
-                width: '100%',
-                minHeight: '3.5rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                {t('hero.download_cv')}
-              </button>
-            </Hint>
+            <div style={{ width: '100%' }}>
+              <Hint message={t('common.coming_soon')}>
+                <button style={{
+                  background: 'var(--color-copper)',
+                  color: '#000',
+                  border: 'none',
+                  padding: '1.2rem 2rem',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                  boxShadow: '0 0 15px rgba(184, 115, 51, 0.5)',
+                  width: '100%',
+                  minHeight: '3.5rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  {t('hero.download_cv')}
+                </button>
+              </Hint>
+            </div>
 
             <a
               href="https://github.com/sebokgabor84/GaborPortfolio"

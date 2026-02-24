@@ -62,7 +62,7 @@ export const Hint: React.FC<HintProps> = ({ children, message }) => {
             onKeyDown={handleKeyDown}
             role="button"
             tabIndex={0}
-            style={{ position: 'relative', display: 'inline-flex', cursor: 'pointer', width: '100%' }}
+            style={{ position: 'relative', display: 'inline-flex', cursor: 'pointer' }}
         >
             {children}
             {isVisible && (
