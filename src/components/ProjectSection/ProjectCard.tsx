@@ -107,41 +107,51 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, vi
                 <FaPlay style={{ fontSize: '2rem', color: 'var(--color-gold)', marginLeft: '6px' }} />
               </div>
             ) : (
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                background: 'rgba(30, 28, 26, 0.9)',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                zIndex: 10,
-                padding: '2rem',
-                textAlign: 'center',
-                backdropFilter: 'grayscale(1) blur(4px)',
-                borderBottom: '2px solid var(--color-copper)'
-              }}>
+              <div
+                className="fallback-overlay"
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  background: '#1e1c1a',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  zIndex: 10,
+                  padding: '2rem 1.5rem 3rem 1.5rem',
+                  textAlign: 'center',
+                  backdropFilter: 'grayscale(1) blur(4px)',
+                  borderBottom: '2px solid var(--color-copper)'
+                }}
+              >
                 <img
                   src="/assets/icon-hourglass.png"
                   alt=""
+                  className="fallback-hourglass"
                   style={{
-                    width: '120px',
-                    height: '120px',
-                    marginBottom: '1.5rem',
-                    animation: 'pulse-glow 2s ease-in-out infinite',
-                    filter: 'drop-shadow(0 0 10px var(--color-copper))'
+                    width: 'clamp(80px, 20vw, 140px)',
+                    height: 'clamp(80px, 20vw, 140px)',
+                    marginBottom: '1rem',
+                    animation: 'spin 4s linear infinite, pulse-glow 2s ease-in-out infinite',
+                    objectFit: 'contain',
+                    mixBlendMode: 'screen'
                   }}
                 />
-                <h4 style={{
-                  color: 'var(--color-gold)',
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1.2rem',
-                  textTransform: 'uppercase',
-                  marginBottom: '0.5rem'
-                }}>
+                <h4
+                  className="fallback-text"
+                  style={{
+                    color: 'var(--color-gold)',
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: 'clamp(0.9rem, 4.5vw, 1.25rem)',
+                    textTransform: 'uppercase',
+                    marginBottom: '1.5rem',
+                    padding: '0 1.5rem',
+                    lineHeight: '1.4'
+                  }}
+                >
                   {t('projects.video_coming_soon')}
                 </h4>
                 <div style={{
@@ -153,20 +163,22 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, vi
               </div>
             )}
 
-            <div style={{
-              position: 'absolute',
-              bottom: '1rem',
-              right: '1rem',
-              background: 'rgba(0,0,0,0.8)',
-              padding: '0.3rem 0.8rem',
-              borderRadius: '4px',
-              color: '#fff',
-              fontSize: '0.9rem',
-              fontFamily: 'var(--font-digital)',
-              zIndex: 11
-            }}>
-              {t('projects.click_hint')}
-            </div>
+            {!showFallback && (
+              <div style={{
+                position: 'absolute',
+                bottom: '1rem',
+                right: '1rem',
+                background: 'rgba(0,0,0,0.8)',
+                padding: '0.3rem 0.8rem',
+                borderRadius: '4px',
+                color: '#fff',
+                fontSize: '0.9rem',
+                fontFamily: 'var(--font-digital)',
+                zIndex: 11
+              }}>
+                {t('projects.click_hint')}
+              </div>
+            )}
           </button>
         ) : (
           <iframe

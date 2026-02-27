@@ -226,3 +226,32 @@ details summary:focus-visible {
     filter: drop-shadow(0 0 5px var(--color-copper-dim));
   }
 }
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 📱 Mobile Adjustments for Video Fallback */
+@media (max-width: 600px) {
+  .fallback-overlay {
+    padding: 1rem !important;
+  }
+
+  .fallback-hourglass {
+    width: 60px !important;
+    height: 60px !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .fallback-text {
+    font-size: 0.85rem !important;
+    padding: 0 0.5rem !important;
+    line-height: 1.2 !important;
+  }
+}
