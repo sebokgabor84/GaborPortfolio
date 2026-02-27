@@ -25,6 +25,7 @@
     "projects": {
         "section_title": "Featured Projects",
         "click_hint": "CLICK TO INITIALIZE",
+        "video_coming_soon": "Coming Soon, we are working on content creation",
         "qa": {
             "title": "QA Automation Framework",
             "desc": "A robust end-to-end testing suite built for high-traffic eCommerce platforms. Reduced regression testing time by 60% and caught critical payment gateway bugs before production."

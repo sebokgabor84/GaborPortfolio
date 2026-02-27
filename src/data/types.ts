@@ -10,7 +10,7 @@ export const ProjectDTOSchema = z.object({
     }),
     titleKey: z.string().startsWith('projects.'),
     descKey: z.string().startsWith('projects.'),
-    videoId: z.string().min(1),
+    videoId: z.string().optional(),
     tags: z.array(z.string()).min(1),
     thumbnailSrc: z.string().regex(/^\/assets\/thumb-[a-z0-9-]+\.webp$/, {
         message: "assetPath must resolve to /assets/thumb-{id}.webp",

@@ -25,6 +25,7 @@
     "projects": {
         "section_title": "Ausgewählte Projekte",
         "click_hint": "KLICKEN ZUM STARTEN",
+        "video_coming_soon": "Demnächst verfügbar, wir arbeiten an der Erstellung von Inhalten",
         "qa": {
             "title": "QA Automatisierungs-Framework",
             "desc": "Eine robuste End-to-End-Testsuite für hochfrequentierte E-Commerce-Plattformen. Reduzierte die Regressionszeit um 60% und verhinderte kritische Fehler im Zahlungsgateway."

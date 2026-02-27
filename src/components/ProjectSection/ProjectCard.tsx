@@ -1,18 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaPlay } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 
 interface ProjectCardProps {
   title: string;
   description: string;
-  videoId: string; // YouTube ID for now
+  videoId?: string; // YouTube ID for now
   tags: string[];
   thumbnailSrc?: string;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, videoId, tags, thumbnailSrc }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showFallback, setShowFallback] = useState(false);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    if (showFallback) {
+      timer = setTimeout(() => {
+        setShowFallback(false);
+      }, 5000);
+    }
+    return () => clearTimeout(timer);
+  }, [showFallback]);
+
+  const handlePlayClick = () => {
+    if (videoId) {
+      setIsPlaying(true);
+    } else {
+      setShowFallback(true);
+    }
+  };
 
   return (
     <div style={{
@@ -25,6 +44,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, vi
       maxWidth: '800px',
       margin: '0 auto 3rem auto',
       width: '95%',
+      position: 'relative'
     }}>
       {/* Video Container (Responsive 16:9) */}
       <div style={{
@@ -37,8 +57,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, vi
 
         {!isPlaying ? (
           <button
-            onClick={() => setIsPlaying(true)}
-            aria-label={`Play video: ${title}`}
+            onClick={handlePlayClick}
+            aria-label={videoId ? `Play video: ${title}` : `${title} - Video Coming Soon`}
             style={{
               position: 'absolute',
               top: 0,
@@ -66,23 +86,73 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, vi
                 }}
               />
             )}
-            <div style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              background: 'rgba(0,0,0,0.7)',
-              borderRadius: '50%',
-              width: '80px',
-              height: '80px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: '2px solid var(--color-gold)',
-              boxShadow: '0 0 20px var(--color-gold)'
-            }}>
-              <FaPlay style={{ fontSize: '2rem', color: 'var(--color-gold)', marginLeft: '6px' }} />
-            </div>
+
+            {!showFallback ? (
+              <div style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                background: 'rgba(0,0,0,0.7)',
+                borderRadius: '50%',
+                width: '80px',
+                height: '80px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '2px solid var(--color-gold)',
+                boxShadow: '0 0 20px var(--color-gold)',
+                transition: 'transform 0.3s ease'
+              }}>
+                <FaPlay style={{ fontSize: '2rem', color: 'var(--color-gold)', marginLeft: '6px' }} />
+              </div>
+            ) : (
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                background: 'rgba(30, 28, 26, 0.9)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 10,
+                padding: '2rem',
+                textAlign: 'center',
+                backdropFilter: 'grayscale(1) blur(4px)',
+                borderBottom: '2px solid var(--color-copper)'
+              }}>
+                <img
+                  src="/assets/icon-hourglass.png"
+                  alt=""
+                  style={{
+                    width: '120px',
+                    height: '120px',
+                    marginBottom: '1.5rem',
+                    animation: 'pulse-glow 2s ease-in-out infinite',
+                    filter: 'drop-shadow(0 0 10px var(--color-copper))'
+                  }}
+                />
+                <h4 style={{
+                  color: 'var(--color-gold)',
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1.2rem',
+                  textTransform: 'uppercase',
+                  marginBottom: '0.5rem'
+                }}>
+                  {t('projects.video_coming_soon')}
+                </h4>
+                <div style={{
+                  height: '2px',
+                  width: '100px',
+                  background: 'var(--color-copper)',
+                  marginTop: '1rem'
+                }} />
+              </div>
+            )}
+
             <div style={{
               position: 'absolute',
               bottom: '1rem',
@@ -92,7 +162,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, vi
               borderRadius: '4px',
               color: '#fff',
               fontSize: '0.9rem',
-              fontFamily: 'var(--font-digital)'
+              fontFamily: 'var(--font-digital)',
+              zIndex: 11
             }}>
               {t('projects.click_hint')}
             </div>
@@ -143,6 +214,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, vi
           ))}
         </div>
       </div>
+
     </div>
   );
 };
