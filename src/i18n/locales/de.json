@@ -31,7 +31,7 @@
             "desc": "Eine robuste End-to-End-Testsuite für hochfrequentierte E-Commerce-Plattformen. Reduzierte die Regressionszeit um 60% und verhinderte kritische Fehler im Zahlungsgateway."
         },
         "brewing": {
-            "title": "SYI Profi-Brauanlage",
+            "title": "DIY Profi-Brauanlage",
             "desc": "Entwicklung und Bau einer halbautomatischen Brauanlage. Verfügt über Temperaturregelung, Magnetpumpen und eine Kapazität von 50L pro Charge."
         },
         "wedding": {

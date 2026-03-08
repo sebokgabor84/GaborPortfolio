@@ -34,7 +34,7 @@ const enTranslations = {
     "projects.click_hint": "CLICK TO INITIALIZE",
     "projects.qa.title": "QA Automation Framework",
     "projects.qa.desc": "A robust end-to-end testing suite...",
-    "projects.brewing.title": "SYI Professional Brewing Kit",
+    "projects.brewing.title": "DIY Professional Brewing Kit",
     "projects.brewing.desc": "Designed and built a custom...",
     "projects.wedding.title": "Wedding Gates & Decor",
     "projects.wedding.desc": "Handcrafted hexagonal wedding arches...",
