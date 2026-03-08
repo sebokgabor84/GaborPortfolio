@@ -20,6 +20,7 @@ import { vi } from 'vitest';
 // Hardcoded translations to avoid import issues during test execution
 // (We just want to check if the text *key* maps to *some* string, not the exact grammar)
 const enTranslations = {
+    "hero.name": "Gabor Seboek",
     "hero.role": "QA Specialist | Master Brewer | Craftsman",
     "hero.download_cv": "Download CV",
     "cockpit.title": "Mission Control Status",

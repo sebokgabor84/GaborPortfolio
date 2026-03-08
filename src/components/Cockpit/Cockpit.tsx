@@ -26,8 +26,15 @@ export const Cockpit: React.FC = () => {
         textAlign: 'center',
       }}
     >
-      <h2 style={{ marginBottom: '2rem', fontSize: '2rem' }}>
-        <span style={{ borderBottom: '2px solid var(--color-copper)', paddingBottom: '0.5rem' }}>
+      <h2 style={{ marginBottom: '2rem', fontSize: 'clamp(1.5rem, 5vw, 2rem)', maxWidth: '100%', boxSizing: 'border-box' }}>
+        <span style={{
+          borderBottom: '2px solid var(--color-copper)',
+          paddingBottom: '0.5rem',
+          overflowWrap: 'anywhere',
+          wordBreak: 'break-word',
+          display: 'inline-block',
+          maxWidth: '100%'
+        }}>
           {t('cockpit.title')}
         </span>
       </h2>
