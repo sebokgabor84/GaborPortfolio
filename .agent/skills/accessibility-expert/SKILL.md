@@ -32,6 +32,7 @@ When reviewing, writing, or testing code, enforce the following core principles 
 - **Image `alt` Attributes**: Every `<img>` tag must have an `alt` attribute.
   - *Informative Images*: Must have a concise, descriptive `alt`.
   - *Decorative Images*: Must have an empty `alt=""` and `aria-hidden="true"`.
+  - *SEO Handshake*: Ensure images also receive explicit `width` and `height` attributes to prevent Cumulative Layout Shifts (`seo-expert`).
 
 ## Shift-Left Quality Assurance (Automation)
 Accessibility regressions must be caught instantly in the IDE, unit tests, or CI/CD pipelines before reaching the build.

@@ -23,7 +23,8 @@ When instructed to write or fix CSS, use these principles to ensure the output i
 - Avoid `white-space: nowrap;` unless paired with an ellipsis or a scrolling container strategy.
 
 ### 3. The "Modern Layout" Rule
-- Prefer **CSS Grid** and **Flexbox** with `gap` over margins/padding for spacing.
+- Prefer **CSS Grid** and **Flexbox** with `gap` over margins/padding for spacing layout items.
+- *SEO Handshake*: Use internal `padding` *inside* interactive elements (like buttons) to satisfy the 48x48px touch target rule enforced by `seo-expert`.
 - When using Flexbox, always provide a `flex-wrap: wrap;` strategy or a flex-direction change for small screens.
 - Ensure every container has a `max-width: 100%` and `box-sizing: border-box` to prevent horizontal overflow.
 
@@ -44,6 +45,7 @@ When instructed to write or fix CSS, use these principles to ensure the output i
 - **Colors**:
     - Background: `--color-bg-dark` (`#121010`)
     - Accents: `--color-copper` (`#b87333`), `--color-gold` (`#d4af37`)
+        - *A11y Handshake*: Copper has a contrast of ~4.48:1 against the dark background. To satisfy WCAG 2.2 (`accessibility-expert`), ONLY use Copper for Large Text (Headings/Bold) or decorative UI borders. Never use it for small body text.
     - Text: `--color-text-main` (`#e0dacc`)
 - **Typography Constraints**: Headings should retain a digital/mechanical feel (`Courier New`), while body text uses `system-ui`. Fluid scales should anchor at these constraints.
 - **Effects**: `radial-gradient` backgrounds, `box-shadow` panels.

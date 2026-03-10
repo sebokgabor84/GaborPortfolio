@@ -42,7 +42,8 @@ description: [Third-person description containing trigger keywords (e.g., "Gener
 ```
 
 ## Mandatory Checks Before Output
-Before saving the final `SKILL.md` file, verify:
+Before saving the final `SKILL.md` file, execute a **Cross-Pollination Analysis** and verify the following checklist:
+- [ ] **Cross-Pollination Analysis**: Did I scan the existing `.agent/skills/` directory for potential conflicts? If this new skill overlaps with an existing capability, did I add explicit "handshake agreements" to resolve jurisdiction?
 - [ ] Is it placed in a dedicated folder (e.g., `.agent/skills/<name>/SKILL.md`)?
 - [ ] Is the YAML frontmatter present?
 - [ ] Is the `description` written in the 3rd person to act as a proper trigger?

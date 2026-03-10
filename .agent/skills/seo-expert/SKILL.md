@@ -30,6 +30,7 @@ Maintain a 100/100 Lighthouse score by strictly enforcing:
 - **CLS (Cumulative Layout Shift)**:
   - Provide explicit `width` and `height` attributes or CSS constraints to reserve space before images download.
   - Serve all images exclusively in optimized `WebP` or `AVIX` formats.
+  - *Image Handshake*: Integrate with `accessibility-expert` for vital `alt` attributes, and `design-system-expert` for WebP/<200Kb compression constraints.
 - **Mobile Metrics**: 
   - The `<meta name="viewport" content="width=device-width, initial-scale=1.0">` tag must be present in the static `index.html`.
   - Ensure all interactive elements have a minimum touch target size of 48x48px (or sufficient padding).
