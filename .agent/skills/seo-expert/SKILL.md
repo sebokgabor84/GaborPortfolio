@@ -5,53 +5,43 @@ description: Enforces Technical SEO, Lighthouse Performance optimization, and St
 
 # SEO & Lighthouse Performance Expert Skill
 
-This skill serves as the single source of truth for optimizing the GaborPortfolio. It dictates the architectural rendering strategy, strict Lighthouse performance standards (Mobile & Desktop), and technical SEO implementations.
+Single source of truth for optimizing GaborPortfolio's rendering strategy, Lighthouse scores, and technical SEO implementation.
 
-*(Note: Accessibility (WCAG/A11y) is handled by the dedicated `accessibility-expert` skill module.)*
+*(Note: WCAG/A11y → `accessibility-expert`. i18n key sync and locale file content → `i18n-guardian`. Image format/size → `design-system-expert`.)*
 
 ## When to use this skill
-- When building layouts or editing `<head>` elements (Meta tags, Open Graph, Twitter Cards).
-- When implementing internationalization (managing `hreflang` rules).
-- When optimizing for Lighthouse (Image formats, font preloading, viewport scaling, CLS/LCP metrics).
-- When configuring Vercel builds or writing SEO-focused Unit/E2E tests.
+- Editing `<head>` elements (meta tags, Open Graph, Twitter Cards)
+- Implementing or updating `hreflang` maps
+- Optimizing for Lighthouse (LCP, CLS, font preloading)
+- Configuring Vercel builds or writing SEO-focused tests
 
 ## How to use it
-When modifying the application, enforce the following core SEO and performance principles:
 
-### 1. Core Rendering Architecture: Static Site Generation (SSG)
-- **Use `vite-ssg`**: To pass Google's Core Web Vitals (CWV) and ensure immediate crawler indexing without relying on JavaScript execution, the application must use Static Site Generation via `vite-ssg`. Do not build a standard SPA.
-- **Build Command**: Ensure `package.json` uses `"build": "vite-ssg build"`.
+### 1. Rendering Architecture
+- **Use `vite-ssg`**: Required for Google CWV compliance and immediate crawler indexing. No standard SPA.
+- **Build command**: `package.json` must use `"build": "vite-ssg build"`.
 
-### 2. Lighthouse Performance Metrics (Desktop & Mobile)
-Maintain a 100/100 Lighthouse score by strictly enforcing:
-- **LCP (Largest Contentful Paint)**: 
-  - Stop font-swapping layout shifts by preloading the primary font in the `<head>`.
-  - Utilize React 19's `preload` API for critical hero background images directly in the component (e.g., `preload('url.webp', { as: 'image' })`).
-- **CLS (Cumulative Layout Shift)**:
-  - Provide explicit `width` and `height` attributes or CSS constraints to reserve space before images download.
-  - Serve all images exclusively in optimized `WebP` or `AVIX` formats.
-  - *Image Handshake*: Integrate with `accessibility-expert` for vital `alt` attributes, and `design-system-expert` for WebP/<200Kb compression constraints.
-- **Mobile Metrics**: 
-  - The `<meta name="viewport" content="width=device-width, initial-scale=1.0">` tag must be present in the static `index.html`.
-  - Ensure all interactive elements have a minimum touch target size of 48x48px (or sufficient padding).
+### 2. Lighthouse Performance (Target: 100/100)
 
-### 3. Technical SEO Implementation
-- **Trilingual Targeting (`hreflang`)**: Prevent "Duplicate Content" penalties by explicitly hardcoding canonical and alternate tags in the `<head>` for `en`, `de`, `hu`, and `x-default` mapping.
-- **Structured Data (JSON-LD)**: Inject the `Person` schema to trigger Google's Knowledge Graph, mapping the unique skill set (QA, Brewer, Beekeeper, etc.) and social links.
-- **Meta Tags**: 
-  - Title strings must be under 60 characters.
-  - Descriptions must be under 155 characters.
-  - Open Graph (`og:`) and Twitter Card (`twitter:`) tags must be fully populated.
-- **Indexing**: A public `robots.txt` must exist, pointing to a `sitemap.xml` generated during the build step.
+| Metric | Rule |
+|---|---|
+| **LCP** | Preload primary font in `<head>`. Use React 19 `preload()` API for hero images. |
+| **CLS** | Explicit `width`/`height` on all images. Serve `webp` or `avif` only. |
+| **Mobile** | `<meta name="viewport" content="width=device-width, initial-scale=1.0">` must be in static `index.html`. All interactive elements: min 48×48px touch target. |
 
-## Shift-Left Quality Assurance (SEO Automation)
-SEO rules must be enforced at compile-time and unit-test time instead of relying entirely on E2E testing.
+### 3. Technical SEO
 
-### A. TypeScript Strictness for Page Components
-Every route component must adhere to a strict interface (`PageSeoProps`) that guarantees essential SEO metadata (`title`, `description`, `canonicalUrl`, `locale`) is passed down to the `<SeoHead />` component.
+| Area | Rule |
+|---|---|
+| **hreflang** | Hardcode canonical + alternates in `<head>` for `en`, `de`, `hu`, and `x-default`. Prevents duplicate content penalties. |
+| **JSON-LD** | Inject `Person` schema to trigger Google Knowledge Graph — include QA, Brewer, Beekeeper, and social links. |
+| **Meta tags** | Title ≤ 60 chars. Description ≤ 155 chars. `og:` and `twitter:` tags fully populated. |
+| **Indexing** | Public `robots.txt` pointing to a `sitemap.xml` generated at build time. |
 
-### B. Component-Level Unit Testing (Vitest)
-Write highly isolated unit tests (using Vitest and React Testing Library) to ensure the `<SeoHead />` component correctly translates `PageSeoProps` into valid DOM elements prior to the SSG build.
+### 4. Shift-Left SEO QA
 
-### C. Playwright CI/CD Enforcement (E2E Integration)
-As the final safety net, E2E tests must verify that the SSG output resulted in actual, readable tags (e.g., asserting that `<title>` and `hreflang` tags exist in the compiled DOM via `@playwright/test`).
+| Layer | Mechanism | Assertion |
+|---|---|---|
+| TypeScript | `PageSeoProps` interface on every route component | Guarantees `title`, `description`, `canonicalUrl`, `locale` are passed to `<SeoHead />` |
+| Unit (Vitest) | Test `<SeoHead />` in isolation | Valid DOM elements produced from `PageSeoProps` |
+| E2E (Playwright) | Assert compiled SSG output | `<title>` and `hreflang` tags present in rendered DOM |

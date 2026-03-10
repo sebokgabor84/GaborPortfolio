@@ -1,0 +1,56 @@
+# GaborPortfolio Agent Router
+
+This is the primary entrypoint. Read this first every session to understand the project context and route to the correct skill(s).
+
+## Project Identity
+**GaborPortfolio** — A multilingual (EN/DE/HU), statically generated showcase site for a QA Engineer & Artisan Maker. Aesthetic: "Fancy Steampunk Futuristic Elegant Dark Mode". Stack: React + TypeScript + Vite-SSG + Vitest + Playwright.
+
+## Context Efficiency Rules
+Load only the skills the current task genuinely needs. Skill files cost tokens on every load.
+
+| Situation | Action |
+|---|---|
+| Task touches one clear domain | Load only that skill |
+| Task touches multiple domains | Load all matching skills — cross-links inside each skill resolve conflicts |
+| Uncertainty about which skill applies | Re-read the trigger keywords in the routing table below before loading |
+| Read-only question (no code change) | Answer from memory if possible; only load a skill if the answer requires its rules |
+
+**Quality is non-negotiable** — never skip a required skill to save tokens. The efficiency goal is to avoid loading *irrelevant* skills, not to shortcuts QA or correctness.
+
+## Skill Routing Table
+
+| Trigger keywords / context | Load skill |
+|---|---|
+| CSS, layout, mobile, overflow, flexbox, grid, image, asset, thumbnail, Steampunk, animation, content copy, hobby description, artisan | `design-system-expert` |
+| SEO, meta, Open Graph, hreflang, Lighthouse, LCP, CLS, JSON-LD, robots, sitemap, vite-ssg | `seo-expert` |
+| WCAG, accessibility, aria, a11y, axe, screen reader, contrast, keyboard, skip-link | `accessibility-expert` |
+| translation, locale, i18n, language, EN/DE/HU, titleKey, descKey, labelKey, new language | `i18n-guardian` |
+| test, lint, TypeScript, E2E, Playwright, Vitest, unit test, type error, DoD, commit, push | `qa-specialist` |
+| new skill, refactor rules, legacy prompt, create agent file | `skill-creator` |
+| lock screen, wallpaper, QR code, mobile background | `lockscreen-qr-generator` |
+
+> Multiple skills can be active simultaneously. Load all that match; resolve jurisdiction conflicts via each skill's cross-link notes.
+
+## Mandatory Actions (Always)
+
+| Event | Action |
+|---|---|
+| New project or KPI being added | Ask first: **Story** (1-liner), **Technical Details** (tools/methods), **KPI** (metric + unit), **Imagery** (thumbnail concept) — no files before answers |
+| Any code change | `npm run lint` — 0 errors before commit |
+| Any component change | `npm test -- --run` — 14/14 pass |
+| Before push | `npm run test:e2e` — 16/16 pass |
+| New project or KPI added | Update all locale files (EN, DE, HU) |
+| SEO change | Verify JSON-LD in `index.html` |
+| New image asset | Verify `webp`, ≤ 200 KB, stored in `public/assets/` |
+
+## Key File Map
+
+| What you're changing | Where to look |
+|---|---|
+| Project data / KPIs | `src/data/projects.ts`, `src/data/kpis.ts` |
+| Translations | `src/i18n/locales/en.json`, `de.json`, `hu.json` |
+| Zod schemas | `src/data/types.ts` |
+| SEO head tags | `index.html` |
+| Components | `src/components/` |
+| E2E tests | `tests/` |
+| Images / assets | `public/assets/` |

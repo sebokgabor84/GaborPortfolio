@@ -5,55 +5,57 @@ description: Generates, formats, and standardizes new skills or refactors legacy
 
 # Skill Creator (The Architect)
 
-You are the central engine for standardizing and generating new agent skills in the GaborPortfolio project. Your primary job is to enforce the official Antigravity skill architecture and eliminate legacy, monolithic prompt structures (like `master_prompt.md`).
+Central engine for standardizing and generating new agent skills in GaborPortfolio. Enforces the official Antigravity skill architecture and eliminates legacy, monolithic prompt structures.
 
 ## Core Directives
 
-1.  **Never Copy-Paste from Legacy:** When asked to create a skill from a legacy `.rules.md` or `.md` file, you must *extract the intent* and re-write it as atomic, actionable principles. Discard contradictory, outdated, or tangled boilerplate.
-2.  **Strict Antigravity formatting:** Every skill you create MUST strictly align with the official Antigravity schema.
-3.  **Progressive Disclosure:** Skills are loaded dynamically based on their descriptions. Your generated descriptions must act as highly accurate triggers.
+| Directive | Rule |
+|---|---|
+| **No copy-paste from legacy** | Extract the *intent*, rewrite as atomic actionable principles. Discard contradictory or outdated boilerplate. |
+| **Strict Antigravity format** | Every skill MUST follow the output schema below. |
+| **Progressive Disclosure** | The `description` field is the trigger. Make it precise — it determines when the agent loads this skill. |
 
-## Output Schema & Formatting
+## Output Schema
 
-When writing a new skill, generate a folder at `.agent/skills/<skill-folder>/` containing a `SKILL.md` file.
-
-The `SKILL.md` file MUST follow this exact structure:
+Every new skill is a folder at `.agent/skills/<name>/SKILL.md` with this exact structure:
 
 ```markdown
 ---
 name: [lowercase-hyphenated-name]
-description: [Third-person description containing trigger keywords (e.g., "Generates unit tests...", "Formats CSS..."). This determines WHEN the agent uses the skill.]
+description: [Third-person trigger description, e.g. "Generates unit tests..."]
 ---
 
 # [Readable Skill Name]
 
-[1-2 sentences summarizing the core capability]
+[1-2 sentence summary]
 
 ## When to use this skill
-- [Trigger condition 1]
-- [Trigger condition 2]
+- [Trigger condition]
 
 ## How to use it
-[Step-by-step guidance, principles, and actionable rules the executing agent must follow.]
+[Actionable rules and step-by-step guidance]
 
 ## Best Practices / Constraints
-- [Rule 1]
-- [Rule 2]
+- [Rule — only if not already stated above]
 ```
 
 ## Mandatory Checks Before Output
-Before saving the final `SKILL.md` file, execute a **Cross-Pollination Analysis** and verify the following checklist:
-- [ ] **Cross-Pollination Analysis**: Did I scan the existing `.agent/skills/` directory for potential conflicts? If this new skill overlaps with an existing capability, did I add explicit "handshake agreements" to resolve jurisdiction?
-- [ ] Is it placed in a dedicated folder (e.g., `.agent/skills/<name>/SKILL.md`)?
-- [ ] Is the YAML frontmatter present?
-- [ ] Is the `description` written in the 3rd person to act as a proper trigger?
-- [ ] Is the scope focused? If the user request is a "do everything" prompt, ask the user if they want to split it into two skills instead.
+- [ ] **Cross-Pollination**: Scanned `.agent/skills/` for conflicts. Overlaps resolved with handshake cross-links.
+- [ ] Placed in a dedicated folder (`SKILL.md` inside named folder)
+- [ ] YAML frontmatter present
+- [ ] `description` written in third person
+- [ ] Scope is focused — if "do everything", ask user to split into two skills
+
+## Token Efficiency Rules
+Skills are loaded on every trigger — every unnecessary word has a runtime cost.
+
+| Rule | Action |
+|---|---|
+| **Tables over prose** | 3+ action→rule pairs → use a table |
+| **No obvious commands** | Only include project-specific non-trivial commands |
+| **Tight scope** | Cross-link to other skills instead of duplicating their rules |
+| **No double-stating** | A rule stated once is not restated as a "Best Practice" |
+| **Line target** | ≤ 60 lines. Flag and propose cuts if exceeding 80 |
 
 ## Companion Resources
-If a skill requires bash automation or complex data manipulation, do not embed 100 lines of bash into the markdown.
-Instead, recommend or create companion scripts:
-- `scripts/`
-- `examples/`
-- `resources/`
-
-Instruct the executing agent to run your provided scripts (e.g., `bash scripts/validate.sh --help`) rather than reading the raw bash source.
+For complex automation, create companion scripts in `scripts/`, `examples/`, or `resources/` subdirectories. Reference them with a single run command — do not embed large bash blocks inline.

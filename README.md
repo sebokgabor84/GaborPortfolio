@@ -7,121 +7,97 @@
 
 > **"Where Exactitude Meets Craftsmanship."**
 
-Welcome to the **Monorepo of Competence**. This isn't just a portfolio; it's a **Compliance-Ready, Single-Page Application** designed to demonstrate "Senior QA Specialist" capabilities in a live environment.
-
-It features an **"Elegant Steampunk"** aesthetic (CSS Variables, no frameworks) and acts as a dashboard for my dual life: **High-Tech QA Automation** and **Old-World Craftsmanship**.
+This isn't just a portfolio — it's a **Compliance-Ready, Agent-Native SPA** demonstrating Senior QA engineering and artisan craftsmanship in a single codebase. Built with an **"Elegant Steampunk"** aesthetic using Vanilla CSS. No frameworks. No excuses.
 
 ---
 
-## 🚀 The "Elevator Pitch" (Why This Codebase Matters)
+## 🚀 Elevator Pitch
 
-Recruiters asking "Can you code/test/architect?" --> **Just run this repo.**
+Recruiters asking *"Can you code, test, and architect?"* → **Just run this repo.**
 
-*   **Zero-Config Reliability**: Clones and runs instantly.
-*   **Shift-Left Quality**: Accessibility (a11y) and Linting strictness are baked into the build pipeline.
-*   **360-Degree Validation**: Includes a robust **Playwright E2E Suite** covering Critical User Journeys (CUJs).
-*   **Agent-Native**: Built with a "DebugGuide" component that enables AI Agents (via Chrome MCP) to debug the site in real-time.
-
-## 🎥 Live Showcase (30s Tour)
-Watch the "Elegant Steampunk" design in action (Smooth Scroll & Video Facade Pattern):
-![Website Tour Review](public/assets/showcase_tour.webp)
-
----
-
-## 🛠 The "Stainless Steel" Tech Stack
-
-We chose tools that scream **reliability** and **performance**:
-
-*   **Core**: [React 18](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) (Strict Mode Enabled).
-*   **Build System**: [Vite](https://vitejs.dev/) (Next-gen frontend tooling).
-*   **Internationalization**: Multi-language support (English, German, Hungarian) via `react-i18next`.
-*   **SEO**: Open Graph, Twitter Cards, JSON-LD structured data, semantic HTML.
-*   **Styling**: **Vanilla CSS Modules** + CSS Variables. (We don't hide behind Tailwind; we architect our own Design Systems).
-*   **Testing (The Crown Jewel)**:
-    *   **Unit**: [Vitest](https://vitest.dev/) (Jest-compatible).
-    *   **E2E**: [Playwright](https://playwright.dev/) (Cross-browser, Mobile/Desktop validation).
-*   **DX (Developer Experience)**: Prettier (Auto-format) + ESLint (Standard + Accessibility).
+| Capability | Evidence |
+|---|---|
+| Zero-Config Reliability | Clones and runs instantly |
+| Shift-Left Quality | A11y + linting baked into the pipeline |
+| 360° Validation | Playwright E2E suite covering all CUJs |
+| Agent-Native | Chrome MCP integration for live AI debugging |
+| Production-Grade Agentic Infra | 7-skill autonomous agent system (see below) |
 
 ---
 
-## 🕹 Features & Architecture
+## 🛠 Tech Stack
 
-### 1. The "Cockpit" Dashboard
-A visual "Mission Control" displaying real-time (mocked) metrics found in `src/components/Cockpit`.
-
-We use a **Facade Pattern** for video embedding in `src/components/ProjectSection`.
-*   *Optimization*: High-Res GenAI Thumbnails load first. YouTube Iframe only loads on interaction (`onClick`).
-*   *A11y*: Interactive elements use semantic `<button>` tags.
-
-### 3. The "Agent-Aware" Debug Mode
-Hidden in the codebase (and visible in the UI) is `src/components/Guide/DebugGuide.tsx`.
-*   *Innovation*: A self-documenting module that teaches developers/agents how to connect to the Chrome DevTools Protocol for live debugging.
-*   **Guide**: See [DEBUGGING_GUIDE.md](docs/DEBUGGING_GUIDE.md) for the "Shift-Left" protocol.
-
-### 4. Pluggable Skills Architecture (.agent System)
-This project is built on a **Dual-Nature** agentic framework.
-*   **The Rules** (`.agent/rules`): File-based routing that switches between "Maker" (Creative) and "QA Specialist" (Technical) personas.
-*   **The Skills** (`.agent/skills`): Modular capabilities like the `artisan_interview` which gathers project data.
-*   **The Hammer** (`.agent/commands`): A unified command that enforces strict quality gates (Lint -> Asset Check -> Test).
-*   **The Contract** (`src/data/types.ts`): Zod schemas (`ProjectDTOSchema`) that act as the gatekeeper between the Agent and the UI.
-*   **Visual Workflow**: See [Maker Extension Workflow](docs/architecture/maker_workflow.md) to understand how we map "User Intent" to "Deployment".
-
-### 5. Data-Driven Components
-Want to add a new skill? Just add an entry to `src/data/projects.ts` or `src/data/kpis.ts` and set `enabled: true`.
-*   *Data-Driven*: Projects and KPIs are rendered dynamically from TypeScript arrays.
-*   *i18n Ready*: Each skill has translation keys for EN, DE, HU.
-*   *Toggle-Friendly*: Enable/disable skills without touching component code.
-
-### 5. Proof of Verification (Visual Audit)
-We don't just say it works; we prove it.
-![QA Audit Evidence](public/assets/qa_audit_evidence.webp)
-*Above: An automated Agent auditing the "QA Automation Framework" card for interaction and console errors.*
+| Layer | Choice | Why |
+|---|---|---|
+| Core | React + TypeScript (Strict) | Type safety everywhere |
+| Build | Vite + vite-ssg | Instant feedback + static output for Lighthouse 100/100 |
+| i18n | react-i18next | EN / DE / HU |
+| Styling | Vanilla CSS Modules + CSS Variables | We architect design systems, not hide behind Tailwind |
+| Unit Testing | Vitest | Jest-compatible, fast |
+| E2E | Playwright | Cross-browser, mobile + desktop |
+| SEO | Open Graph, Twitter Cards, JSON-LD | Full structured data |
 
 ---
 
-## ⚡ Quick Start (The "Happy Path")
+## 🤖 The Agentic Infrastructure (The Crown Jewel)
 
-Premise: You have `node` (v18+) installed.
+This project runs a **production-grade autonomous agent system** — not a prompt in a text file, but a full skill-based architecture:
 
-1.  **Clone & Install**:
-    ```bash
-    git clone https://github.com/your-username/GaborPortfolio.git
-    cd GaborPortfolio
-    npm install
-    npx playwright install
-    ```
+```
+.agent/
+  AGENT.md              ← Context-efficient router: maps intent → skill, enforces interview gates
+  skills/
+    accessibility-expert/     WCAG 2.2 AA — axe, Playwright, ESLint a11y
+    design-system-expert/     CSS architecture, Steampunk palette, asset generation, Maker persona
+    i18n-guardian/            Self-discovering locale sync across all languages and data sections
+    lockscreen-qr-generator/  AI-composited QR lock screen wallpaper workflow
+    qa-specialist/            TypeScript strictness, Zod DTOs, DoD pipeline (lint → unit → E2E)
+    seo-expert/               vite-ssg, hreflang, Lighthouse, JSON-LD
+    skill-creator/            Generates new skills with built-in token efficiency rules
+```
 
-2.  **Ignition (Dev Server)**:
-    ```bash
-    npm run dev
-    # Opens http://localhost:5173
-    ```
-
-3.  **The "QA Audit" (Verify Competence)**:
-    ```bash
-    npm run lint       # 0 Errors Expected
-    npm test           # Unit Tests (Green)
-    npm run test:e2e   # Full Browser Suite (Green)
-    ```
+**Why this matters:** Each skill is independently loaded only when relevant — context efficiency is enforced by the router. New capabilities snap in without modifying any existing skill. The whole system is self-improving: `skill-creator` can generate and cross-check new skills.
 
 ---
 
-## 📂 Documentation & Standards
+## 🎥 Live Showcase
+![Website Tour](public/assets/showcase_tour.webp)
 
-### 🧠 The "Brain" (Agentic Documentation)
-*   **Architecture**: [Maker Workflow Visualization](docs/architecture/maker_workflow.md) - How the Agent thinks.
-*   **Visualization Protocol**: [Mermaid Master Prompt](docs/architecture/mermaid_master_prompt.md) - How we generate diagrams.
+---
 
-### 📘 Operational Guides
-*   **Handling Real-Time Debugging**: [DEBUGGING_GUIDE.md](docs/DEBUGGING_GUIDE.md) - MCP & Chrome Protocol.
-*   **Collaboration & QA**: [COLLABORATION.md](docs/COLLABORATION.md) - Definition of Done & Workflow.
-*   **Recruitment**: [Blueprint](prompts/master_prompt.md) - The "Regeneration Protocol".
+## ⚡ Quick Start
+
+```bash
+git clone https://github.com/sebokgabor84/GaborPortfolio.git
+cd GaborPortfolio && npm install && npx playwright install
+npm run dev          # http://localhost:5173
+```
+
+**Verify competence:**
+```bash
+npm run lint         # 0 errors
+npm test -- --run    # 14/14 unit pass
+npm run test:e2e     # 16/16 E2E pass
+```
+
+---
+
+## 📂 Key References
+
+| Topic | Location |
+|---|---|
+| Agent router | `.agent/AGENT.md` |
+| Skill definitions | `.agent/skills/*/SKILL.md` |
+| Debugging & MCP setup | `.agent/skills/qa-specialist/resources/debugging-guide.md` |
+| Project & KPI data | `src/data/projects.ts`, `src/data/kpis.ts` |
+| Zod contracts | `src/data/types.ts` |
+| Architecture diagrams | `docs/architecture/` |
 
 ---
 
 ## 📸 Attribution
-*   **Assets**: Generated via "Nanono Banana Pro" (Internal AI Tool) - Prompted for "Elegant Steampunk, Copper, Carbon Fiber".
-*   **Icons**: `react-icons` (Fa).
+- **Assets**: Generated via Nano Banana Pro — prompted for *"Elegant Steampunk, Copper, Carbon Fiber"*
+- **Icons**: `react-icons`
 
 ---
 

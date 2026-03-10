@@ -1,78 +1,82 @@
 ---
 name: design-system-expert
-description: Handles UI/UX design changes, ensures fluid typography, prevents text overflow, manages AI image/asset generation strategies, and enforces the Antigravity design system standards as per the CSS guiding principles.
+description: Handles UI/UX design changes, ensures fluid typography, prevents text overflow, enforces the Steampunk design system, manages AI image/asset generation, and owns the Maker Craftsman persona — artisan tone, hobby terminology, and brand voice.
 ---
 
 # Design System Expert Skill
 
-## Guiding Principles
+Enforces GaborPortfolio's CSS architecture and visual identity — fluid layouts, the Steampunk aesthetic, and AI asset generation standards. This is a showcase project; quality must impress.
 
-When instructed to write or fix CSS, use these principles to ensure the output is a sustainable architectural change rather than just a hack. We generally aim for a very high-quality look and feel website, since this is a showcase project for investors.
-
-### 1. The "Fluidity over Fixes" Principle
-- Do not use fixed pixel values for dimensions or typography.
-- Implement fluid typography using `clamp()`.
-- Use relative units (`rem`, `em`, `vh`, `vw`) or logical properties.
-- Ensure the layout is **Intrinsically Responsive**—it should adjust its own structure based on available space without relying solely on rigid media queries.
-
-### 2. Preventing Text Overflow
-- For any header or status text, ensure it never breaks the container.
-- Use `word-break: break-word;` or `overflow-wrap: anywhere;`.
-- Use fluid font sizing: `font-size: clamp(1.5rem, 5vw, 3rem);`.
-- Use `hyphens: auto;` (if applicable).
-- Avoid `white-space: nowrap;` unless paired with an ellipsis or a scrolling container strategy.
-
-### 3. The "Modern Layout" Rule
-- Prefer **CSS Grid** and **Flexbox** with `gap` over margins/padding for spacing layout items.
-- *SEO Handshake*: Use internal `padding` *inside* interactive elements (like buttons) to satisfy the 48x48px touch target rule enforced by `seo-expert`.
-- When using Flexbox, always provide a `flex-wrap: wrap;` strategy or a flex-direction change for small screens.
-- Ensure every container has a `max-width: 100%` and `box-sizing: border-box` to prevent horizontal overflow.
-
-### 4. Robust Framework Constraints & Styling
-- Group all layout-breaking fixes into a "Safety Layer" in the CSS.
-- Use **CSS Variables (Custom Properties)** for all theme-related values (colors, spacing, font-scales) to ensure global consistency and easy debugging.
-- **Styling Method**: Vanilla CSS Modules or Inline Styles mapped to variables. **NO Tailwind**.
-- **Icons**: Always use SVG for icons and always aim for non-pixelated rendering.
-
-## Project Specific Rules (GaborPortfolio Steampunk Aesthetic)
-
-### A. The Aesthetic Signature
-- **Style**: "Fancy Steampunk Futuristic Elegant Dark Mode".
-- **Materials**: Polished Copper, Brushed Gold, Carbon Fiber, Mahogany, Glowing Vacuum Tubes.
-- **Lighting**: Cinematic, Volumetric support, "Golden Hour" or "Neon Blue" accents.
-
-### B. Design System (Steampunk Palette)
-- **Colors**:
-    - Background: `--color-bg-dark` (`#121010`)
-    - Accents: `--color-copper` (`#b87333`), `--color-gold` (`#d4af37`)
-        - *A11y Handshake*: Copper has a contrast of ~4.48:1 against the dark background. To satisfy WCAG 2.2 (`accessibility-expert`), ONLY use Copper for Large Text (Headings/Bold) or decorative UI borders. Never use it for small body text.
-    - Text: `--color-text-main` (`#e0dacc`)
-- **Typography Constraints**: Headings should retain a digital/mechanical feel (`Courier New`), while body text uses `system-ui`. Fluid scales should anchor at these constraints.
-- **Effects**: `radial-gradient` backgrounds, `box-shadow` panels.
-
-## Image Generation Strategy (GenAI) & Asset Library
-
-### Implementation Rules & Performance
-- Store all generated assets in `public/assets`.
-- Always use the **Facade Pattern** (Static image first, Interactive media second).
-- **Tool Choice**: If generating an image, always use Nano Banana Pro, or any similar AI tool when we run out of budget for tokens.
-- **Performance**: Always optimize for the performance of the webpage. All generated images must have the type `"webp"`.
-- **Size Limits**: All generated images must be optimized by size; **no images above 200Kb are allowed**.
-- **Resolution**: All generated images must also be optimized for retina displays (**8K resolution**).
-- **Animations/Videos**: The exact same optimization rules (file size, webp format, 8K) apply to animations and video sequences as well. (Note: `AssetCheck` validation verifies `webp` assets like `/assets/thumb-id.webp`).
-
-### Asset Library & Prompts
-When regenerating assets, use these conceptual prompts to maintain consistency:
-- `hero-cockpit.webp`: **Metric Dashboard** – Panoramic view of intricate copper gauges, digital displays, "Mission Control" feel, 8k resolution.
-- `thumb-qa.webp`: **QA/Automation** – Futuristic computer terminal, glowing code streams, "Bug" icons being scanned, matrix style but steampunk.
-- `thumb-brewing.webp`: **Engineering/Brewing** – High-tech copper brewing vats, magnetic pumps, bubbling liquid, laboratory setting.
-- `thumb-wedding.webp`: **Welding/Craft** – Intricate hexagonal iron gate, welding sparks, rustic workshop background, elegant metalwork.
-- `thumb-house.webp`: **Renovation** – Holographic blueprint of a house overlaying a rustic wood table, construction tools, fusion of old and new.
+*(Note: Color contrast ratios for accessibility → `accessibility-expert`. SEO `alt` and CLS attributes → `seo-expert`.)*
 
 ## When to use this skill
-Trigger this skill whenever the task involves:
-- Visual Vibe Coding or requesting/generating GenAI images/video assets.
-- Fixing mWeb (mobile) view layouts.
-- Correcting horizontal scrollbar issues.
-- Modifying padding, margins, flexbox or grid layouts.
-- Enforcing the overarching Steampunk component UI design.
+- Fixing mWeb (mobile) layout or horizontal scroll issues
+- Modifying padding, margins, Flexbox, or Grid layouts
+- Generating or replacing any image/video asset
+- Enforcing the Steampunk component UI design
+
+## How to use it
+
+### 1. CSS Principles
+
+| Principle | Rule |
+|---|---|
+| **Fluidity over fixes** | No fixed `px` for dimensions or typography. Use `clamp()`, `rem`, `vw`, logical properties. |
+| **Text overflow** | `word-break: break-word`, `overflow-wrap: anywhere`, `hyphens: auto`. Never `white-space: nowrap` without an ellipsis strategy. |
+| **Modern layout** | CSS Grid + Flexbox with `gap`. Always `flex-wrap: wrap` or `flex-direction` change for small screens. Every container: `max-width: 100%` + `box-sizing: border-box`. |
+| **Safety Layer** | Group all layout-breaking fixes into a named "Safety Layer" in the CSS. |
+| **CSS Variables** | All theme values (colors, spacing, font scales) use Custom Properties — no magic numbers. |
+| **No Tailwind** | Vanilla CSS Modules or Inline Styles mapped to variables only. |
+| **Icons** | Always SVG — aim for non-pixelated rendering. |
+
+### 2. Steampunk Design System
+
+**Aesthetic**: "Fancy Steampunk Futuristic Elegant Dark Mode" — Polished Copper, Brushed Gold, Carbon Fiber, Mahogany, Glowing Vacuum Tubes.
+
+| Token | Value |
+|---|---|
+| `--color-bg-dark` | `#121010` |
+| `--color-copper` | `#b87333` — **Large text / decorative borders only** (contrast ~4.48:1) |
+| `--color-gold` | `#d4af37` |
+| `--color-text-main` | `#e0dacc` |
+
+**Typography**: Headings → `Courier New` (mechanical feel). Body → `system-ui`. Fluid scales with `clamp()`.
+
+**Touch targets**: Internal `padding` inside interactive elements to satisfy the 48×48px rule *(handshake: `accessibility-expert`)*.
+
+### 3. Asset Generation Rules
+
+| Rule | Standard |
+|---|---|
+| Format | `webp` only |
+| Max size | 200 KB |
+| Resolution | 8K (retina-optimised) |
+| Storage | `public/assets/` |
+| Pattern | Facade Pattern — static image first, interactive media second |
+| Tool | Nano Banana Pro (or equivalent when token budget is exhausted) |
+
+**Asset Library** — use these anchored prompts to maintain visual consistency:
+
+| File | Concept |
+|---|---|
+| `hero-cockpit.webp` | Panoramic copper gauges + digital displays, Mission Control feel |
+| `thumb-qa.webp` | Futuristic terminal, glowing code streams, steampunk bug scanner |
+| `thumb-brewing.webp` | Copper brewing vats, magnetic pumps, bubbling liquid, lab setting |
+| `thumb-wedding.webp` | Hexagonal iron gate, welding sparks, elegant metalwork, rustic workshop |
+| `thumb-house.webp` | Holographic blueprint overlaying rustic wood, fusion of old and new |
+
+## Maker Craftsman Persona & Content Voice
+
+When writing content, descriptions, or project copy, adopt the **Master Craftsman** voice: every project has a story, details matter (family milestones as KPIs), tone is witty and professional — never corporate.
+
+### Artisan Terminology
+Use authentic practitioner language rather than generic descriptions:
+
+| Hobby | Terminology to use |
+|---|---|
+| **Brewing** | Mag-Drive Pumps, Semi-Automated, Fermentation cycles, Liters brewed |
+| **Welding** | Old-fashioned Electrode Welding, Structural design, Custom Hexagonal Gates |
+| **Beekeeping** | Apiary management, Honey extraction, Sustainable practices |
+| **Bread Making** | Natural sourdough starters, Long fermentation, Perfect crust |
+
+**Micro-animations**: UI transitions should feel mechanical — subtle, handcrafted, premium.
