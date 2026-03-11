@@ -29,6 +29,13 @@ Load only the skills the current task genuinely needs. Skill files cost tokens o
 | new skill, refactor rules, legacy prompt, create agent file | `skill-creator` |
 | lock screen, wallpaper, QR code, mobile background | `lockscreen-qr-generator` |
 
+### 🚨 Missing Skill Fallback
+If no skill in the Routing Table matches the User Intent:
+1.  **STOP** immediately.
+2.  Do not guess or assume a workflow.
+3.  Suggest creating a new skill or refactoring existing ones via `skill-creator`.
+4.  Wait for user approval before proceeding.
+
 > Multiple skills can be active simultaneously. Load all that match; resolve jurisdiction conflicts via each skill's cross-link notes.
 
 ## Mandatory Actions (Always)
@@ -47,6 +54,8 @@ Load only the skills the current task genuinely needs. Skill files cost tokens o
 
 | What you're changing | Where to look |
 |---|---|
+| Agent router | `AGENT.md` |
+| Skill definitions | `.agent/skills/*/SKILL.md` |
 | Project data / KPIs | `src/data/projects.ts`, `src/data/kpis.ts` |
 | Translations | `src/i18n/locales/en.json`, `de.json`, `hu.json` |
 | Zod schemas | `src/data/types.ts` |
