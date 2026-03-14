@@ -18,7 +18,7 @@ describe('MissionControlCarousel', () => {
   });
 
   it('renders the correct number of static tiles', () => {
-    render(<MissionControlCarousel />);
+    const { container } = render(<MissionControlCarousel />);
     
     // Check how many active static KPIs there are in the data layer
     const staticKpiCount = kpis.filter(k => k.enabled && !k.isDynamic).length;
@@ -28,8 +28,8 @@ describe('MissionControlCarousel', () => {
     expect(bugsTitle).toBeInTheDocument();
     
     // We expect the carousel to render one article per static KPI
-    const articles = screen.getAllByRole('article');
-    expect(articles).toHaveLength(staticKpiCount);
+    const tiles = container.querySelectorAll('.mc-tile');
+    expect(tiles).toHaveLength(staticKpiCount);
   });
 
   it('does not crash when simulating pointer interactions', () => {

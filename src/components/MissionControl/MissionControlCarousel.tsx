@@ -61,12 +61,13 @@ interface MissionControlTileProps {
     index: number;
     totalItems: number;
     isLazy: boolean;
+    onClick: () => void;
 }
 
 /**
  * TILE COMPONENT
  */
-const MissionControlTile: React.FC<MissionControlTileProps> = ({ title, metric, bgImage, glowColor, index, totalItems, isLazy }) => {
+const MissionControlTile: React.FC<MissionControlTileProps> = ({ title, metric, bgImage, glowColor, index, totalItems, isLazy, onClick }) => {
     const [imageLoaded, setImageLoaded] = useState(false);
 
     // 3D Math Engine
@@ -74,8 +75,17 @@ const MissionControlTile: React.FC<MissionControlTileProps> = ({ title, metric, 
     const rotationY = index * theta;
 
     return (
-        <article
+        <div
             className="mc-tile"
+            role="button"
+            tabIndex={0}
+            onClick={onClick}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onClick();
+                }
+            }}
             style={{
                 transform: `rotateY(${rotationY}deg) translateZ(var(--drum-radius))`
             }}
@@ -125,7 +135,7 @@ const MissionControlTile: React.FC<MissionControlTileProps> = ({ title, metric, 
                     <h3 className="mc-title">{title}</h3>
                 </div>
             </div>
-        </article>
+        </div>
     );
 };
 
@@ -138,13 +148,17 @@ export const MissionControlCarousel: React.FC = () => {
 
     // Filter out dynamic KPIs like Live Visitors since we only generated 9 static images
     const activeKpis = kpis.filter(k => k.enabled && !k.isDynamic);
+    const theta = 360 / activeKpis.length;
 
     // Animation & Drag state references
     const sceneRef = useRef<HTMLElement>(null);
     const drumRef = useRef<HTMLDivElement>(null);
     const rotationRef = useRef(0);
+    const targetRotationRef = useRef(0);
     const isDraggingRef = useRef(false);
     const startXRef = useRef(0);
+    const dragDistanceRef = useRef(0);
+    const lastInteractionTime = useRef<number>(0);
 
     // IntersectionObserver Killswitch flag
     const isVisibleRef = useRef(true);
@@ -166,14 +180,19 @@ export const MissionControlCarousel: React.FC = () => {
         const handlePointerDown = (e: PointerEvent) => {
             isDraggingRef.current = true;
             startXRef.current = e.clientX;
+            dragDistanceRef.current = 0;
+            lastInteractionTime.current = Date.now();
+            targetRotationRef.current = rotationRef.current; // sync to current to stop any ongoing snap
             scene.setPointerCapture(e.pointerId);
         };
 
         const handlePointerMove = (e: PointerEvent) => {
             if (!isDraggingRef.current) return;
             const deltaX = e.clientX - startXRef.current;
-            rotationRef.current += deltaX * 0.4;
+            dragDistanceRef.current += Math.abs(deltaX);
+            targetRotationRef.current += deltaX * 0.4;
             startXRef.current = e.clientX;
+            lastInteractionTime.current = Date.now();
         };
 
         const handlePointerUp = (e: PointerEvent) => {
@@ -183,6 +202,12 @@ export const MissionControlCarousel: React.FC = () => {
             } catch { 
                 // Ignore DOM exception if pointer capture is lost
             }
+
+            // Snap to nearest item on release
+            const currentTarget = targetRotationRef.current;
+            const snappedRotation = Math.round(currentTarget / theta) * theta;
+            targetRotationRef.current = snappedRotation;
+            lastInteractionTime.current = Date.now();
         };
 
         // Use standard EventListener type assertion to satisfy strict DOM definitions
@@ -197,16 +222,30 @@ export const MissionControlCarousel: React.FC = () => {
             scene.removeEventListener('pointerup', handlePointerUp as EventListener);
             scene.removeEventListener('pointercancel', handlePointerUp as EventListener);
         };
-    }, []);
+    }, [theta]);
 
     useEffect(() => {
         let animationId: number;
 
         const animate = () => {
             if (isVisibleRef.current) {
+                const now = Date.now();
+
+                // Auto-advance logic
                 if (!isDraggingRef.current && !isHovered) {
-                    rotationRef.current -= 0.15;
+                    // Snap to the next slide every 3 seconds if untouched
+                    if (now - lastInteractionTime.current > 3000) {
+                        targetRotationRef.current -= theta;
+                        lastInteractionTime.current = now;
+                    }
+                } else if (isHovered && !isDraggingRef.current) {
+                    // Reset timer while hovered so it doesn't immediately spin on mouse leave
+                    lastInteractionTime.current = now;
                 }
+
+                // LERP (Linear Interpolation)
+                const lerpFactor = isDraggingRef.current ? 0.3 : 0.05;
+                rotationRef.current += (targetRotationRef.current - rotationRef.current) * lerpFactor;
 
                 if (drumRef.current) {
                     drumRef.current.style.transform = `rotateY(${rotationRef.current}deg)`;
@@ -219,7 +258,26 @@ export const MissionControlCarousel: React.FC = () => {
         animate();
 
         return () => cancelAnimationFrame(animationId);
-    }, [isHovered]);
+    }, [isHovered, theta]);
+
+    const handleTileClick = (index: number) => {
+        // If the user actually dragged, ignore the click
+        if (dragDistanceRef.current > 5) return;
+
+        const currentTarget = targetRotationRef.current;
+        const normalizedCurrent = ((currentTarget % 360) + 360) % 360; 
+        const targetAngle = -index * theta;
+        const normalizedTarget = ((targetAngle % 360) + 360) % 360;
+        
+        // Find shortest path to rotate
+        let diff = normalizedTarget - normalizedCurrent;
+        if (diff > 180) diff -= 360;
+        if (diff < -180) diff += 360;
+        
+        targetRotationRef.current = currentTarget + diff;
+        // eslint-disable-next-line react-hooks/purity
+        lastInteractionTime.current = Date.now();
+    };
 
     return (
         <div
@@ -261,6 +319,7 @@ export const MissionControlCarousel: React.FC = () => {
                                 index={index}
                                 totalItems={activeKpis.length}
                                 isLazy={isLazy}
+                                onClick={() => handleTileClick(index)}
                             />
                         );
                     })}
@@ -349,6 +408,7 @@ export const MissionControlCarousel: React.FC = () => {
           -webkit-user-drag: none; 
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
+          cursor: pointer;
         }
 
         .mc-tile:hover {
