@@ -322,9 +322,7 @@ export const MissionControlCarousel: React.FC = () => {
         let diff = targetAngle - normalizedCurrent;
         if (diff > N / 2) diff -= N;
         if (diff < -N / 2) diff += N;
-        
         targetIndexRef.current = currentActive + diff;
-        // eslint-disable-next-line react-hooks/purity
         lastInteractionTime.current = Date.now();
     }, [N]);
 
