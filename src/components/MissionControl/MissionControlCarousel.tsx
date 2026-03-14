@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { kpis } from '../../data/kpis';
 
@@ -59,8 +59,6 @@ interface MissionControlTileProps {
     bgImage: string;
     glowColor: string;
     index: number;
-    activeIndex: number;
-    totalItems: number;
     isLazy: boolean;
     onClick: () => void;
 }
@@ -68,40 +66,16 @@ interface MissionControlTileProps {
 /**
  * TILE COMPONENT
  */
-const MissionControlTile: React.FC<MissionControlTileProps> = ({ 
-    title, metric, bgImage, glowColor, index, activeIndex, totalItems, isLazy, onClick 
-}) => {
+const MissionControlTile = React.forwardRef<HTMLDivElement, MissionControlTileProps>(({ 
+    title, metric, bgImage, glowColor, isLazy, onClick 
+}, ref) => {
     const [imageLoaded, setImageLoaded] = useState(false);
 
-    // Coverflow Math Engine
-    let diff = index - (activeIndex % totalItems);
-    if (diff < 0) diff += totalItems; // Always positive module
-    
-    // Calculate shortest path
-    const halfN = totalItems / 2;
-    if (diff > halfN) diff -= totalItems;
-    if (diff < -halfN) diff += totalItems;
-
-    const absDiff = Math.abs(diff);
-
-    // Continuous Math for Coverflow layout
-    const isCenter = absDiff < 1;
-    const rotateY = -45 * Math.max(-1, Math.min(1, diff)); // clamp to -45 / 45
-    const scale = 1 - Math.min(absDiff, 1) * 0.15; // Center 1.0, sides 0.85
-    
-    const baseSpacing = 120; // px
-    const centerOffset = 60; // extra px pushing sides away from center
-    const smoothSign = Math.max(-1, Math.min(1, diff));
-    const translateX = diff * baseSpacing + smoothSign * Math.min(absDiff, 1) * centerOffset;
-    
-    const translateZ = absDiff * -150 + (isCenter ? 50 : 0);
-    const zIndex = Math.round(100 - absDiff * 10);
-    const opacity = Math.max(0, 1 - (absDiff - 2.5) * 0.5); // Fades out items further than index +/- 2
-
-    // Apply scaling directly to the transform to ensure the whole bezel/skeleton scales uniformly
+    // Initial render style - will be taken over by JS animation loop immediately
     return (
         <div
-            className={`mc-tile ${absDiff < 0.1 ? 'mc-active' : ''}`}
+            ref={ref}
+            className="mc-tile"
             role="button"
             tabIndex={0}
             onClick={onClick}
@@ -111,16 +85,14 @@ const MissionControlTile: React.FC<MissionControlTileProps> = ({
                     onClick();
                 }
             }}
-            /* We define custom properties so CSS hover can easily compose with JS transforms */
             style={{
-                '--js-tx': `${translateX}px`,
-                '--js-tz': `${translateZ}px`,
-                '--js-ry': `${rotateY}deg`,
-                '--js-scale': scale,
+                '--js-tx': `0px`,
+                '--js-tz': `-500px`,
+                '--js-ry': `0deg`,
+                '--js-scale': 0.8,
                 transform: `translateX(var(--js-tx)) translateZ(var(--js-tz)) rotateY(var(--js-ry)) scale(var(--js-scale))`,
-                zIndex,
-                opacity,
-                pointerEvents: opacity < 0.1 ? 'none' : 'auto',
+                pointerEvents: 'none',
+                opacity: 0
             } as React.CSSProperties}
         >
             {/* 1. Steampunk Skeleton Fallback */}
@@ -153,7 +125,7 @@ const MissionControlTile: React.FC<MissionControlTileProps> = ({
             </svg>
 
             {/* 5. The Content Overlay */}
-            <div className={`mc-content ${absDiff < 0.1 ? 'mc-content-active' : ''}`}>
+            <div className="mc-content mc-content-ref">
                 <div className="mc-spacer"></div>
                 <div className="mc-text-group">
                     <div
@@ -170,20 +142,17 @@ const MissionControlTile: React.FC<MissionControlTileProps> = ({
             </div>
         </div>
     );
-};
+});
+MissionControlTile.displayName = 'MissionControlTile';
 
 /**
  * MAIN APP COMPONENT
  */
 export const MissionControlCarousel: React.FC = () => {
     const { t } = useTranslation();
-    const [isHovered, setIsHovered] = useState(false);
     
-    // We update this piece of state tightly to trigger React re-renders for the list layout. 
-    // This allows activeIndex LERP to cascade math directly via React rendering continuously during drags.
-    // However, calling setState inside requestAnimationFrame is very heavy.
-    // Instead we drive the math by updating a ref and forceUpdate.
-    const [renderTick, setRenderTick] = useState(0);
+    // Convert React State into Refs to completely eliminate 60fps re-renders
+    const isHoveredRef = useRef(false);
 
     // Filter out dynamic KPIs like Live Visitors since we only generated 9 static images
     const activeKpis = kpis.filter(k => k.enabled && !k.isDynamic);
@@ -191,6 +160,7 @@ export const MissionControlCarousel: React.FC = () => {
 
     // Animation & Drag state references
     const sceneRef = useRef<HTMLElement>(null);
+    const tileRefs = useRef<(HTMLDivElement | null)[]>([]);
     const activeIndexRef = useRef(0);
     const targetIndexRef = useRef(0);
     const isDraggingRef = useRef(false);
@@ -270,7 +240,7 @@ export const MissionControlCarousel: React.FC = () => {
         const animate = () => {
             // Auto-advance logic: Smooth continuous scrolling
             if (isVisibleRef.current) {
-                if (!isDraggingRef.current && !isHovered) {
+                if (!isDraggingRef.current && !isHoveredRef.current) {
                     targetIndexRef.current += 0.004; // Smooth 60fps continuous spin
                 }
 
@@ -278,14 +248,59 @@ export const MissionControlCarousel: React.FC = () => {
                 const lerpFactor = isDraggingRef.current ? 0.3 : 0.04; // Slower, smoother elastic snap
                 const diff = targetIndexRef.current - activeIndexRef.current;
                 
-                if (Math.abs(diff) > 0.001) {
+                if (Math.abs(diff) > 0.0001) {
                     activeIndexRef.current += diff * lerpFactor;
-                    setRenderTick(prev => (prev + 1) % 10000); // trigger light re-render to execute math
+                }
+                
+                // Direct DOM Mutation for 60fps Coverflow Math (Eliminates React Render Lag)
+                const currentActive = activeIndexRef.current;
+                
+                for (let i = 0; i < N; i++) {
+                    const tile = tileRefs.current[i];
+                    if (!tile) continue;
+                    
+                    let cDiff = i - (currentActive % N);
+                    if (cDiff < 0) cDiff += N; // Always positive module
+                    
+                    // Calculate shortest path
+                    const halfN = N / 2;
+                    if (cDiff > halfN) cDiff -= N;
+                    if (cDiff < -halfN) cDiff += N;
+
+                    const absDiff = Math.abs(cDiff);
+
+                    // Continuous Math for Coverflow layout
+                    const isCenter = absDiff < 1;
+                    const rotateY = -45 * Math.max(-1, Math.min(1, cDiff)); // clamp to -45 / 45
+                    const scale = 1 - Math.min(absDiff, 1) * 0.15; // Center 1.0, sides 0.85
+                    
+                    const baseSpacing = 120; // px
+                    const centerOffset = 60; // extra px pushing sides away from center
+                    const smoothSign = Math.max(-1, Math.min(1, cDiff));
+                    const translateX = cDiff * baseSpacing + smoothSign * Math.min(absDiff, 1) * centerOffset;
+                    
+                    const translateZ = absDiff * -150 + (isCenter ? 50 : 0);
+                    const zIndex = Math.round(100 - absDiff * 10);
+                    const opacity = Math.max(0, 1 - (absDiff - 2.5) * 0.5); // Fades out items further than index +/- 2
+
+                    tile.style.setProperty('--js-tx', `${translateX}px`);
+                    tile.style.setProperty('--js-tz', `${translateZ}px`);
+                    tile.style.setProperty('--js-ry', `${rotateY}deg`);
+                    tile.style.setProperty('--js-scale', `${scale}`);
+                    tile.style.zIndex = `${zIndex}`;
+                    tile.style.opacity = `${opacity}`;
+                    tile.style.pointerEvents = opacity < 0.1 ? 'none' : 'auto';
+                    
+                    // Toggle active class directly
+                    if (absDiff < 0.1) {
+                        tile.classList.add('mc-active');
+                        tile.querySelector('.mc-content-ref')?.classList.add('mc-content-active');
+                    } else {
+                        tile.classList.remove('mc-active');
+                        tile.querySelector('.mc-content-ref')?.classList.remove('mc-content-active');
+                    }
                 }
             }
-            
-            // Just reading renderTick to satisfy eslint unused var
-            if (renderTick < 0) console.log(renderTick);
             
             animationId = requestAnimationFrame(animate);
         };
@@ -293,10 +308,9 @@ export const MissionControlCarousel: React.FC = () => {
         animate();
 
         return () => cancelAnimationFrame(animationId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isHovered]);
+    }, [N]);
 
-    const handleTileClick = (index: number) => {
+    const handleTileClick = useCallback((index: number) => {
         if (dragDistanceRef.current > 5) return;
 
         // Find shortest path in array space
@@ -310,8 +324,9 @@ export const MissionControlCarousel: React.FC = () => {
         if (diff < -N / 2) diff += N;
         
         targetIndexRef.current = currentActive + diff;
+        // eslint-disable-next-line react-hooks/purity
         lastInteractionTime.current = Date.now();
-    };
+    }, [N]);
 
     return (
         <div
@@ -331,9 +346,9 @@ export const MissionControlCarousel: React.FC = () => {
             <section
                 className="mc-scene"
                 ref={sceneRef}
-                onMouseEnter={() => setIsHovered(true)}
+                onMouseEnter={() => { isHoveredRef.current = true; }}
                 onMouseLeave={() => {
-                    setIsHovered(false);
+                    isHoveredRef.current = false;
                     isDraggingRef.current = false;
                 }}
             >
@@ -344,13 +359,12 @@ export const MissionControlCarousel: React.FC = () => {
                     return (
                         <MissionControlTile
                             key={`${kpi.id}-${index}`}
+                            ref={el => { tileRefs.current[index] = el; }}
                             title={t(kpi.labelKey)}
                             metric={metricText}
                             bgImage={imageMap[kpi.id] || '/assets/thumb-uptime.webp'}
                             glowColor={colorMap[kpi.color]}
                             index={index}
-                            activeIndex={activeIndexRef.current}
-                            totalItems={activeKpis.length}
                             isLazy={isLazy}
                             onClick={() => handleTileClick(index)}
                         />
