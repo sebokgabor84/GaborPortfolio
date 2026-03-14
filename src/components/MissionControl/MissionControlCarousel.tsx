@@ -98,6 +98,7 @@ const MissionControlTile: React.FC<MissionControlTileProps> = ({
     const zIndex = Math.round(100 - absDiff * 10);
     const opacity = Math.max(0, 1 - (absDiff - 2.5) * 0.5); // Fades out items further than index +/- 2
 
+    // Apply scaling directly to the transform to ensure the whole bezel/skeleton scales uniformly
     return (
         <div
             className={`mc-tile ${absDiff < 0.1 ? 'mc-active' : ''}`}
@@ -110,12 +111,17 @@ const MissionControlTile: React.FC<MissionControlTileProps> = ({
                     onClick();
                 }
             }}
+            /* We define custom properties so CSS hover can easily compose with JS transforms */
             style={{
-                transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+                '--js-tx': `${translateX}px`,
+                '--js-tz': `${translateZ}px`,
+                '--js-ry': `${rotateY}deg`,
+                '--js-scale': scale,
+                transform: `translateX(var(--js-tx)) translateZ(var(--js-tz)) rotateY(var(--js-ry)) scale(var(--js-scale))`,
                 zIndex,
                 opacity,
                 pointerEvents: opacity < 0.1 ? 'none' : 'auto',
-            }}
+            } as React.CSSProperties}
         >
             {/* 1. Steampunk Skeleton Fallback */}
             <div className={`mc-skeleton ${imageLoaded ? 'mc-hidden' : ''}`}>
@@ -269,7 +275,7 @@ export const MissionControlCarousel: React.FC = () => {
                 }
 
                 // Smooth LERP towards target index
-                const lerpFactor = isDraggingRef.current ? 0.3 : 0.08;
+                const lerpFactor = isDraggingRef.current ? 0.3 : 0.04; // Slower, smoother elastic snap
                 const diff = targetIndexRef.current - activeIndexRef.current;
                 
                 if (Math.abs(diff) > 0.001) {
@@ -361,7 +367,8 @@ export const MissionControlCarousel: React.FC = () => {
           perspective: 2000px;
           background-size: cover;
           background-position: center;
-          background-attachment: fixed;
+          /* Default to scroll to fix iOS Safari missing background bug */
+          background-attachment: scroll;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -419,7 +426,8 @@ export const MissionControlCarousel: React.FC = () => {
           height: 380px;
           margin-top: -190px;
           margin-left: -140px;
-          transition: filter 0.3s ease;
+          /* Unified smooth transition for entire tile */
+          transition: filter 0.3s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
           filter: drop-shadow(0 20px 40px rgba(0,0,0,0.9)) brightness(0.6);
           border-radius: 12px;
           overflow: visible; /* to allow glow */
@@ -436,9 +444,11 @@ export const MissionControlCarousel: React.FC = () => {
             z-index: 100 !important;
         }
 
-        .mc-scene:hover .mc-tile.mc-active:hover {
-            filter: drop-shadow(0 0 20px var(--glow-primary)) brightness(1.2);
-            transform: scale(1.05) translateZ(60px) !important;
+        /* Unified Hover: Applies to BOTH active and inactive tiles seamlessly */
+        .mc-tile:hover {
+            filter: drop-shadow(0 0 25px var(--glow-primary)) brightness(1.2);
+            /* We compose hover over the JS transforms */
+            transform: translateX(var(--js-tx)) translateZ(calc(var(--js-tz) + 40px)) rotateY(var(--js-ry)) scale(calc(var(--js-scale) * 1.05)) !important;
         }
 
         /* Responsive Breakpoints */
@@ -452,6 +462,12 @@ export const MissionControlCarousel: React.FC = () => {
           .mc-scene {
              perspective: 800px;
              height: 450px;
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .mc-dashboard {
+             background-attachment: fixed; /* Restore parallax only on safe desktop devices */
           }
         }
 
@@ -487,17 +503,17 @@ export const MissionControlCarousel: React.FC = () => {
           object-fit: cover;
           z-index: 1;
           opacity: 0;
-          transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
+          transition: opacity 0.5s ease;
           -webkit-user-drag: none; 
+          border-radius: 12px;
         }
 
         .mc-loaded {
           opacity: 1;
         }
 
-        .mc-tile:hover .mc-image-layer.mc-loaded {
-          transform: scale(1.08);
-        }
+        /* Note: Image zooming on hover has been removed. 
+           The entire .mc-tile container zooms uniformly instead. */
 
         /* Gradient Overlay */
         .mc-gradient-overlay {
