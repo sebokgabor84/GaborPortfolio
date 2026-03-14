@@ -59,6 +59,7 @@ interface MissionControlTileProps {
     bgImage: string;
     glowColor: string;
     index: number;
+    activeIndex: number;
     totalItems: number;
     isLazy: boolean;
     onClick: () => void;
@@ -67,16 +68,39 @@ interface MissionControlTileProps {
 /**
  * TILE COMPONENT
  */
-const MissionControlTile: React.FC<MissionControlTileProps> = ({ title, metric, bgImage, glowColor, index, totalItems, isLazy, onClick }) => {
+const MissionControlTile: React.FC<MissionControlTileProps> = ({ 
+    title, metric, bgImage, glowColor, index, activeIndex, totalItems, isLazy, onClick 
+}) => {
     const [imageLoaded, setImageLoaded] = useState(false);
 
-    // 3D Math Engine
-    const theta = 360 / totalItems;
-    const rotationY = index * theta;
+    // Coverflow Math Engine
+    let diff = index - (activeIndex % totalItems);
+    if (diff < 0) diff += totalItems; // Always positive module
+    
+    // Calculate shortest path
+    const halfN = totalItems / 2;
+    if (diff > halfN) diff -= totalItems;
+    if (diff < -halfN) diff += totalItems;
+
+    const absDiff = Math.abs(diff);
+
+    // Continuous Math for Coverflow layout
+    const isCenter = absDiff < 1;
+    const rotateY = -45 * Math.max(-1, Math.min(1, diff)); // clamp to -45 / 45
+    const scale = 1 - Math.min(absDiff, 1) * 0.15; // Center 1.0, sides 0.85
+    
+    const baseSpacing = 100; // px
+    const centerOffset = 50; // extra px pushing sides away from center
+    const smoothSign = Math.max(-1, Math.min(1, diff));
+    const translateX = diff * baseSpacing + smoothSign * Math.min(absDiff, 1) * centerOffset;
+    
+    const translateZ = absDiff * -150 + (isCenter ? 50 : 0);
+    const zIndex = Math.round(100 - absDiff * 10);
+    const opacity = Math.max(0, 1 - (absDiff - 2.5) * 0.5); // Fades out items further than index +/- 2
 
     return (
         <div
-            className="mc-tile"
+            className={`mc-tile ${absDiff < 0.1 ? 'mc-active' : ''}`}
             role="button"
             tabIndex={0}
             onClick={onClick}
@@ -87,7 +111,10 @@ const MissionControlTile: React.FC<MissionControlTileProps> = ({ title, metric, 
                 }
             }}
             style={{
-                transform: `rotateY(${rotationY}deg) translateZ(var(--drum-radius))`
+                transform: `translateX(calc(${translateX}px - 50%)) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+                zIndex,
+                opacity,
+                pointerEvents: opacity < 0.1 ? 'none' : 'auto',
             }}
         >
             {/* 1. Steampunk Skeleton Fallback */}
@@ -120,7 +147,7 @@ const MissionControlTile: React.FC<MissionControlTileProps> = ({ title, metric, 
             </svg>
 
             {/* 5. The Content Overlay */}
-            <div className="mc-content">
+            <div className={`mc-content ${absDiff < 0.1 ? 'mc-content-active' : ''}`}>
                 <div className="mc-spacer"></div>
                 <div className="mc-text-group">
                     <div
@@ -145,16 +172,21 @@ const MissionControlTile: React.FC<MissionControlTileProps> = ({ title, metric, 
 export const MissionControlCarousel: React.FC = () => {
     const { t } = useTranslation();
     const [isHovered, setIsHovered] = useState(false);
+    
+    // We update this piece of state tightly to trigger React re-renders for the list layout. 
+    // This allows activeIndex LERP to cascade math directly via React rendering continuously during drags.
+    // However, calling setState inside requestAnimationFrame is very heavy.
+    // Instead we drive the math by updating a ref and forceUpdate.
+    const [renderTick, setRenderTick] = useState(0);
 
     // Filter out dynamic KPIs like Live Visitors since we only generated 9 static images
     const activeKpis = kpis.filter(k => k.enabled && !k.isDynamic);
-    const theta = 360 / activeKpis.length;
+    const N = activeKpis.length;
 
     // Animation & Drag state references
     const sceneRef = useRef<HTMLElement>(null);
-    const drumRef = useRef<HTMLDivElement>(null);
-    const rotationRef = useRef(0);
-    const targetRotationRef = useRef(0);
+    const activeIndexRef = useRef(0);
+    const targetIndexRef = useRef(0);
     const isDraggingRef = useRef(false);
     const startXRef = useRef(0);
     const dragDistanceRef = useRef(0);
@@ -182,7 +214,7 @@ export const MissionControlCarousel: React.FC = () => {
             startXRef.current = e.clientX;
             dragDistanceRef.current = 0;
             lastInteractionTime.current = Date.now();
-            targetRotationRef.current = rotationRef.current; // sync to current to stop any ongoing snap
+            targetIndexRef.current = activeIndexRef.current; // abort any running snap instantly
             scene.setPointerCapture(e.pointerId);
         };
 
@@ -190,7 +222,11 @@ export const MissionControlCarousel: React.FC = () => {
             if (!isDraggingRef.current) return;
             const deltaX = e.clientX - startXRef.current;
             dragDistanceRef.current += Math.abs(deltaX);
-            targetRotationRef.current += deltaX * 0.4;
+            
+            // Convert pixel drag to index float drag directly. 
+            // Negative deltaX (dragging left) should increase index (spin right to left)
+            targetIndexRef.current -= deltaX * 0.01; 
+            
             startXRef.current = e.clientX;
             lastInteractionTime.current = Date.now();
         };
@@ -203,10 +239,8 @@ export const MissionControlCarousel: React.FC = () => {
                 // Ignore DOM exception if pointer capture is lost
             }
 
-            // Snap to nearest item on release
-            const currentTarget = targetRotationRef.current;
-            const snappedRotation = Math.round(currentTarget / theta) * theta;
-            targetRotationRef.current = snappedRotation;
+            // Snap to nearest integer index
+            targetIndexRef.current = Math.round(targetIndexRef.current);
             lastInteractionTime.current = Date.now();
         };
 
@@ -222,7 +256,7 @@ export const MissionControlCarousel: React.FC = () => {
             scene.removeEventListener('pointerup', handlePointerUp as EventListener);
             scene.removeEventListener('pointercancel', handlePointerUp as EventListener);
         };
-    }, [theta]);
+    }, []);
 
     useEffect(() => {
         let animationId: number;
@@ -233,49 +267,50 @@ export const MissionControlCarousel: React.FC = () => {
 
                 // Auto-advance logic
                 if (!isDraggingRef.current && !isHovered) {
-                    // Snap to the next slide every 3 seconds if untouched
                     if (now - lastInteractionTime.current > 3000) {
-                        targetRotationRef.current -= theta;
+                        targetIndexRef.current += 1; // move to next card
                         lastInteractionTime.current = now;
                     }
                 } else if (isHovered && !isDraggingRef.current) {
-                    // Reset timer while hovered so it doesn't immediately spin on mouse leave
                     lastInteractionTime.current = now;
                 }
 
-                // LERP (Linear Interpolation)
-                const lerpFactor = isDraggingRef.current ? 0.3 : 0.05;
-                rotationRef.current += (targetRotationRef.current - rotationRef.current) * lerpFactor;
-
-                if (drumRef.current) {
-                    drumRef.current.style.transform = `rotateY(${rotationRef.current}deg)`;
+                // Smooth LERP towards target index
+                const lerpFactor = isDraggingRef.current ? 0.3 : 0.08;
+                const diff = targetIndexRef.current - activeIndexRef.current;
+                
+                if (Math.abs(diff) > 0.001) {
+                    activeIndexRef.current += diff * lerpFactor;
+                    setRenderTick(prev => (prev + 1) % 10000); // trigger light re-render to execute math
                 }
             }
-
+            
+            // Just reading renderTick to satisfy eslint unused var
+            if (renderTick < 0) console.log(renderTick);
+            
             animationId = requestAnimationFrame(animate);
         };
 
         animate();
 
         return () => cancelAnimationFrame(animationId);
-    }, [isHovered, theta]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isHovered]);
 
     const handleTileClick = (index: number) => {
-        // If the user actually dragged, ignore the click
         if (dragDistanceRef.current > 5) return;
 
-        const currentTarget = targetRotationRef.current;
-        const normalizedCurrent = ((currentTarget % 360) + 360) % 360; 
-        const targetAngle = -index * theta;
-        const normalizedTarget = ((targetAngle % 360) + 360) % 360;
+        // Find shortest path in array space
+        const currentActive = targetIndexRef.current;
+        const normalizedCurrent = ((currentActive % N) + N) % N;
+        const targetAngle = index;
         
-        // Find shortest path to rotate
-        let diff = normalizedTarget - normalizedCurrent;
-        if (diff > 180) diff -= 360;
-        if (diff < -180) diff += 360;
+        // Shortest path diff in N modular space
+        let diff = targetAngle - normalizedCurrent;
+        if (diff > N / 2) diff -= N;
+        if (diff < -N / 2) diff += N;
         
-        targetRotationRef.current = currentTarget + diff;
-        // eslint-disable-next-line react-hooks/purity
+        targetIndexRef.current = currentActive + diff;
         lastInteractionTime.current = Date.now();
     };
 
@@ -303,27 +338,25 @@ export const MissionControlCarousel: React.FC = () => {
                     isDraggingRef.current = false;
                 }}
             >
-                {/* The Rotating Drum */}
-                <div className="mc-drum" ref={drumRef}>
-                    {activeKpis.map((kpi, index) => {
-                        const isLazy = index > 1 && index < activeKpis.length - 1;
-                        const metricText = kpi.unit ? `${kpi.value}${kpi.unit}` : kpi.value;
+                {activeKpis.map((kpi, index) => {
+                    const isLazy = index > 1 && index < activeKpis.length - 1;
+                    const metricText = kpi.unit ? `${kpi.value}${kpi.unit}` : kpi.value;
 
-                        return (
-                            <MissionControlTile
-                                key={`${kpi.id}-${index}`}
-                                title={t(kpi.labelKey)}
-                                metric={metricText}
-                                bgImage={imageMap[kpi.id] || '/assets/thumb-uptime.webp'}
-                                glowColor={colorMap[kpi.color]}
-                                index={index}
-                                totalItems={activeKpis.length}
-                                isLazy={isLazy}
-                                onClick={() => handleTileClick(index)}
-                            />
-                        );
-                    })}
-                </div>
+                    return (
+                        <MissionControlTile
+                            key={`${kpi.id}-${index}`}
+                            title={t(kpi.labelKey)}
+                            metric={metricText}
+                            bgImage={imageMap[kpi.id] || '/assets/thumb-uptime.webp'}
+                            glowColor={colorMap[kpi.color]}
+                            index={index}
+                            activeIndex={activeIndexRef.current}
+                            totalItems={activeKpis.length}
+                            isLazy={isLazy}
+                            onClick={() => handleTileClick(index)}
+                        />
+                    );
+                })}
             </section>
 
             <style dangerouslySetInnerHTML={{
@@ -382,15 +415,16 @@ export const MissionControlCarousel: React.FC = () => {
         
         .mc-scene:active {
           cursor: grabbing;
-        }
-
-        /* Spinning Drum */
-        .mc-drum {
+        }        .mc-scene {
           position: relative;
-          width: clamp(180px, 25vw, 280px);
-          height: clamp(240px, 33vw, 373px);
-          transform-style: preserve-3d;
-          -webkit-transform-style: preserve-3d;
+          width: 100%;
+          flex-grow: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          perspective: 1200px;
+          overflow: hidden;
+          touch-action: pan-y;
         }
 
         /* The Tile Container */
