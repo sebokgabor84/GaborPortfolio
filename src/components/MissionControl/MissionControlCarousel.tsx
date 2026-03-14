@@ -378,7 +378,7 @@ export const MissionControlCarousel: React.FC = () => {
 
         .mc-header {
           text-align: center;
-          margin-bottom: clamp(3rem, 10vw, 6rem);
+          margin-bottom: clamp(1rem, 4vw, 3rem);
           position: relative;
           z-index: 10;
         }
