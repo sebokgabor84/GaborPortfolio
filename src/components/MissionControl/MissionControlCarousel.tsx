@@ -89,8 +89,8 @@ const MissionControlTile: React.FC<MissionControlTileProps> = ({
     const rotateY = -45 * Math.max(-1, Math.min(1, diff)); // clamp to -45 / 45
     const scale = 1 - Math.min(absDiff, 1) * 0.15; // Center 1.0, sides 0.85
     
-    const baseSpacing = 100; // px
-    const centerOffset = 50; // extra px pushing sides away from center
+    const baseSpacing = 120; // px
+    const centerOffset = 60; // extra px pushing sides away from center
     const smoothSign = Math.max(-1, Math.min(1, diff));
     const translateX = diff * baseSpacing + smoothSign * Math.min(absDiff, 1) * centerOffset;
     
@@ -111,7 +111,7 @@ const MissionControlTile: React.FC<MissionControlTileProps> = ({
                 }
             }}
             style={{
-                transform: `translateX(calc(${translateX}px - 50%)) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+                transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
                 zIndex,
                 opacity,
                 pointerEvents: opacity < 0.1 ? 'none' : 'auto',
@@ -262,17 +262,10 @@ export const MissionControlCarousel: React.FC = () => {
         let animationId: number;
 
         const animate = () => {
+            // Auto-advance logic: Smooth continuous scrolling
             if (isVisibleRef.current) {
-                const now = Date.now();
-
-                // Auto-advance logic
                 if (!isDraggingRef.current && !isHovered) {
-                    if (now - lastInteractionTime.current > 3000) {
-                        targetIndexRef.current += 1; // move to next card
-                        lastInteractionTime.current = now;
-                    }
-                } else if (isHovered && !isDraggingRef.current) {
-                    lastInteractionTime.current = now;
+                    targetIndexRef.current += 0.004; // Smooth 60fps continuous spin
                 }
 
                 // Smooth LERP towards target index
@@ -401,21 +394,6 @@ export const MissionControlCarousel: React.FC = () => {
 
         /* 3D Scene setup */
         .mc-scene {
-          width: 100%;
-          height: clamp(350px, 50vw, 500px);
-          position: relative;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          transform-style: preserve-3d;
-          cursor: grab;
-          contain: layout paint;
-          touch-action: pan-y; 
-        }
-        
-        .mc-scene:active {
-          cursor: grabbing;
-        }        .mc-scene {
           position: relative;
           width: 100%;
           flex-grow: 1;
@@ -425,28 +403,56 @@ export const MissionControlCarousel: React.FC = () => {
           perspective: 1200px;
           overflow: hidden;
           touch-action: pan-y;
+          height: clamp(400px, 60vw, 600px);
+        }
+
+        .mc-scene:active {
+          cursor: grabbing;
         }
 
         /* The Tile Container */
         .mc-tile {
           position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          transition: filter 0.4s ease;
-          filter: drop-shadow(0 10px 30px rgba(0,0,0,0.8)) brightness(0.8);
+          top: 50%;
+          left: 50%;
+          width: 280px;
+          height: 380px;
+          margin-top: -190px;
+          margin-left: -140px;
+          transition: filter 0.3s ease;
+          filter: drop-shadow(0 20px 40px rgba(0,0,0,0.9)) brightness(0.6);
           border-radius: 12px;
-          overflow: hidden;
+          overflow: visible; /* to allow glow */
           user-select: none;
           -webkit-user-drag: none; 
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
           cursor: pointer;
+          transform-style: preserve-3d;
+          /* Coverflow reflection */
+          -webkit-box-reflect: below 5px linear-gradient(transparent 70%, rgba(255,255,255,0.3));
         }
 
-        .mc-tile:hover {
-          filter: drop-shadow(0 0px 40px rgba(184, 115, 51, 0.4)) brightness(1.2);
+        .mc-tile.mc-active {
+            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.95)) brightness(1);
+            z-index: 100 !important;
+        }
+
+        .mc-scene:hover .mc-tile.mc-active:hover {
+            filter: drop-shadow(0 0 20px var(--glow-primary)) brightness(1.2);
+            transform: scale(1.05) translateZ(60px) !important;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+          .mc-tile {
+             width: 220px;
+             height: 300px;
+             margin-top: -150px;
+             margin-left: -110px;
+          }
+          .mc-scene {
+             perspective: 800px;
+             height: 450px;
+          }
         }
 
         /* --- SKELETON UI --- */
