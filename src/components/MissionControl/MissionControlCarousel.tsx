@@ -336,7 +336,7 @@ export const MissionControlCarousel: React.FC = () => {
             <SVGDefs />
 
             <header className="mc-header">
-                <h2 className="mc-heading">{t('cockpit.title')} 3D</h2>
+                <h2 className="mc-heading">{t('cockpit.title')}</h2>
                 <div className="mc-divider"></div>
             </header>
 
@@ -393,15 +393,20 @@ export const MissionControlCarousel: React.FC = () => {
           margin-bottom: 0;
           position: relative;
           z-index: 10;
+          padding: 0 1rem;
+          box-sizing: border-box;
         }
 
         .mc-heading {
           font-family: var(--font-heading);
           color: var(--color-gold);
           font-size: clamp(1.5rem, 4vw, 2.5rem);
-          letter-spacing: 0.15em;
+          letter-spacing: clamp(0.05em, 0.3vw, 0.15em);
+          line-height: 1.2;
           margin: 0;
           text-transform: uppercase;
+          word-break: break-word;
+          overflow-wrap: anywhere;
         }
 
         .mc-divider {

@@ -14,7 +14,7 @@ describe('MissionControlCarousel', () => {
 
   it('renders the header correctly', () => {
     render(<MissionControlCarousel />);
-    expect(screen.getByText('cockpit.title 3D')).toBeInTheDocument();
+    expect(screen.getByText('cockpit.title')).toBeInTheDocument();
   });
 
   it('renders the correct number of static tiles', () => {
