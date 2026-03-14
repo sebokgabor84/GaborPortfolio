@@ -5,8 +5,6 @@
 // While main.tsx sets up the 'React Environment' (providers, CSS), App.tsx defines
 // what the user actually SEES on the screen.
 // -----------------------------------------------------------------------------
-
-import { Cockpit } from './components/Cockpit/Cockpit';
 import { MissionControlCarousel } from './components/MissionControl/MissionControlCarousel';
 import { ProjectCard } from './components/ProjectSection/ProjectCard';
 import { SocialDock } from './components/Social/SocialDock';
@@ -192,9 +190,7 @@ function App() {
           </div>
         </div>
       </header>
-
-      {/* The Cockpit */}
-      <Cockpit />
+      {/* The Cockpit Grid was removed in favor of the MissionControlCarousel */}
 
       {/* 3D Mission Control Carousel */}
       <MissionControlCarousel />
