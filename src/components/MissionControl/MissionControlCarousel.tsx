@@ -161,20 +161,31 @@ export const MissionControlCarousel: React.FC = () => {
     // Animation & Drag state references
     const sceneRef = useRef<HTMLElement>(null);
     const tileRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
     const activeIndexRef = useRef(0);
     const targetIndexRef = useRef(0);
     const isDraggingRef = useRef(false);
     const startXRef = useRef(0);
     const dragDistanceRef = useRef(0);
     const lastInteractionTime = useRef<number>(0);
+    const lastActiveIndexRef = useRef<number>(-1);
 
     // IntersectionObserver Killswitch flag
     const isVisibleRef = useRef(true);
+    const animateRef = useRef<(() => void) | null>(null);
+    const isAnimatingRef = useRef(false);
 
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
+            const wasVisible = isVisibleRef.current;
             isVisibleRef.current = entry.isIntersecting;
-        }, { threshold: 0.1 });
+            
+            // If it becomes visible after being hidden, we need to kick off the animation loop again
+            // because we stop scheduling rAF when hidden to save CPU.
+            if (entry.isIntersecting && !wasVisible && !isAnimatingRef.current) {
+                animateRef.current?.();
+            }
+        }, { threshold: 0.2 });
 
         if (sceneRef.current) observer.observe(sceneRef.current);
 
@@ -238,76 +249,88 @@ export const MissionControlCarousel: React.FC = () => {
         let animationId: number;
 
         const animate = () => {
-            // Auto-advance logic: Smooth continuous scrolling
+            isAnimatingRef.current = true;
+            
             if (isVisibleRef.current) {
                 if (!isDraggingRef.current && !isHoveredRef.current) {
-                    targetIndexRef.current += 0.004; // Smooth 60fps continuous spin
+                    targetIndexRef.current += 0.004;
                 }
 
-                // Smooth LERP towards target index
-                const lerpFactor = isDraggingRef.current ? 0.3 : 0.04; // Slower, smoother elastic snap
+                const lerpFactor = isDraggingRef.current ? 0.3 : 0.04;
                 const diff = targetIndexRef.current - activeIndexRef.current;
                 
                 if (Math.abs(diff) > 0.0001) {
                     activeIndexRef.current += diff * lerpFactor;
                 }
                 
-                // Direct DOM Mutation for 60fps Coverflow Math (Eliminates React Render Lag)
                 const currentActive = activeIndexRef.current;
-                
+                const roundedActive = Math.round(((currentActive % N) + N) % N);
+                const activeChanged = roundedActive !== lastActiveIndexRef.current;
+
                 for (let i = 0; i < N; i++) {
                     const tile = tileRefs.current[i];
+                    const content = contentRefs.current[i];
                     if (!tile) continue;
                     
                     let cDiff = i - (currentActive % N);
-                    if (cDiff < 0) cDiff += N; // Always positive module
+                    if (cDiff < 0) cDiff += N;
                     
-                    // Calculate shortest path
                     const halfN = N / 2;
                     if (cDiff > halfN) cDiff -= N;
                     if (cDiff < -halfN) cDiff += N;
 
                     const absDiff = Math.abs(cDiff);
-
-                    // Continuous Math for Coverflow layout
                     const isCenter = absDiff < 1;
-                    const rotateY = -45 * Math.max(-1, Math.min(1, cDiff)); // clamp to -45 / 45
-                    const scale = 1 - Math.min(absDiff, 1) * 0.15; // Center 1.0, sides 0.85
+                    const rotateY = -45 * Math.max(-1, Math.min(1, cDiff));
+                    const scale = 1 - Math.min(absDiff, 1) * 0.15;
                     
-                    const baseSpacing = 120; // px
-                    const centerOffset = 60; // extra px pushing sides away from center
+                    const baseSpacing = 120;
+                    const centerOffset = 60;
                     const smoothSign = Math.max(-1, Math.min(1, cDiff));
                     const translateX = cDiff * baseSpacing + smoothSign * Math.min(absDiff, 1) * centerOffset;
                     
                     const translateZ = absDiff * -150 + (isCenter ? 50 : 0);
                     const zIndex = Math.round(100 - absDiff * 10);
-                    const opacity = Math.max(0, 1 - (absDiff - 2.5) * 0.5); // Fades out items further than index +/- 2
+                    const opacity = Math.max(0, 1 - (absDiff - 2.5) * 0.5);
 
-                    tile.style.setProperty('--js-tx', `${translateX}px`);
-                    tile.style.setProperty('--js-tz', `${translateZ}px`);
-                    tile.style.setProperty('--js-ry', `${rotateY}deg`);
-                    tile.style.setProperty('--js-scale', `${scale}`);
+                    // High Performance Style Updates (Fixed floating point precision for CSS perf)
+                    tile.style.setProperty('--js-tx', `${translateX.toFixed(2)}px`);
+                    tile.style.setProperty('--js-tz', `${translateZ.toFixed(2)}px`);
+                    tile.style.setProperty('--js-ry', `${rotateY.toFixed(2)}deg`);
+                    tile.style.setProperty('--js-scale', `${scale.toFixed(3)}`);
                     tile.style.zIndex = `${zIndex}`;
-                    tile.style.opacity = `${opacity}`;
+                    tile.style.opacity = `${opacity.toFixed(3)}`;
                     tile.style.pointerEvents = opacity < 0.1 ? 'none' : 'auto';
                     
-                    // Toggle active class directly
-                    if (absDiff < 0.1) {
-                        tile.classList.add('mc-active');
-                        tile.querySelector('.mc-content-ref')?.classList.add('mc-content-active');
-                    } else {
-                        tile.classList.remove('mc-active');
-                        tile.querySelector('.mc-content-ref')?.classList.remove('mc-content-active');
+                    // Only toggle classes if the rounded active index has changed
+                    if (activeChanged) {
+                        if (i === roundedActive) {
+                            tile.classList.add('mc-active');
+                            content?.classList.add('mc-content-active');
+                        } else {
+                            tile.classList.remove('mc-active');
+                            content?.classList.remove('mc-content-active');
+                        }
                     }
                 }
+                
+                if (activeChanged) {
+                    lastActiveIndexRef.current = roundedActive;
+                }
+                
+                animationId = requestAnimationFrame(animate);
+            } else {
+                isAnimatingRef.current = false;
             }
-            
-            animationId = requestAnimationFrame(animate);
         };
 
+        animateRef.current = animate;
         animate();
 
-        return () => cancelAnimationFrame(animationId);
+        return () => {
+            isAnimatingRef.current = false;
+            cancelAnimationFrame(animationId);
+        };
     }, [N]);
 
     const handleTileClick = useCallback((index: number) => {
@@ -357,7 +380,11 @@ export const MissionControlCarousel: React.FC = () => {
                     return (
                         <MissionControlTile
                             key={`${kpi.id}-${index}`}
-                            ref={el => { tileRefs.current[index] = el; }}
+                            ref={el => { 
+                                tileRefs.current[index] = el;
+                                // Cache the content ref as well for Zero-Selector 60fps loop
+                                contentRefs.current[index] = el?.querySelector('.mc-content-ref') as HTMLDivElement || null;
+                            }}
                             title={t(kpi.labelKey)}
                             metric={metricText}
                             bgImage={imageMap[kpi.id] || '/assets/thumb-uptime.webp'}
