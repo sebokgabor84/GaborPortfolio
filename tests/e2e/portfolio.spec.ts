@@ -27,24 +27,22 @@ test.describe('GaborPortfolio 360 Validation', () => {
         expect(socialLinksCount).toBeGreaterThanOrEqual(1);
     });
 
-    test('Project Cards load video on click (Facade Pattern)', async ({ page }) => {
-        // Locate the QA Automation card
-        const qaCard = page.locator('h3', { hasText: /QA Automation/i }).locator('..').locator('..');
+    test('Project Cards show Coming Soon overlay on click', async ({ page }) => {
+        // Go to featured projects page
+        await page.goto('/featured-projects');
 
-        // Verify "Click to Initialize" button is present initially
+        // Locate the QA Automation card (h3 in the content div, relative to card section)
+        const qaCard = page.locator('section', { hasText: /QA Automation/i });
+
+        // Verify "Coming Soon" is NOT visible initially
+        await expect(page.getByText(/Coming Soon/i)).not.toBeVisible();
+
+        // Click the play button area
         const playButton = qaCard.locator('button').first();
-        await expect(playButton).toBeVisible();
-        await expect(qaCard.locator('iframe')).not.toBeVisible();
-
-        // Click to load video
         await playButton.click();
 
-        // Verify button is gone and iframe is present
-        await expect(playButton).not.toBeVisible();
-        await expect(qaCard.locator('iframe')).toBeVisible();
-
-        // Verify iframe src contains autoplay
-        await expect(qaCard.locator('iframe')).toHaveAttribute('src', /autoplay=1/);
+        // Verify "Coming Soon" overlay is visible (case-insensitive)
+        await expect(page.getByText(/Coming Soon/i)).toBeVisible();
     });
 
     test('Responsiveness: Mobile Layout check', async ({ page, isMobile }) => {

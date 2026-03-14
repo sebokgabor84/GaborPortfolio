@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { kpis } from '../../data/kpis';
 
 // Master Background Image Placeholder
@@ -61,15 +62,37 @@ interface MissionControlTileProps {
     index: number;
     isLazy: boolean;
     onClick: () => void;
+    projectId?: string;
 }
 
 /**
  * TILE COMPONENT
  */
 const MissionControlTile = React.forwardRef<HTMLDivElement, MissionControlTileProps>(({ 
-    title, metric, bgImage, glowColor, isLazy, onClick 
+    title, metric, bgImage, glowColor, isLazy, onClick, projectId
 }, ref) => {
     const [imageLoaded, setImageLoaded] = useState(false);
+    const [showComingSoon, setShowComingSoon] = useState(false);
+
+    // Provide internal method to trigger overlay
+    useEffect(() => {
+        if (showComingSoon) {
+            const timer = setTimeout(() => setShowComingSoon(false), 4000);
+            return () => clearTimeout(timer);
+        }
+    }, [showComingSoon]);
+
+    // Handle internal overlay trigger separately from external click logic if needed
+    // But for this requirement, we'll let handleTileClick call onClick and then
+    // the parent will tell us (or we do it here)
+    // Actually, easier to manage state internally for the timed overlay.
+    const handleInternalClick = (e: React.MouseEvent | React.KeyboardEvent) => {
+        e.stopPropagation();
+        if (!projectId) {
+            setShowComingSoon(true);
+        }
+        onClick();
+    };
 
     // Initial render style - will be taken over by JS animation loop immediately
     return (
@@ -78,7 +101,7 @@ const MissionControlTile = React.forwardRef<HTMLDivElement, MissionControlTilePr
             className="mc-tile"
             role="button"
             tabIndex={0}
-            onClick={onClick}
+            onClick={handleInternalClick}
             onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -140,6 +163,12 @@ const MissionControlTile = React.forwardRef<HTMLDivElement, MissionControlTilePr
                     <h3 className="mc-title">{title}</h3>
                 </div>
             </div>
+            {/* 6. Coming Soon Overlay (Internal to Tile) */}
+            {showComingSoon && (
+                <div className="mc-coming-soon-overlay">
+                    <span className="mc-coming-soon-text">COMING SOON</span>
+                </div>
+            )}
         </div>
     );
 });
@@ -150,6 +179,7 @@ MissionControlTile.displayName = 'MissionControlTile';
  */
 export const MissionControlCarousel: React.FC = () => {
     const { t } = useTranslation();
+    const navigate = useNavigate();
     
     // Convert React State into Refs to completely eliminate 60fps re-renders
     const isHoveredRef = useRef(false);
@@ -202,7 +232,8 @@ export const MissionControlCarousel: React.FC = () => {
             dragDistanceRef.current = 0;
             lastInteractionTime.current = Date.now();
             targetIndexRef.current = activeIndexRef.current; // abort any running snap instantly
-            scene.setPointerCapture(e.pointerId);
+            // Removing setPointerCapture to allow native onClick to fire on tiles
+            // scene.setPointerCapture(e.pointerId);
         };
 
         const handlePointerMove = (e: PointerEvent) => {
@@ -218,13 +249,16 @@ export const MissionControlCarousel: React.FC = () => {
             lastInteractionTime.current = Date.now();
         };
 
-        const handlePointerUp = (e: PointerEvent) => {
+        const handlePointerUp = () => {
             isDraggingRef.current = false;
+            // Removing releasePointerCapture
+            /*
             try {
                 scene.releasePointerCapture(e.pointerId);
             } catch { 
                 // Ignore DOM exception if pointer capture is lost
             }
+            */
 
             // Snap to nearest integer index
             targetIndexRef.current = Math.round(targetIndexRef.current);
@@ -334,23 +368,32 @@ export const MissionControlCarousel: React.FC = () => {
     }, [N]);
 
     const handleTileClick = useCallback((index: number) => {
-        if (dragDistanceRef.current > 5) return;
+        const clickedKpi = activeKpis[index];
+        
+        if (dragDistanceRef.current > 10) return;
 
-        // Find shortest path in array space
+        
+        // Immediate navigation if valid project
+        if (clickedKpi.projectId) {
+            navigate(`/featured-projects#${clickedKpi.projectId}`);
+            return;
+        }
+
+        // Center logic for Coming Soon tiles
         const currentActive = targetIndexRef.current;
         const normalizedCurrent = ((currentActive % N) + N) % N;
         const targetAngle = index;
         
-        // Shortest path diff in N modular space
         let diff = targetAngle - normalizedCurrent;
         if (diff > N / 2) diff -= N;
         if (diff < -N / 2) diff += N;
         targetIndexRef.current = currentActive + diff;
         lastInteractionTime.current = Date.now();
-    }, [N]);
+    }, [N, activeKpis, navigate]);
 
     return (
         <div
+            id="mission-control"
             className="mc-dashboard"
             style={{
                 backgroundImage: `linear-gradient(to bottom, rgba(18, 16, 16, 0.85), rgba(18, 16, 16, 0.98)), url('${MASTER_BG_IMAGE}')`
@@ -392,6 +435,7 @@ export const MissionControlCarousel: React.FC = () => {
                             index={index}
                             isLazy={isLazy}
                             onClick={() => handleTileClick(index)}
+                            projectId={kpi.projectId}
                         />
                     );
                 })}
@@ -625,6 +669,36 @@ export const MissionControlCarousel: React.FC = () => {
           opacity: 0.9;
           word-break: break-word;
           overflow-wrap: anywhere;
+        }
+
+        /* Coming Soon Overlay */
+        .mc-coming-soon-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(18, 16, 16, 0.4);
+          z-index: 10;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 12px;
+          animation: fade-in-out 4s forwards;
+          backdrop-filter: blur(2px);
+        }
+
+        .mc-coming-soon-text {
+          color: var(--color-copper);
+          font-family: var(--font-heading);
+          font-size: 1.5rem;
+          font-weight: bold;
+          letter-spacing: 2px;
+          text-shadow: 0 0 10px rgba(184, 115, 51, 0.5);
+        }
+
+        @keyframes fade-in-out {
+          0% { opacity: 0; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { opacity: 0; }
         }
       `}} />
         </div>

@@ -8,7 +8,8 @@ describe('ProjectCard Component', () => {
         title: 'Awesome Project',
         description: 'This is a description of the awesome project.',
         videoId: '12345',
-        tags: ['React', 'Vite']
+        tags: ['React', 'Vite'],
+        thumbnailSrc: '/test-thumb.webp'
     };
 
     it('renders project title and description', () => {

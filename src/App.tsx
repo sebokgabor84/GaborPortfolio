@@ -1,229 +1,19 @@
-// -----------------------------------------------------------------------------
-// 🧱 The "Grand Orchestrator" Component
-// -----------------------------------------------------------------------------
-// This file (as mentioned in main.tsx) is the top-level container for your specific UI.
-// While main.tsx sets up the 'React Environment' (providers, CSS), App.tsx defines
-// what the user actually SEES on the screen.
-// -----------------------------------------------------------------------------
-import { MissionControlCarousel } from './components/MissionControl/MissionControlCarousel';
-import { ProjectCard } from './components/ProjectSection/ProjectCard';
-import { SocialDock } from './components/Social/SocialDock';
-import { AboutThisPage } from './components/Guide/AboutThisPage';
-import { LanguageDial } from './components/LanguageSwitch/LanguageDial';
-import { Hint } from './components/Common/Hint';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { HomePage } from './pages/HomePage';
+import { FeaturedProjectsPage } from './pages/FeaturedProjectsPage';
 import { ScrollToTop } from './components/Common/ScrollToTop';
-import { useTranslation } from 'react-i18next';
-// 📦 Data Separation: We import raw project data from a separate file.
-// This keeps the UI logic clean and lets us add new projects just by editing a JSON-like list.
-import { projects } from './data/projects';
+import { LanguageDial } from './components/LanguageSwitch/LanguageDial';
 
-function App() {
-  // 🪝 Component Hooks:
-  // useTranslation is a "Hook" that lets us switch text between English/German/Hungarian.
-  // It returns a function 't' that we wrap around text strings: t('hello') -> "Szia"
-  const { t, i18n } = useTranslation();
-
-  // 🔍 Data Logic:
-  // Before rendering, we filter the list of projects to show only the ones marked 'enabled: true'.
-  const enabledProjects = projects.filter((p) => p.enabled);
-
-  // 🖼️ The Render Return:
-  // Everything inside this 'return (...)' statement is JSX (JavaScript XML).
-  // It looks like HTML, but it's actually JavaScript functions creating elements.
+const App: React.FC = () => {
   return (
-    <div style={{ paddingBottom: '5rem' }}>
+    <div style={{ background: 'var(--color-bg-dark)', minHeight: '100vh' }}>
       <LanguageDial />
       <ScrollToTop />
-
-      {/* Hero Section */}
-      <header style={{
-        textAlign: 'center',
-        padding: 'clamp(4rem, 15vh, 8rem) 1rem clamp(3rem, 10vh, 6rem) 1rem',
-        background: `linear-gradient(to bottom, rgba(18, 16, 16, 0.8), var(--color-bg-dark)), url('/assets/hero-cockpit.webp')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        borderBottom: '2px solid var(--color-copper)',
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
-        <div key={i18n.language} style={{ animation: 'langFade 0.4s ease' }}>
-          <h1
-            style={{
-              fontSize: 'clamp(2.2rem, 10vw, 3.5rem)',
-              marginBottom: '1rem',
-              letterSpacing: '2px',
-              textShadow: '0 0 20px #000',
-              lineHeight: '1.2',
-            }}
-          >
-            {t('hero.name')}
-          </h1>
-          <p style={{
-            fontSize: 'clamp(1.1rem, 4vw, 1.5rem)',
-            color: 'var(--color-text-main)',
-            maxWidth: '600px',
-            margin: '0 auto 2rem auto',
-            padding: '0 1rem',
-            textShadow: '0 2px 4px #000',
-            lineHeight: '1.4'
-          }}>
-            {t('hero.role')}
-          </p>
-
-          <SocialDock />
-
-          <div style={{
-            marginTop: '3rem',
-            display: 'flex',
-            gap: '1.5rem',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            flexDirection: window.innerWidth < 600 ? 'column' : 'row',
-            alignItems: 'center',
-            padding: '0 1.5rem',
-            width: '100%',
-          }}>
-            <div style={{ width: '100%' }}>
-              <Hint message={t('common.coming_soon')}>
-                <button style={{
-                  background: 'var(--color-copper)',
-                  color: '#000',
-                  border: 'none',
-                  padding: '1.2rem 2rem',
-                  fontSize: '1.1rem',
-                  fontWeight: 'bold',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  textTransform: 'uppercase',
-                  letterSpacing: '1px',
-                  boxShadow: '0 0 15px rgba(184, 115, 51, 0.5)',
-                  width: '100%',
-                  minHeight: '3.5rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  {t('hero.download_cv')}
-                </button>
-              </Hint>
-            </div>
-
-            <a
-              href="https://github.com/sebokgabor84/GaborPortfolio"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                background: 'transparent',
-                color: 'var(--color-copper)',
-                border: '2px solid var(--color-copper)',
-                padding: '1.2rem 2rem',
-                fontSize: '1.1rem',
-                fontWeight: 'bold',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                textDecoration: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 0 10px rgba(184, 115, 51, 0.2)',
-                width: '100%',
-                maxWidth: window.innerWidth < 600 ? 'none' : '320px',
-                minHeight: '3.5rem'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(184, 115, 51, 0.1)';
-                e.currentTarget.style.boxShadow = '0 0 20px rgba(184, 115, 51, 0.4)';
-                e.currentTarget.style.color = 'var(--color-gold)';
-                e.currentTarget.style.borderColor = 'var(--color-gold)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'transparent';
-                e.currentTarget.style.boxShadow = '0 0 10px rgba(184, 115, 51, 0.2)';
-                e.currentTarget.style.color = 'var(--color-copper)';
-                e.currentTarget.style.borderColor = 'var(--color-copper)';
-              }}
-            >
-              {t('hero.view_code')}
-            </a>
-
-            <a
-              href="#about-this-page"
-              style={{
-                background: 'transparent',
-                color: 'var(--color-copper)',
-                border: '2px solid var(--color-copper)',
-                padding: '1.2rem 2rem',
-                fontSize: '1.1rem',
-                fontWeight: 'bold',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                textDecoration: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 0 10px rgba(184, 115, 51, 0.2)',
-                width: '100%',
-                maxWidth: window.innerWidth < 600 ? 'none' : '320px',
-                minHeight: '3.5rem'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(184, 115, 51, 0.1)';
-                e.currentTarget.style.boxShadow = '0 0 20px rgba(184, 115, 51, 0.4)';
-                e.currentTarget.style.color = 'var(--color-gold)';
-                e.currentTarget.style.borderColor = 'var(--color-gold)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'transparent';
-                e.currentTarget.style.boxShadow = '0 0 10px rgba(184, 115, 51, 0.2)';
-                e.currentTarget.style.color = 'var(--color-copper)';
-                e.currentTarget.style.borderColor = 'var(--color-copper)';
-              }}
-            >
-              {t('hero.learn_more')} ↓
-            </a>
-          </div>
-        </div>
-      </header>
-      {/* The Cockpit Grid was removed in favor of the MissionControlCarousel */}
-
-      {/* 3D Mission Control Carousel */}
-      <MissionControlCarousel />
-
-      {/* Projects Section - Data Driven */}
-      {/* 
-        This is a 'data-driven' section. Instead of hardcoding 10 cards,
-        we 'map' over our filtered data array. For every project in the array,
-        React will automatically create one <ProjectCard /> component.
-      */}
-      <main id="main-content" style={{ maxWidth: '1000px', margin: '4rem auto', padding: '0 1rem' }}>
-        <h2 style={{
-          textAlign: 'center',
-          marginBottom: '3rem',
-          fontSize: '2.5rem',
-          color: 'var(--color-text-main)'
-        }}>
-          {t('projects.section_title')}
-        </h2>
-
-        {enabledProjects.map((project) => (
-          <ProjectCard
-            key={project.id}
-            title={t(project.titleKey)}
-            description={t(project.descKey)}
-            videoId={project.videoId}
-            tags={project.tags}
-            thumbnailSrc={project.thumbnailSrc}
-          />
-        ))}
-
-        <AboutThisPage />
-      </main>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/featured-projects" element={<FeaturedProjectsPage />} />
+      </Routes>
 
       {/* Footer */}
       <footer
@@ -235,11 +25,10 @@ function App() {
           marginTop: '4rem',
         }}
       >
-        <p>&copy; {new Date().getFullYear()} Gabor Seboek. {t('footer.rights')}</p>
-        <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>{t('footer.tagline')}</p>
+        <p>&copy; {new Date().getFullYear()} Gabor Seboek. Professional Portfolio</p>
       </footer>
     </div>
   );
-}
+};
 
 export default App;

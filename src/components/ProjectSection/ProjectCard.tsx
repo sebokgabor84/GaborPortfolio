@@ -3,14 +3,17 @@ import { FaPlay } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 
 interface ProjectCardProps {
-  title: string;
-  description: string;
-  videoId?: string; // YouTube ID for now
-  tags: string[];
-  thumbnailSrc?: string;
+    id?: string;
+    title: string;
+    description: string;
+    videoId?: string;
+    tags: string[];
+    thumbnailSrc: string;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, videoId, tags, thumbnailSrc }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({ 
+    id, title, description, videoId, tags, thumbnailSrc 
+}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showFallback, setShowFallback] = useState(false);
   const { t } = useTranslation();
@@ -34,18 +37,23 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, vi
   };
 
   return (
-    <div style={{
-      background: 'var(--color-bg-panel)',
-      border: '1px solid var(--color-copper-dim)',
-      borderRadius: '12px',
-      overflow: 'hidden',
-      marginBottom: '3rem',
-      boxShadow: 'var(--shadow-panel)',
-      maxWidth: '800px',
-      margin: '0 auto 3rem auto',
-      width: '95%',
-      position: 'relative'
-    }}>
+    <section
+      id={id}
+      aria-label={t('projects.card_aria', { title })}
+      className="project-card"
+      style={{
+        background: 'var(--color-bg-panel)',
+        border: '1px solid var(--color-copper-dim)',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        marginBottom: '3rem',
+        boxShadow: 'var(--shadow-panel)',
+        maxWidth: '800px',
+        margin: '0 auto 3rem auto',
+        width: '95%',
+        position: 'relative'
+      }}
+    >
       {/* Video Container (Responsive 16:9) */}
       <div style={{
         position: 'relative',
@@ -111,55 +119,28 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, vi
                 className="fallback-overlay"
                 style={{
                   position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  background: '#1e1c1a',
+                  inset: 0,
+                  background: 'rgba(18, 16, 16, 0.4)',
                   display: 'flex',
-                  flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
                   zIndex: 10,
-                  padding: '2rem 1.5rem 3rem 1.5rem',
-                  textAlign: 'center',
-                  backdropFilter: 'grayscale(1) blur(4px)',
-                  borderBottom: '2px solid var(--color-copper)'
+                  backdropFilter: 'blur(2px)',
+                  animation: 'fade-in-out 4s forwards',
+                  borderRadius: '12px'
                 }}
               >
-                <img
-                  src="/assets/icon-hourglass.png"
-                  alt=""
-                  className="fallback-hourglass"
-                  style={{
-                    width: 'clamp(80px, 20vw, 140px)',
-                    height: 'clamp(80px, 20vw, 140px)',
-                    marginBottom: '1rem',
-                    animation: 'spin 4s linear infinite, pulse-glow 2s ease-in-out infinite',
-                    objectFit: 'contain',
-                    mixBlendMode: 'screen'
-                  }}
-                />
-                <h4
-                  className="fallback-text"
-                  style={{
-                    color: 'var(--color-gold)',
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: 'clamp(0.9rem, 4.5vw, 1.25rem)',
-                    textTransform: 'uppercase',
-                    marginBottom: '1.5rem',
-                    padding: '0 1.5rem',
-                    lineHeight: '1.4'
-                  }}
-                >
-                  {t('projects.video_coming_soon')}
-                </h4>
-                <div style={{
-                  height: '2px',
-                  width: '100px',
-                  background: 'var(--color-copper)',
-                  marginTop: '1rem'
-                }} />
+                <span style={{
+                  color: 'var(--color-copper)',
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                  letterSpacing: '2px',
+                  textShadow: '0 0 10px rgba(184, 115, 51, 0.5)',
+                  textTransform: 'uppercase'
+                }}>
+                  {t('projects.video_coming_soon_short') || 'COMING SOON'}
+                </span>
               </div>
             )}
 
@@ -227,6 +208,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, vi
         </div>
       </div>
 
-    </div>
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes fade-in-out {
+          0% { opacity: 0; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+      `}} />
+    </section>
   );
 };

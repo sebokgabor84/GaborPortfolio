@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+import { MemoryRouter } from 'react-router-dom';
 import { MissionControlCarousel } from './MissionControlCarousel';
 import { kpis } from '../../data/kpis';
 
@@ -13,12 +14,20 @@ vi.mock('react-i18next', () => ({
 describe('MissionControlCarousel', () => {
 
   it('renders the header correctly', () => {
-    render(<MissionControlCarousel />);
+    render(
+      <MemoryRouter>
+        <MissionControlCarousel />
+      </MemoryRouter>
+    );
     expect(screen.getByText('cockpit.title')).toBeInTheDocument();
   });
 
   it('renders the correct number of static tiles', () => {
-    const { container } = render(<MissionControlCarousel />);
+    const { container } = render(
+      <MemoryRouter>
+        <MissionControlCarousel />
+      </MemoryRouter>
+    );
     
     // Check how many active static KPIs there are in the data layer
     const staticKpiCount = kpis.filter(k => k.enabled && !k.isDynamic).length;
@@ -33,11 +42,13 @@ describe('MissionControlCarousel', () => {
   });
 
   it('does not crash when simulating pointer interactions', () => {
-    render(<MissionControlCarousel />);
-    
     // Get the scene container
     // We can find it by finding the header and going to next sibling, or querying by class
-    const { container } = render(<MissionControlCarousel />);
+    const { container } = render(
+      <MemoryRouter>
+        <MissionControlCarousel />
+      </MemoryRouter>
+    );
     const scene = container.querySelector('.mc-scene');
     
     expect(scene).toBeInTheDocument();
