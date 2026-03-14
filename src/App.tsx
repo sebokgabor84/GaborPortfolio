@@ -7,6 +7,7 @@
 // -----------------------------------------------------------------------------
 
 import { Cockpit } from './components/Cockpit/Cockpit';
+import { MissionControlCarousel } from './components/MissionControl/MissionControlCarousel';
 import { ProjectCard } from './components/ProjectSection/ProjectCard';
 import { SocialDock } from './components/Social/SocialDock';
 import { AboutThisPage } from './components/Guide/AboutThisPage';
@@ -194,6 +195,9 @@ function App() {
 
       {/* The Cockpit */}
       <Cockpit />
+
+      {/* 3D Mission Control Carousel */}
+      <MissionControlCarousel />
 
       {/* Projects Section - Data Driven */}
       {/* 

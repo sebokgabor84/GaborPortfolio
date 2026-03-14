@@ -25,6 +25,9 @@ TODO:
 * add GaborPortfolio/src/data/kpis.ts to the GaborPortfolio/src/data/types.ts
 * Add stories to the projects - we have already basic stories, But not good
 * Make the not yet published stories black and white to signalise, these are still in making and not published yet, we alredy have the status `enabled`, but we also need a to extend it with `published`, since we wanted to make projects already published, but maybe not enabled
+* CSS Modules for split up the index.css
+* Lighthouse optimizations to apply (web dev tools)
+
 
 QUESTION:
 * is the GaborPortfolio/src/components/ProjectSection/ProjectCard.tsx using the GaborPortfolio/src/data/types.ts?

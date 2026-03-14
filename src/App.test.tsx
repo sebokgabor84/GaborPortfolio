@@ -9,12 +9,12 @@ describe('App Integration', () => {
         expect(screen.getByText(/QA Specialist/i)).toBeInTheDocument();
     });
 
-    it('renders the "Mission Control" Cockpit', () => {
+    it('renders the "Mission Control" Cockpit and Carousel', () => {
         render(<App />);
 
-        expect(screen.getByText('Mission Control Status')).toBeInTheDocument();
+        expect(screen.getAllByText(/Mission Control Status/i).length).toBeGreaterThan(0);
         // Check for at least one default gauge
-        expect(screen.getByText('Bugs Squashed')).toBeInTheDocument();
+        expect(screen.getAllByText('Bugs Squashed').length).toBeGreaterThan(0);
     });
 
     it('renders the Featured Projects section', () => {

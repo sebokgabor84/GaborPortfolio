@@ -6,6 +6,7 @@ const projectData: ProjectDTO[] = [
         id: 'qa',
         titleKey: 'projects.qa.title',
         descKey: 'projects.qa.desc',
+        videoId: 'dQw4w9WgXcQ',
         tags: ['QA', 'Automation', 'Cypress', 'TypeScript'],
         thumbnailSrc: '/assets/thumb-qa.webp',
         enabled: true,

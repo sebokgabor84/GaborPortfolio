@@ -80,3 +80,7 @@ Use authentic practitioner language rather than generic descriptions:
 | **Bread Making** | Natural sourdough starters, Long fermentation, Perfect crust |
 
 **Micro-animations**: UI transitions should feel mechanical — subtle, handcrafted, premium.
+
+## Resources
+- **Mission Control 3D Architecture**: `resources/mission-control-prompt.md` — Strict rules for building 3D JS Hybrid carousels without WAAPI or CSS-only limitations (IntersectionObserver, rAF).
+- **Asset Generation (Nano Banana Pro)**: `resources/mission-control-asset-generator.md` — The master prompts for maintaining Steampunk material consistency across all new graphical assets.

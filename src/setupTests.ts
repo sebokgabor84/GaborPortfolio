@@ -60,3 +60,36 @@ vi.mock('react-i18next', () => ({
         init: vi.fn(),
     },
 }));
+
+// 3. Global JSdom Hardware API Mocks
+//    Because jsdom doesn't have a real screen or GPU, it lacks some modern browser APIs.
+//    We provide structural fakes so our 3D hardware components can mount safely.
+class MockIntersectionObserver implements IntersectionObserver {
+    readonly root: Element | Document | null = null;
+    readonly rootMargin: string = '';
+    readonly thresholds: ReadonlyArray<number> = [];
+    observe = vi.fn();
+    unobserve = vi.fn();
+    disconnect = vi.fn();
+    takeRecords = () => [];
+}
+
+Object.assign(globalThis, { 
+    IntersectionObserver: MockIntersectionObserver 
+});
+
+if (!globalThis.PointerEvent) {
+    class PointerEvent extends MouseEvent {
+        pointerId: number;
+        constructor(type: string, params: PointerEventInit = {}) {
+            super(type, params);
+            this.pointerId = params.pointerId || 1;
+        }
+    }
+    Object.assign(globalThis, { PointerEvent });
+}
+
+if (!HTMLElement.prototype.setPointerCapture) {
+    HTMLElement.prototype.setPointerCapture = vi.fn();
+    HTMLElement.prototype.releasePointerCapture = vi.fn();
+}

@@ -31,7 +31,7 @@
             "desc": "Robusztus end-to-end teszt suite nagy forgalmú e-kereskedelmi platformokhoz. 60%-kal csökkentette a regressziós tesztelési időt, és kritikus fizetési hibákat előzött meg."
         },
         "brewing": {
-            "title": "SYI Professzionális Sörfőző Szett",
+            "title": "DIY Professzionális Sörfőző Szett",
             "desc": "Egyedi félautomata főzőrendszer tervezése és építése. Hőmérséklet-szabályozással, mágneses szivattyúkkal és 50L kapacitással."
         },
         "wedding": {
