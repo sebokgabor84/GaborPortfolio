@@ -17,15 +17,31 @@ Load only the skills the current task genuinely needs. Skill files cost tokens o
 
 **Quality is non-negotiable** — never skip a required skill to save tokens. The efficiency goal is to avoid loading *irrelevant* skills, not to shortcuts QA or correctness.
 
+### 🛡️ Mandatory Pre-flight Check
+Before performing any task, the Agent MUST:
+1.  **State loaded skills**: Explicitly list which skills from the Routing Table were loaded.
+2.  **Justify trigger**: Explain *why* each skill was loaded based on keywords or context.
+3.  **UI Work Load-out**: If the task involves a UI component or page layout, ALWAYS consider loading the "Core Trio": `design-system-expert` + `accessibility-expert` + `i18n-guardian`.
+4.  **Check for missing skills**: If no skill fits, trigger `skill-creator` immediately.
+
 ## Skill Routing Table
 
 | Trigger keywords / context | Load skill |
 |---|---|
-| CSS, layout, mobile, overflow, flexbox, grid, image, asset, thumbnail, Steampunk, animation, content copy, hobby description, artisan | `design-system-expert` |
-| SEO, meta, Open Graph, hreflang, Lighthouse, LCP, CLS, JSON-LD, robots, sitemap, vite-ssg | `seo-expert` |
-| WCAG, accessibility, aria, a11y, axe, screen reader, contrast, keyboard, skip-link | `accessibility-expert` |
-| translation, locale, i18n, language, EN/DE/HU, titleKey, descKey, labelKey, new language | `i18n-guardian` |
-| test, lint, TypeScript, E2E, Playwright, Vitest, unit test, type error, DoD, commit, push | `qa-specialist` |
+| CSS, layout, mobile, overflow, flexbox, grid, image, asset, thumbnail, Steampunk, animation, content copy, hobby description, artisan, Mission Control, Zero-Selector, rAF, 3D Carousel, 60fps, IntersectionObserver, refactor component, new feature | `design-system-expert` |
+| SEO, meta, Open Graph, hreflang, Lighthouse, LCP, CLS, JSON-LD, robots, sitemap, vite-ssg, performance, page update, asset change, loading speed, rendering | `seo-expert` |
+| WCAG, accessibility, aria, a11y, axe, screen reader, contrast, keyboard, skip-link, UI refactor, component logic, html structure, interactive element | `accessibility-expert` |
+| translation, locale, i18n, language, EN/DE/HU, titleKey, descKey, labelKey, new language, text change, copy update, data change | `i18n-guardian` |
+| test, lint, TypeScript, E2E, Playwright, Vitest, unit test, type error, DoD, commit, push, build | `qa-specialist` |
+
+### 🔄 Multi-Skill "Combo" Triggers
+When the task involves these high-level actions, LOAD ALL listed skills immediately:
+
+| Action | Skills to Load |
+|---|---|
+| **New Component / Page** | `design-system-expert` + `accessibility-expert` + `i18n-guardian` + `seo-expert` |
+| **Refactoring UI Logic** | `design-system-expert` + `accessibility-expert` + `qa-specialist` |
+| **Adding New Project/KPI** | `design-system-expert` + `i18n-guardian` + `seo-expert` |
 | new skill, refactor rules, legacy prompt, create agent file | `skill-creator` |
 | lock screen, wallpaper, QR code, mobile background | `lockscreen-qr-generator` |
 
@@ -44,7 +60,7 @@ If no skill in the Routing Table matches the User Intent:
 |---|---|
 | New project or KPI being added | Ask first: **Story** (1-liner), **Technical Details** (tools/methods), **KPI** (metric + unit), **Imagery** (thumbnail concept) — no files before answers |
 | Any code change | `npm run lint` — 0 errors before commit |
-| Any component change | `npm test -- --run` — 14/14 pass |
+| Any component change | `npm test -- --run` | 19/19 pass |
 | Before push | `npm run test:e2e` — 16/16 pass |
 | New project or KPI added | Update all locale files (EN, DE, HU) |
 | SEO change | Verify JSON-LD in `index.html` |

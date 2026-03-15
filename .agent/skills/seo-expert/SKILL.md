@@ -45,3 +45,7 @@ Single source of truth for optimizing GaborPortfolio's rendering strategy, Light
 | TypeScript | `PageSeoProps` interface on every route component | Guarantees `title`, `description`, `canonicalUrl`, `locale` are passed to `<SeoHead />` |
 | Unit (Vitest) | Test `<SeoHead />` in isolation | Valid DOM elements produced from `PageSeoProps` |
 | E2E (Playwright) | Assert compiled SSG output | `<title>` and `hreflang` tags present in rendered DOM |
+## Implicit Loading (Handshakes)
+This skill should almost always be loaded alongside:
+- `design-system-expert`: Whenever assets (images/videos) are added or layouts change (CLS/LCP concerns).
+- `i18n-guardian`: Specifically for `hreflang` verification when new locales or page sections are added.

@@ -42,15 +42,15 @@ Run in order. Stop on first failure and fix before continuing.
 | Phase | Command | Target |
 |---|---|---|
 | **1 · Lint** | `npm run lint` | 0 errors |
-| **2 · Unit** | `npm test -- --run` | 14/14 pass |
+| **2 · Unit** | `npm test -- --run` | 19/19 pass |
 | **3 · E2E** | `npm run test:e2e` | 16/16 pass |
 
 **Fix code, not tests** — if a test fails, the bug is in the app unless the test logic is provably incorrect.
 
 ## Best Practices / Constraints
 - Use regex assertions in E2E tests (`/QA Specialist.*Brewer/`) — never exact strings.
-- Performance is a feature — flag any change that regresses Lighthouse scores.
 - Zero lint errors is a mandatory DoD gate; no exceptions.
+- **Mission Control Performance**: Verify that 3D animations do not cause main-thread blocking; ensure `rAF` loop is properly throttled or stopped via `IntersectionObserver`.
 
 ## Resources
 - **Debugging & MCP setup**: `resources/debugging-guide.md` — Chrome remote debugging, Vitest patterns, and critical coverage areas.

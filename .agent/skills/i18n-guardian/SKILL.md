@@ -44,3 +44,7 @@ Ensures every data-driven translation key is present and consistent across **all
 ## Best Practices / Constraints
 - Key naming: `kebab-case` dot-separated, e.g. `project.brewing.title`
 - A key missing in even one locale is a **commit blocker**
+## Implicit Loading (Handshakes)
+This skill should almost always be loaded alongside:
+- `design-system-expert`: Whenever content copy or hobby descriptions are added or refactored.
+- `seo-expert`: When introducing new locales that require metadata/hreflang updates.

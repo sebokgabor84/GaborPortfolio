@@ -28,6 +28,8 @@ Enforces GaborPortfolio's CSS architecture and visual identity — fluid layouts
 | **CSS Variables** | All theme values (colors, spacing, font scales) use Custom Properties — no magic numbers. |
 | **No Tailwind** | Vanilla CSS Modules or Inline Styles mapped to variables only. |
 | **Icons** | Always SVG — aim for non-pixelated rendering. |
+| **Zero-Selector 60fps** | Avoid React re-renders for animations. Use `useRef` for DOM elements and `rAF` (requestAnimationFrame) for updates. Update `style.setProperty` directly. |
+| **Performance Loop** | Use `IntersectionObserver` to stop/start animation loops when components are off-screen to save CPU/battery. |
 
 ### 2. Steampunk Design System
 
@@ -80,6 +82,7 @@ Use authentic practitioner language rather than generic descriptions:
 | **Bread Making** | Natural sourdough starters, Long fermentation, Perfect crust |
 
 **Micro-animations**: UI transitions should feel mechanical — subtle, handcrafted, premium.
+**Mission Control terminology**: Use "Cockpit" (status area), "Dashboard" (overall view), and "Scene" (3D carousel area) when discussing the HomePage layout.
 
 ## Resources
 - **Mission Control 3D Architecture**: `resources/mission-control-prompt.md` — Strict rules for building 3D JS Hybrid carousels without WAAPI or CSS-only limitations (IntersectionObserver, rAF).

@@ -40,3 +40,7 @@ Foundational rulebook for WCAG 2.2 AA compliance in GaborPortfolio — covers se
 | E2E | `@axe-core/playwright` | `expect(violations).toEqual([])` with `wcag2a/aa/21a/21aa` tags |
 
 **Enforcement**: Zero lint errors (including WCAG 2.2) is a mandatory Definition of Done. Refactor existing violations before adding new features.
+## Implicit Loading (Handshakes)
+This skill should almost always be loaded alongside:
+- `design-system-expert`: Whenever visual components are changed, their accessibility must also be verified.
+- `qa-specialist`: To ensure `@axe-core/playwright` and `vitest-axe` are correctly configured in the pipeline.
