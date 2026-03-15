@@ -7,7 +7,7 @@ import { LanguageDial } from './components/LanguageSwitch/LanguageDial';
 
 const App: React.FC = () => {
   return (
-    <div style={{ background: 'var(--color-bg-dark)', minHeight: '100vh' }}>
+    <div style={{ background: 'transparent', minHeight: '100vh' }}>
       <LanguageDial />
       <ScrollToTop />
       <Routes>

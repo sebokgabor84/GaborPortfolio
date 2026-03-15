@@ -396,7 +396,7 @@ export const MissionControlCarousel: React.FC = () => {
             id="mission-control"
             className="mc-dashboard"
             style={{
-                backgroundImage: `linear-gradient(to bottom, rgba(18, 16, 16, 0.85), rgba(18, 16, 16, 0.98)), url('${MASTER_BG_IMAGE}')`
+                background: `var(--bg-gradient-standard), url('${MASTER_BG_IMAGE}')`
             }}
         >
             <SVGDefs />
@@ -445,7 +445,7 @@ export const MissionControlCarousel: React.FC = () => {
                 __html: `
         .mc-dashboard {
           width: 100%;
-          padding: clamp(2rem, 5vw, 4rem) 0;
+          padding: clamp(2rem, 5vw, 6rem) 0;
           box-sizing: border-box;
           perspective: 2000px;
           background-size: cover;
@@ -456,7 +456,7 @@ export const MissionControlCarousel: React.FC = () => {
           flex-direction: column;
           justify-content: center;
           overflow: hidden;
-          margin-top: 4rem; /* separation from Cockpit */
+          margin-top: 0; /* separation from Cockpit */
         }
 
         .mc-header {

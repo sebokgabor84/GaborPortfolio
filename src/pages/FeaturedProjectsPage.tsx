@@ -22,7 +22,12 @@ export const FeaturedProjectsPage: React.FC = () => {
     }, []);
 
     return (
-        <main style={{ padding: '4rem 0', maxWidth: '1000px', margin: '0 auto' }}>
+        <main style={{ 
+            padding: '4rem 1rem', 
+            minHeight: '100vh',
+            background: `var(--bg-gradient-standard)`
+        }}>
+            <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
             <BackButton />
             <h2 style={{
                 textAlign: 'center',
@@ -44,6 +49,7 @@ export const FeaturedProjectsPage: React.FC = () => {
                     thumbnailSrc={project.thumbnailSrc}
                 />
             ))}
+            </div>
         </main>
     );
 };

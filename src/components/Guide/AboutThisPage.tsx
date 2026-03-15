@@ -10,11 +10,21 @@ export const AboutThisPage: React.FC = () => {
             id="about-this-page"
             aria-label={t('about.aria_label')}
             style={{
-                maxWidth: '800px',
-                margin: '4rem auto',
-                padding: '0 1rem',
+                width: '100%',
+                padding: '6rem 1rem',
+                backgroundImage: `var(--bg-gradient-standard), url('/assets/bg-about-page.jpg')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center center',
+                backgroundRepeat: 'no-repeat',
+                backgroundOrigin: 'border-box',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                borderBottom: '1px solid var(--color-copper-dim)',
+                marginTop: '0'
             }}
         >
+            <div style={{ maxWidth: '800px', width: '100%' }}>
             {/* Always Visible: Why This Page Exists (Now Collapsible) */}
             <details
                 style={{
@@ -227,6 +237,7 @@ npm run test:e2e
                     <p>{t('about.playwright_p2')}</p>
                 </div>
             </details>
+            </div>
         </section>
     );
 };

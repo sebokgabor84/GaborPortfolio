@@ -10,7 +10,7 @@ export const Hero: React.FC = () => {
     <header style={{
       textAlign: 'center',
       padding: 'clamp(4rem, 15vh, 8rem) 1rem clamp(3rem, 10vh, 6rem) 1rem',
-      background: `linear-gradient(to bottom, rgba(18, 16, 16, 0.8), var(--color-bg-dark)), url('/assets/hero-cockpit.webp')`,
+      background: `var(--bg-gradient-standard), url('/assets/hero-cockpit.webp')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       borderBottom: '2px solid var(--color-copper)',

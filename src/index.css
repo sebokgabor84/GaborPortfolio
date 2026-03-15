@@ -30,6 +30,9 @@
   /* Effects */
   --shadow-panel: 0 4px 20px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(0, 0, 0, 0.5);
   --border-metal: 2px solid var(--color-copper);
+
+  /* Background Standard (Cockpit Gold Standard) */
+  --bg-gradient-standard: linear-gradient(to bottom, rgba(18, 16, 16, 0.75), rgba(18, 16, 16, 0.95));
 }
 
 /* 
@@ -51,9 +54,9 @@ body {
   position: relative;
 
   /* 
-    Advanced Background:
-    We combine a "Radial Gradient" (glow in the center)
-    with a "Repeating Linear Gradient" (diagonal lines) for texture.
+    Advanced Global Background:
+    1. Radial Glow
+    2. Diagonal Texture (Overlay)
   */
   background-image:
     radial-gradient(circle at 50% 50%, rgba(184, 115, 51, 0.05) 0%, transparent 50%),
@@ -62,6 +65,26 @@ body {
       rgba(0, 0, 0, 0.1) 2px,
       transparent 2px,
       transparent 10px);
+  background-attachment: fixed;
+}
+
+/* 
+  ✨ Global Texture Overlay (The "Forged/Welded" brand)
+  We use a fixed pseudo-element to ensure the texture is ALWAYS visible
+  at 3% opacity over everything, without blocking background images.
+*/
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/assets/texture-fallback.png');
+  background-repeat: repeat;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
 }
 
 /* 
@@ -231,10 +254,27 @@ details summary:focus-visible {
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }
+}
+
+#about-this-page details {
+  background: transparent !important;
+  transition: background 0.3s ease;
+}
+
+#about-this-page details[open] {
+  background: var(--color-bg-panel) !important;
+}
+
+#about-this-page details summary {
+  background: rgba(184, 115, 51, 0.04) !important;
+  transition: background 0.3s ease;
+}
+
+#about-this-page details[open] summary {
+  background: rgba(184, 115, 51, 0.08) !important;
 }
 
 /* 📱 Mobile Adjustments for Video Fallback */
