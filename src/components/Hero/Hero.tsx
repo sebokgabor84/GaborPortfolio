@@ -7,16 +7,19 @@ export const Hero: React.FC = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    <header style={{
-      textAlign: 'center',
-      padding: 'clamp(4rem, 15vh, 8rem) 1rem clamp(3rem, 10vh, 6rem) 1rem',
-      background: `var(--bg-gradient-standard), url('/assets/hero-cockpit.webp')`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      borderBottom: '2px solid var(--color-copper)',
-      position: 'relative',
-      overflow: 'hidden'
-    }}>
+    <header 
+      className="glass-panel"
+      style={{
+        textAlign: 'center',
+        padding: 'clamp(0.5rem, 2vh, 1rem) clamp(1rem, 5vw, 2.5rem) clamp(2rem, 8vh, 4rem) clamp(1rem, 5vw, 2.5rem)',
+        borderBottom: '2px solid var(--color-copper)',
+        position: 'relative',
+        overflow: 'hidden',
+        margin: '2rem auto',
+        maxWidth: '1200px',
+        borderRadius: '12px'
+      }}
+    >
       <div key={i18n.language} style={{ animation: 'langFade 0.4s ease' }}>
         <h1
           style={{

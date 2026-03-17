@@ -9,19 +9,17 @@ export const AboutThisPage: React.FC = () => {
         <section
             id="about-this-page"
             aria-label={t('about.aria_label')}
+            className="glass-panel"
             style={{
                 width: '100%',
-                padding: '6rem 1rem',
-                backgroundImage: `var(--bg-gradient-standard), url('/assets/bg-about-page.jpg')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center center',
-                backgroundRepeat: 'no-repeat',
-                backgroundOrigin: 'border-box',
+                maxWidth: '1200px',
+                margin: '2rem auto',
+                padding: '4rem clamp(1rem, 5vw, 2.5rem)',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                borderRadius: '12px',
                 borderBottom: '1px solid var(--color-copper-dim)',
-                marginTop: '0'
             }}
         >
             <div style={{ maxWidth: '800px', width: '100%' }}>

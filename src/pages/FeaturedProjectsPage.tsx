@@ -9,6 +9,9 @@ export const FeaturedProjectsPage: React.FC = () => {
     const enabledProjects = projects.filter(p => p.enabled);
 
     React.useEffect(() => {
+        // Switch to Mission Control background for this page
+        document.documentElement.style.setProperty('--cockpit-bg-image', "url('/assets/bg-mission-control.webp')");
+        
         const hash = window.location.hash;
         if (hash) {
             const id = hash.replace('#', '');
@@ -19,16 +22,27 @@ export const FeaturedProjectsPage: React.FC = () => {
         } else {
             window.scrollTo(0, 0);
         }
+
+        return () => {
+            // Reset to default Hero background on unmount
+            document.documentElement.style.setProperty('--cockpit-bg-image', "url('/assets/hero-cockpit.webp')");
+        };
     }, []);
 
     return (
-        <main style={{ 
-            padding: '4rem 1rem', 
-            minHeight: '100vh',
-            background: `var(--bg-gradient-standard)`
-        }}>
+        <>
+        <BackButton />
+        <main 
+            className="glass-panel-subtle"
+            style={{ 
+                padding: 'clamp(3rem, 7vh, 5rem) clamp(1rem, 5vw, 2.5rem)', 
+                minHeight: '100vh',
+                margin: '2rem auto',
+                maxWidth: '1200px',
+                borderRadius: '12px'
+            }}
+        >
             <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-            <BackButton />
             <h2 style={{
                 textAlign: 'center',
                 marginBottom: '3rem',
@@ -51,5 +65,6 @@ export const FeaturedProjectsPage: React.FC = () => {
             ))}
             </div>
         </main>
+        </>
     );
 };

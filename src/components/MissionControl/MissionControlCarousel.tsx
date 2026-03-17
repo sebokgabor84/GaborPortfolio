@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { kpis } from '../../data/kpis';
 
 // Master Background Image Placeholder
-const MASTER_BG_IMAGE = '/assets/bg-mission-control.webp';
 
 const colorMap = {
     success: '#4ade80',
@@ -394,9 +393,11 @@ export const MissionControlCarousel: React.FC = () => {
     return (
         <div
             id="mission-control"
-            className="mc-dashboard"
+            className="mc-dashboard glass-panel"
             style={{
-                background: `var(--bg-gradient-standard), url('${MASTER_BG_IMAGE}')`
+                margin: '2rem auto',
+                maxWidth: '1200px',
+                borderRadius: '12px'
             }}
         >
             <SVGDefs />

@@ -40,17 +40,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     <section
       id={id}
       aria-label={t('projects.card_aria', { title })}
-      className="project-card"
+      className="project-card glass-panel"
       style={{
-        background: 'var(--color-bg-panel)',
-        border: '1px solid var(--color-copper-dim)',
         borderRadius: '12px',
         overflow: 'hidden',
         marginBottom: '3rem',
-        boxShadow: 'var(--shadow-panel)',
         maxWidth: '800px',
         margin: '0 auto 3rem auto',
-        width: '95%',
         position: 'relative'
       }}
     >

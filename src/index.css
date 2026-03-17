@@ -33,6 +33,14 @@
 
   /* Background Standard (Cockpit Gold Standard) */
   --bg-gradient-standard: linear-gradient(to bottom, rgba(18, 16, 16, 0.75), rgba(18, 16, 16, 0.95));
+
+  /* Cinematic HUD & Glassmorphism */
+  --cockpit-bg-image: url('/assets/hero-cockpit.webp');
+  --glass-bg: rgba(18, 16, 16, 0.75);
+  --glass-border: 1px solid rgba(184, 115, 51, 0.2);
+  --glass-blur: blur(12px);
+  --shadow-hud: 0 8px 32px rgba(0, 0, 0, 0.8);
+  --cockpit-dim-factor: 0;
 }
 
 /* 
@@ -43,7 +51,6 @@
 body {
   margin: 0;
   min-height: 100vh;
-  /* Using variables defined above */
   background-color: var(--color-bg-dark);
   color: var(--color-text-main);
   font-family: var(--font-body);
@@ -51,30 +58,50 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   width: 100%;
-  position: relative;
+}
 
-  /* 
-    Advanced Global Background:
-    1. Radial Glow
-    2. Diagonal Texture (Overlay)
-  */
-  background-image:
-    radial-gradient(circle at 50% 50%, rgba(184, 115, 51, 0.05) 0%, transparent 50%),
-    repeating-linear-gradient(45deg,
-      rgba(0, 0, 0, 0.1) 0px,
-      rgba(0, 0, 0, 0.1) 2px,
-      transparent 2px,
-      transparent 10px);
-  background-attachment: fixed;
+/* 
+  🎥 Hardware Accelerated Cinematic Backdrop
+  Replaces 'background-attachment: fixed' which is slow on mobile.
+*/
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-image: var(--cockpit-bg-image);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  
+  /* Hardware acceleration */
+  transform: translateZ(0);
+  will-change: transform;
+  transition: background-image 0.8s ease-in-out;
+  filter: brightness(calc(1 - var(--cockpit-dim-factor)));
+}
+
+/* 🌑 Global Vignette & Depth Layer */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.4) 150%);
+  pointer-events: none;
+  z-index: 0; /* Behind content, on top of backdrop */
 }
 
 /* 
   ✨ Global Texture Overlay (The "Forged/Welded" brand)
-  We use a fixed pseudo-element to ensure the texture is ALWAYS visible
-  at 3% opacity over everything, without blocking background images.
+  Moved to a class that can be applied to maintain consistency.
 */
-body::after {
-  content: "";
+.global-texture-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -275,6 +302,39 @@ details summary:focus-visible {
 
 #about-this-page details[open] summary {
   background: rgba(184, 115, 51, 0.08) !important;
+}
+
+/* 🧊 Glassmorphism Utilities */
+.glass-panel {
+  background: var(--glass-bg) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: var(--glass-border) !important;
+  box-shadow: var(--shadow-hud) !important;
+  transition: width 0.3s ease, margin 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .glass-panel {
+    width: auto !important;
+    margin-left: 4vw !important;
+    margin-right: 4vw !important;
+    box-sizing: border-box !important;
+  }
+}
+
+.glass-panel-subtle {
+  background: rgba(18, 16, 16, 0.05) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid rgba(184, 115, 51, 0.1) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+  transition: width 0.3s ease, margin 0.3s ease;
+}
+
+.hud-content-layer {
+  position: relative;
+  z-index: 1;
 }
 
 /* 📱 Mobile Adjustments for Video Fallback */
