@@ -30,6 +30,8 @@ Enforces GaborPortfolio's CSS architecture and visual identity — fluid layouts
 | **Icons** | Always SVG — aim for non-pixelated rendering. |
 | **Zero-Selector 60fps** | Avoid React re-renders for animations. Use `useRef` for DOM elements and `rAF` (requestAnimationFrame) for updates. Update `style.setProperty` directly. |
 | **Performance Loop** | Use `IntersectionObserver` to stop/start animation loops when components are off-screen to save CPU/battery. |
+| **Cinematic HUD** | Use hardware-accelerated fixed backdrops (`body::before`) instead of `background-attachment: fixed`. Centralize background swaps via CSS variables. |
+| **Glassmorphism** | Content panels should use `.glass-panel` or `.glass-panel-subtle` utility classes with `backdrop-filter: blur()`. |
 
 ### 2. Steampunk Design System
 
@@ -41,6 +43,9 @@ Enforces GaborPortfolio's CSS architecture and visual identity — fluid layouts
 | `--color-copper` | `#b87333` — **Large text / decorative borders only** (contrast ~4.48:1) |
 | `--color-gold` | `#d4af37` |
 | `--color-text-main` | `#e0dacc` |
+| `--glass-bg` | `rgba(18, 16, 16, 0.75)` (standard) |
+| `--glass-blur` | `blur(12px)` (cinematic standard) |
+| `--glass-border` | `1px solid rgba(184, 115, 51, 0.2)` |
 
 **Typography**: Headings → `Courier New` (mechanical feel). Body → `system-ui`. Fluid scales with `clamp()`.
 
@@ -85,5 +90,6 @@ Use authentic practitioner language rather than generic descriptions:
 **Mission Control terminology**: Use "Cockpit" (status area), "Dashboard" (overall view), and "Scene" (3D carousel area) when discussing the HomePage layout.
 
 ## Resources
+- **Cinematic HUD Architecture**: `resources/cinematic-hud.md` — Core rules for fixed backdrops and HUD content layers.
 - **Mission Control 3D Architecture**: `resources/mission-control-prompt.md` — Strict rules for building 3D JS Hybrid carousels without WAAPI or CSS-only limitations (IntersectionObserver, rAF).
 - **Asset Generation (Nano Banana Pro)**: `resources/mission-control-asset-generator.md` — The master prompts for maintaining Steampunk material consistency across all new graphical assets.
