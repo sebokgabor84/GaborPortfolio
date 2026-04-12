@@ -33,6 +33,6 @@ describe('App Integration', () => {
         );
 
         // section_title in en.json is "Featured Projects"
-        expect(screen.getByRole('heading', { level: 2, name: /Featured Projects/i })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { level: 1, name: /Featured Projects/i })).toBeInTheDocument();
     });
 });

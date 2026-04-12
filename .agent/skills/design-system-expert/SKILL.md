@@ -93,3 +93,4 @@ Use authentic practitioner language rather than generic descriptions:
 - **Cinematic HUD Architecture**: `resources/cinematic-hud.md` — Core rules for fixed backdrops and HUD content layers.
 - **Mission Control 3D Architecture**: `resources/mission-control-prompt.md` — Strict rules for building 3D JS Hybrid carousels without WAAPI or CSS-only limitations (IntersectionObserver, rAF).
 - **Asset Generation (Nano Banana Pro)**: `resources/mission-control-asset-generator.md` — The master prompts for maintaining Steampunk material consistency across all new graphical assets.
+- **Hexagon "S" Logo Generator**: `resources/svg-favicon-generator.md` — Strict SVG geometry and theme adaptation rules for the project insignia.

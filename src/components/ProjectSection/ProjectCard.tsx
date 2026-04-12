@@ -9,10 +9,11 @@ interface ProjectCardProps {
     videoId?: string;
     tags: string[];
     thumbnailSrc: string;
+    altKey?: string;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ 
-    id, title, description, videoId, tags, thumbnailSrc 
+    id, title, description, videoId, tags, thumbnailSrc, altKey 
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showFallback, setShowFallback] = useState(false);
@@ -78,7 +79,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             {thumbnailSrc && (
               <img
                 src={thumbnailSrc}
-                alt=""
+                srcSet={`${thumbnailSrc} 1x, ${thumbnailSrc.replace('.webp', '@2x.webp')} 2x`}
+                alt={altKey ? t(altKey) : t('projects.thumbnail_alt', { title })}
+                width={400}
+                height={225}
+                loading="lazy"
+                decoding="async"
                 style={{
                   position: 'absolute',
                   top: 0,
@@ -108,7 +114,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 boxShadow: '0 0 20px var(--color-gold)',
                 transition: 'transform 0.3s ease'
               }}>
-                <FaPlay style={{ fontSize: '2rem', color: 'var(--color-gold)', marginLeft: '6px' }} />
+                <FaPlay style={{ fontSize: '2rem', color: 'var(--color-gold)', marginLeft: '6px' }} aria-hidden="true" />
               </div>
             ) : (
               <div
@@ -116,23 +122,23 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  background: 'rgba(18, 16, 16, 0.4)',
+                  background: 'rgba(18, 16, 16, 0.8)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   zIndex: 10,
-                  backdropFilter: 'blur(2px)',
+                  backdropFilter: 'blur(4px)',
                   animation: 'fade-in-out 4s forwards',
                   borderRadius: '12px'
                 }}
               >
                 <span style={{
-                  color: 'var(--color-copper)',
+                  color: 'var(--color-gold)',
                   fontFamily: 'var(--font-heading)',
                   fontSize: '1.5rem',
                   fontWeight: 'bold',
                   letterSpacing: '2px',
-                  textShadow: '0 0 10px rgba(184, 115, 51, 0.5)',
+                  textShadow: '0 0 10px rgba(0, 0, 0, 0.5)',
                   textTransform: 'uppercase'
                 }}>
                   {t('projects.video_coming_soon_short') || 'COMING SOON'}
@@ -151,7 +157,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 color: '#fff',
                 fontSize: '0.9rem',
                 fontFamily: 'var(--font-digital)',
-                zIndex: 11
+                zIndex: 11,
+                border: '1px solid var(--color-copper-dim)'
               }}>
                 {t('projects.click_hint')}
               </div>
@@ -181,7 +188,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         <p style={{
           fontSize: '1.1rem',
           lineHeight: '1.6',
-          color: 'var(--color-text-dim)',
+          color: 'var(--color-text-main)',
           marginBottom: '1.5rem'
         }}>
           {description}
@@ -190,13 +197,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap' }}>
           {tags.map(tag => (
             <span key={tag} style={{
-              background: 'rgba(184, 115, 51, 0.1)',
+              background: 'rgba(30, 28, 26, 0.9)',
               color: 'var(--color-gold)',
               padding: '0.4rem 1rem',
               borderRadius: '20px',
               fontSize: '0.9rem',
-              border: '1px solid var(--color-copper-dim)',
-              fontFamily: 'var(--font-digital)'
+              border: '1px solid var(--color-copper)',
+              fontFamily: 'var(--font-digital)',
+              boxShadow: 'inset 0 0 5px rgba(0,0,0,0.5)'
             }}>
               #{tag}
             </span>

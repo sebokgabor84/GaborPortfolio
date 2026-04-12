@@ -27,6 +27,8 @@
         "click_hint": "KATTINTS AZ INDÍTÁSHOZ",
         "video_coming_soon": "Hamarosan érkezik, dolgozunk a tartalomkészítésen",
         "video_coming_soon_short": "Hamarosan",
+        "card_aria": "Projekt részletei: {{title}}",
+        "thumbnail_alt": "Projekt bélyegképe: {{title}}",
         "qa": {
             "title": "QA Automatizálási Keretrendszer",
             "desc": "Robusztus end-to-end teszt suite nagy forgalmú e-kereskedelmi platformokhoz. 60%-kal csökkentette a regressziós tesztelési időt, és kritikus fizetési hibákat előzött meg."

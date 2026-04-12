@@ -3,7 +3,7 @@
 This is the primary entrypoint. Read this first every session to understand the project context and route to the correct skill(s).
 
 ## Project Identity
-**GaborPortfolio** — A multilingual (EN/DE/HU), statically generated showcase site for a QA Engineer & Artisan Maker. Aesthetic: "Fancy Steampunk Futuristic Elegant Dark Mode". Stack: React + TypeScript + Vite-SSG + Vitest + Playwright.
+**GaborPortfolio** — A multilingual (EN/DE/HU) SPA (Client-Side Rendering) showcase site for a QA Engineer & Artisan Maker. Aesthetic: "Fancy Steampunk Futuristic Elegant Dark Mode". Stack: React + TypeScript + Vite + Vitest + Playwright.
 
 ## Context Efficiency Rules
 Load only the skills the current task genuinely needs. Skill files cost tokens on every load.
@@ -29,7 +29,7 @@ Before performing any task, the Agent MUST:
 | Trigger keywords / context | Load skill |
 |---|---|
 | CSS, layout, mobile, overflow, flexbox, grid, image, asset, thumbnail, Steampunk, animation, content copy, hobby description, artisan, Mission Control, Zero-Selector, rAF, 3D Carousel, 60fps, IntersectionObserver, refactor component, new feature | `design-system-expert` |
-| SEO, meta, Open Graph, hreflang, Lighthouse, LCP, CLS, JSON-LD, robots, sitemap, vite-ssg, performance, page update, asset change, loading speed, rendering | `seo-expert` |
+| SEO, meta, Open Graph, hreflang, Lighthouse, LCP, CLS, JSON-LD, robots, sitemap, SPA SEO, performance, page update, asset change, loading speed, rendering | `seo-expert` |
 | WCAG, accessibility, aria, a11y, axe, screen reader, contrast, keyboard, skip-link, UI refactor, component logic, html structure, interactive element | `accessibility-expert` |
 | translation, locale, i18n, language, EN/DE/HU, titleKey, descKey, labelKey, new language, text change, copy update, data change | `i18n-guardian` |
 | test, lint, TypeScript, E2E, Playwright, Vitest, unit test, type error, DoD, commit, push, build | `qa-specialist` |
@@ -60,8 +60,8 @@ If no skill in the Routing Table matches the User Intent:
 |---|---|
 | New project or KPI being added | Ask first: **Story** (1-liner), **Technical Details** (tools/methods), **KPI** (metric + unit), **Imagery** (thumbnail concept) — no files before answers |
 | Any code change | `npm run lint` — 0 errors before commit |
-| Any component change | `npm test -- --run` | 19/19 pass |
-| Before push | `npm run test:e2e` — 16/16 pass |
+| Any component change | `npm test -- --run` | 20/20 pass |
+| Before push | `npm run test:e2e` | 32/32 pass |
 | New project or KPI added | Update all locale files (EN, DE, HU) |
 | SEO change | Verify JSON-LD in `index.html` |
 | New image asset | Verify `webp`, ≤ 200 KB, stored in `public/assets/` |
@@ -75,7 +75,7 @@ If no skill in the Routing Table matches the User Intent:
 | Project data / KPIs | `src/data/projects.ts`, `src/data/kpis.ts` |
 | Translations | `src/i18n/locales/en.json`, `de.json`, `hu.json` |
 | Zod schemas | `src/data/types.ts` |
-| SEO head tags | `index.html` |
+| SEO head tags | `src/components/Common/SeoHead.tsx` |
 | Components | `src/components/` |
 | E2E tests | `tests/` |
 | Images / assets | `public/assets/` |

@@ -126,6 +126,8 @@ const MissionControlTile = React.forwardRef<HTMLDivElement, MissionControlTilePr
             <img
                 src={bgImage}
                 alt={`Background for ${title}`}
+                width={280}
+                height={380}
                 loading={isLazy ? 'lazy' : 'eager'}
                 onLoad={() => setImageLoaded(true)}
                 className={`mc-image-layer ${imageLoaded ? 'mc-loaded' : ''}`}
@@ -676,23 +678,23 @@ export const MissionControlCarousel: React.FC = () => {
         .mc-coming-soon-overlay {
           position: absolute;
           inset: 0;
-          background: rgba(18, 16, 16, 0.4);
+          background: rgba(18, 16, 16, 0.85);
           z-index: 10;
           display: flex;
           align-items: center;
           justify-content: center;
           border-radius: 12px;
           animation: fade-in-out 4s forwards;
-          backdrop-filter: blur(2px);
+          backdrop-filter: blur(4px);
         }
 
         .mc-coming-soon-text {
-          color: var(--color-copper);
+          color: var(--color-gold);
           font-family: var(--font-heading);
           font-size: 1.5rem;
           font-weight: bold;
           letter-spacing: 2px;
-          text-shadow: 0 0 10px rgba(184, 115, 51, 0.5);
+          text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         @keyframes fade-in-out {

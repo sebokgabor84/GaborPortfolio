@@ -8,7 +8,7 @@ export const LanguageDial: React.FC = () => {
         i18n.changeLanguage(lng);
     };
 
-    const activeLang = i18n.language.split('-')[0]; // Handle 'en-US' etc.
+    const activeLang = i18n.language ? i18n.language.split('-')[0] : 'en'; // Handle 'en-US' etc.
 
     const languages = [
         { code: 'en', label: 'EN' },

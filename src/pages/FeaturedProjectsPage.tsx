@@ -3,9 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { ProjectCard } from '../components/ProjectSection/ProjectCard';
 import { BackButton } from '../components/Common/BackButton';
 import { projects } from '../data/projects';
+import { SeoHead } from '../components/Common/SeoHead';
 
 export const FeaturedProjectsPage: React.FC = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const enabledProjects = projects.filter(p => p.enabled);
 
     React.useEffect(() => {
@@ -29,9 +30,33 @@ export const FeaturedProjectsPage: React.FC = () => {
         };
     }, []);
 
+    const collectionSchema = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": t('projects.section_title') + " - Gabor Seboek",
+        "url": "https://gaborseboek.com/featured-projects",
+        "description": "A collection of featured projects by Gabor Seboek, highlighting Test Automation alongside personal master craftsman projects.",
+        "mainEntity": {
+             "@type": "ItemList",
+             "itemListElement": enabledProjects.map((p, index) => ({
+                 "@type": "ListItem",
+                 "position": index + 1,
+                 "url": `https://gaborseboek.com/featured-projects#${p.id}`
+             }))
+        }
+    };
+
     return (
         <>
         <BackButton />
+        <SeoHead
+            title={`${t('projects.section_title')} | Gabor Seboek`}
+            description="Explore my technical projects and master craftsman passions including Test Automation, Master Brewing, and more."
+            canonicalUrl="https://gaborseboek.com/featured-projects"
+            ogImage="https://gaborseboek.com/assets/bg-mission-control.webp"
+            locale={i18n.language || "en"}
+            jsonLd={collectionSchema}
+        />
         <main 
             className="glass-panel-subtle"
             style={{ 
@@ -43,14 +68,14 @@ export const FeaturedProjectsPage: React.FC = () => {
             }}
         >
             <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-            <h2 style={{
+            <h1 style={{
                 textAlign: 'center',
                 marginBottom: '3rem',
                 fontSize: '2.5rem',
                 color: 'var(--color-text-main)'
             }}>
                 {t('projects.section_title')}
-            </h2>
+            </h1>
 
             {enabledProjects.map((project) => (
                 <ProjectCard

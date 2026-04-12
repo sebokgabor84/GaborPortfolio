@@ -15,6 +15,7 @@ export const ProjectDTOSchema = z.object({
     thumbnailSrc: z.string().regex(/^\/assets\/thumb-[a-z0-9-]+\.webp$/, {
         message: "assetPath must resolve to /assets/thumb-{id}.webp",
     }),
+    altKey: z.string().startsWith('projects.').optional(),
     enabled: z.boolean(),
 });
 
@@ -40,3 +41,14 @@ export type SEOMetadata = z.infer<typeof SEOMetadataSchema>;
 export const validateProjects = (data: unknown): ProjectDTO[] => {
     return z.array(ProjectDTOSchema).parse(data);
 };
+
+export const PageSeoPropsSchema = z.object({
+  title: z.string().max(60, "Title must be ≤ 60 chars"),
+  description: z.string().max(155, "Description must be ≤ 155 chars"),
+  canonicalUrl: z.string().url("Must be a valid URL"),
+  ogImage: z.string().url("Must be a valid absolute URL"),
+  locale: z.string(),
+  jsonLd: z.any().optional(),
+});
+
+export type PageSeoProps = z.infer<typeof PageSeoPropsSchema>;

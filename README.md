@@ -30,7 +30,7 @@ Recruiters asking *"Can you code, test, and architect?"* → **Just run this rep
 | Layer | Choice | Why |
 |---|---|---|
 | Core | React + TypeScript (Strict) | Type safety everywhere |
-| Build | Vite + vite-ssg | Instant feedback + static output for Lighthouse 100/100 |
+| Build | Vite | Instant feedback + optimized SPA bundle for Lighthouse 100/100 |
 | i18n | react-i18next | EN / DE / HU |
 | Styling | Vanilla CSS Modules + CSS Variables | We architect design systems, not hide behind Tailwind |
 | Unit Testing | Vitest | Jest-compatible, fast |
@@ -52,7 +52,7 @@ This project runs a **production-grade autonomous agent system** — not a promp
     i18n-guardian/            Self-discovering locale sync across all languages and data sections
     lockscreen-qr-generator/  AI-composited QR lock screen wallpaper workflow
     qa-specialist/            TypeScript strictness, Zod DTOs, DoD pipeline (lint → unit → E2E)
-    seo-expert/               vite-ssg, hreflang, Lighthouse, JSON-LD
+    seo-expert/               SPA SEO, hreflang, Lighthouse, JSON-LD, SeoHead component logic
     skill-creator/            Generates new skills with built-in token efficiency rules
 ```
 
@@ -76,8 +76,9 @@ npm run dev          # http://localhost:5173
 **Verify competence:**
 ```bash
 npm run lint         # 0 errors
-npm test -- --run    # 14/14 unit pass
-npm run test:e2e     # 16/16 E2E pass
+npm test -- --run    # 20/20 unit pass
+npm run test:e2e     # 32/32 E2E pass
+npm run optimize:assets # Auto-compresses and generates Retina images via sharp
 ```
 
 ---

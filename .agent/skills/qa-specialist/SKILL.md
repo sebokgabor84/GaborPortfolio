@@ -42,8 +42,8 @@ Run in order. Stop on first failure and fix before continuing.
 | Phase | Command | Target |
 |---|---|---|
 | **1 · Lint** | `npm run lint` | 0 errors |
-| **2 · Unit** | `npm test -- --run` | 19/19 pass |
-| **3 · E2E** | `npm run test:e2e` | 16/16 pass |
+| **2 · Unit** | `npm test -- --run` | 20/20 pass |
+| **3 · E2E** | `npm run test:e2e` | 32/32 pass |
 
 **Fix code, not tests** — if a test fails, the bug is in the app unless the test logic is provably incorrect.
 

@@ -3,12 +3,13 @@ import { FaLinkedin, FaInstagram, FaFacebook, FaTiktok, FaXTwitter, FaGithub } f
 import { Hint } from '../Common/Hint';
 import { useTranslation } from 'react-i18next';
 
-const SocialIcon: React.FC<{ href: string; icon: React.ReactNode; comingSoon?: boolean; comingSoonMessage?: string }> = ({ href, icon, comingSoon, comingSoonMessage }) => {
+const SocialIcon: React.FC<{ href: string; icon: React.ReactNode; label: string; comingSoon?: boolean; comingSoonMessage?: string }> = ({ href, icon, label, comingSoon, comingSoonMessage }) => {
   const content = (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={label}
       style={{
         color: 'var(--color-copper)',
         fontSize: '2rem',
@@ -48,7 +49,8 @@ export const SocialDock: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div
+    <nav
+      aria-label={t('common.social_links') || 'Social Links'}
       style={{
         display: 'flex',
         gap: 'clamp(0.5rem, 3vw, 1.5rem)',
@@ -63,12 +65,12 @@ export const SocialDock: React.FC = () => {
         maxWidth: '100%',
       }}
     >
-      <SocialIcon href="https://github.com/sebokgabor84/GaborPortfolio" icon={<FaGithub />} />
-      <SocialIcon href="https://linkedin.com" icon={<FaLinkedin />} comingSoon comingSoonMessage={t('common.coming_soon')} />
-      <SocialIcon href="https://instagram.com" icon={<FaInstagram />} comingSoon comingSoonMessage={t('common.coming_soon')} />
-      <SocialIcon href="https://facebook.com" icon={<FaFacebook />} comingSoon comingSoonMessage={t('common.coming_soon')} />
-      <SocialIcon href="https://tiktok.com" icon={<FaTiktok />} comingSoon comingSoonMessage={t('common.coming_soon')} />
-      <SocialIcon href="https://twitter.com" icon={<FaXTwitter />} comingSoon comingSoonMessage={t('common.coming_soon')} />
-    </div>
+      <SocialIcon href="https://github.com/sebokgabor84/GaborPortfolio" icon={<FaGithub />} label="GitHub Repository" />
+      <SocialIcon href="https://linkedin.com" icon={<FaLinkedin />} label="LinkedIn" comingSoon comingSoonMessage={t('common.coming_soon')} />
+      <SocialIcon href="https://instagram.com" icon={<FaInstagram />} label="Instagram" comingSoon comingSoonMessage={t('common.coming_soon')} />
+      <SocialIcon href="https://facebook.com" icon={<FaFacebook />} label="Facebook" comingSoon comingSoonMessage={t('common.coming_soon')} />
+      <SocialIcon href="https://tiktok.com" icon={<FaTiktok />} label="TikTok" comingSoon comingSoonMessage={t('common.coming_soon')} />
+      <SocialIcon href="https://twitter.com" icon={<FaXTwitter />} label="X (Twitter)" comingSoon comingSoonMessage={t('common.coming_soon')} />
+    </nav>
   );
 };

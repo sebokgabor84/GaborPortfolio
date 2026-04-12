@@ -10,7 +10,8 @@
     "format": "prettier --write .",
     "test": "vitest",
     "test:e2e": "playwright test",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "optimize:assets": "node scripts/optimize-images.js"
   },
   "dependencies": {
     "i18next": "^25.7.4",
@@ -43,6 +44,7 @@
     "globals": "^16.5.0",
     "jsdom": "^27.4.0",
     "prettier": "^3.7.4",
+    "sharp": "^0.34.5",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4",

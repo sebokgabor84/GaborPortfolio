@@ -1,21 +1,53 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { LanguageDial } from './LanguageDial';
 import { vi } from 'vitest';
+import { useTranslation } from 'react-i18next';
 
 // Describe the mock explicitly
 const changeLanguageMock = vi.fn();
 
 vi.mock('react-i18next', () => ({
-    useTranslation: () => ({
+    useTranslation: vi.fn(() => ({
         i18n: {
             changeLanguage: changeLanguageMock,
             language: 'en-US',
         },
         t: (key: string) => key,
-    }),
+    })),
 }));
 
 describe('LanguageDial Component', () => {
+    it('does not crash when i18n.language is undefined', () => {
+        vi.mocked(useTranslation).mockReturnValueOnce({
+            i18n: {
+                changeLanguage: vi.fn(),
+                language: undefined as unknown as string,
+                languages: ['en', 'de', 'hu'],
+                t: (key: string) => key,
+                exists: () => true,
+                on: vi.fn(),
+                off: vi.fn(),
+                store: {},
+                modules: {},
+                services: {},
+                dir: () => 'ltr',
+                init: vi.fn(),
+                loadResources: vi.fn(),
+                use: vi.fn(),
+                isInitialized: true,
+                options: {},
+                format: (v: string) => v,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            } as any,
+            t: (key: string) => key,
+            ready: true,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any);
+        
+        render(<LanguageDial />);
+        expect(screen.getByText('EN')).toBeInTheDocument();
+    });
+
     beforeEach(() => {
         vi.clearAllMocks();
     });
