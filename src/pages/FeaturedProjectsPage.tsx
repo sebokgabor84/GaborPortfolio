@@ -50,12 +50,12 @@ export const FeaturedProjectsPage: React.FC = () => {
         <>
         <BackButton />
         <SeoHead
-            title={`${t('projects.section_title')} | Gabor Seboek`}
-            description="Explore my technical projects and master craftsman passions including Test Automation, Master Brewing, and more."
+            title={t('seo.projects_title')}
+            description={t('seo.projects_desc')}
             canonicalUrl="https://gaborseboek.com/featured-projects"
             ogImage="https://gaborseboek.com/assets/bg-mission-control.webp"
             locale={i18n.language || "en"}
-            jsonLd={collectionSchema}
+            jsonLd={{...collectionSchema, description: t('seo.schema_collection_desc')}}
         />
         <main 
             className="glass-panel-subtle"

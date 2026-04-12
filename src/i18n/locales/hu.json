@@ -1,4 +1,12 @@
 {
+    "seo": {
+        "home_title": "Sebők Gábor | QA Szakértő, Sörfőző Mester és Kézműves",
+        "home_desc": "Szenior QA Szakértő, az e-kereskedelmi automatizálás, fizetési átjárók és Playwright tesztelés szakértelmével. Szenvedélyes kézműves.",
+        "projects_title": "Kiemelt Projektek | Sebők Gábor",
+        "projects_desc": "Fedezze fel műszaki projektjeimet és kézműves szenvedélyeimet, beleértve a tesztautomatizálást, a sörfőzést és még sok mást.",
+        "schema_person_desc": "QA Szakértő, az e-kereskedelmi automatizálás, a Playwright és a Cypress szakértelmével. Szenvedélyes kézműves: sörfőző mester, méhész, hegesztő és kézműves pék.",
+        "schema_collection_desc": "Sebők Gábor kiemelt projektjeinek gyűjteménye, mely bemutatja a tesztautomatizálást és a személyes kézműves projekteket."
+    },
     "common": {
         "coming_soon": "Hamarosan elérhető"
     },

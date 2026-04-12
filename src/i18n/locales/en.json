@@ -1,4 +1,12 @@
 {
+    "seo": {
+        "home_title": "Gabor Seboek | QA Specialist, Master Brewer & Craftsman",
+        "home_desc": "Senior QA Specialist with expertise in eCommerce automation, payment gateways, and Playwright testing. Also a passionate craftsman.",
+        "projects_title": "Featured Projects | Gabor Seboek",
+        "projects_desc": "Explore my technical projects and master craftsman passions including Test Automation, Master Brewing, and more.",
+        "schema_person_desc": "QA Specialist with expertise in eCommerce automation, Playwright, and Cypress. Passionate craftsman: Master Brewer, Beekeeper, Welder, and Artisan Bread Maker.",
+        "schema_collection_desc": "A collection of featured projects by Gabor Seboek, highlighting Test Automation alongside personal master craftsman projects."
+    },
     "common": {
         "coming_soon": "Coming Soon"
     },

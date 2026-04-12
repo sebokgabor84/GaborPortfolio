@@ -1,4 +1,12 @@
 {
+    "seo": {
+        "home_title": "Gabor Seboek | QA-Spezialist, Braumeister & Handwerker",
+        "home_desc": "Senior QA-Spezialist mit Expertise in E-Commerce-Automatisierung, Zahlungsgateways und Playwright-Tests. Auch ein leidenschaftlicher Handwerker.",
+        "projects_title": "Ausgewählte Projekte | Gabor Seboek",
+        "projects_desc": "Entdecken Sie meine technischen Projekte und Handwerker-Leidenschaften, einschließlich Testautomatisierung, Bierbrauen und mehr.",
+        "schema_person_desc": "QA-Spezialist mit Expertise in E-Commerce-Automatisierung, Playwright und Cypress. Leidenschaftlicher Handwerker: Braumeister, Imker, Schweißer und Bäcker.",
+        "schema_collection_desc": "Eine Sammlung von Gabor Seboeks ausgewählten Projekten, die Testautomatisierung und persönliche Handwerksprojekte hervorheben."
+    },
     "common": {
         "coming_soon": "Demnächst Verfügbar"
     },

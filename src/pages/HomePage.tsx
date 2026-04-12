@@ -7,7 +7,7 @@ import { SocialDock } from '../components/Social/SocialDock';
 import { SeoHead } from '../components/Common/SeoHead';
 
 export const HomePage: React.FC = () => {
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const personSchema = {
         "@context": "https://schema.org",
@@ -34,12 +34,12 @@ export const HomePage: React.FC = () => {
     return (
         <main>
             <SeoHead
-                title="Gabor Seboek | QA Specialist, Master Brewer & Craftsman"
-                description="Senior QA Specialist with expertise in eCommerce automation, payment gateways, and Playwright testing. Also a passionate craftsman."
+                title={t('seo.home_title')}
+                description={t('seo.home_desc')}
                 canonicalUrl="https://gaborseboek.com/"
                 ogImage="https://gaborseboek.com/assets/hero-cockpit.webp"
                 locale={i18n.language || "en"}
-                jsonLd={personSchema}
+                jsonLd={{...personSchema, description: t('seo.schema_person_desc')}}
             />
             <Hero />
             <AboutThisPage />
