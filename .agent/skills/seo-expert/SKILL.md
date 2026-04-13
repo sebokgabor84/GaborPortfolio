@@ -48,7 +48,7 @@ Every route renders `<SeoHead />` with `PageSeoProps`:
 | `description` | ≤ 155 chars, **unique per route** |
 | `canonicalUrl` | `{DOMAIN}` + route path, must match actual deployed domain exactly |
 | `ogImage` | Absolute URL to route-specific or fallback image |
-| `locale` | Current i18n locale code (e.g. `en`, `de`, `hu`) |
+| `locale` | Current i18n locale code (e.g. `en`, `{LOCALE}`) |
 | `jsonLd` | `Person` (home), `CollectionPage` (listings), etc. |
 
 Injects via `useEffect`: `document.title`, `<meta>`, `<link canonical>`, hreflang alternates, JSON-LD.
@@ -60,6 +60,9 @@ useEffect(() => {
 }, [locale]);
 ```
 This is critical — `<html lang="en">` must not be hardcoded when multiple locales exist.
+
+> 🚨 **Critical Cross-Language Leakage Rule:**
+> NEVER hardcode language-specific strings into `<SeoHead>` components (`title="My Page"`). You MUST use dynamic i18n locale keys (`title={t('seo.home_title')}`). If the `hreflang` / `<html lang>` declares a specific target route but the DOM `<head>` nodes output static strings from a different locale, search indexers will heavily penalize the site with 'Soft 404s' or duplicate content. Always extract structural SEO strings to your locale dictionary files (e.g. `en.json`, `locales/*.json`).
 
 ---
 
@@ -129,7 +132,7 @@ Every project's `index.html` (or `root.tsx` Layout for SSG) **must** contain all
 <meta property="og:title" content="{OG_TITLE}" />
 <meta property="og:description" content="{OG_DESCRIPTION}" />
 <meta property="og:image" content="{ABSOLUTE_OG_IMAGE_URL}" />
-<meta property="og:locale" content="{LOCALE_CODE}" />   <!-- e.g. en_US, de_AT, hu_HU -->
+<meta property="og:locale" content="{LOCALE_CODE}" />   <!-- e.g. en_US, de_DE, etc -->
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="{OG_TITLE}" />
@@ -193,16 +196,26 @@ Sitemap: {DOMAIN}/sitemap.xml
 ---
 
 ### 6. Lighthouse (Target: 100/100)
+...
+---
 
-| Metric | Rule |
-|---|---|
-| **LCP** | `<link rel="preload" as="font">` in `index.html`. `fetchpriority="high"` on hero `<img>`. |
-| **CLS** | Explicit `width`/`height` on all `<img>`. Use `webp`/`avif` only for images (not favicons). |
-| **Mobile** | Viewport meta in `index.html`. Min 48×48px touch targets. |
+### 7. Shift-Left SEO Testing (Mandatory)
+
+Every route/page component MUST have a unit test verifying that it correctly initializes the `SeoHead` component with localized data. This prevents silent regression of meta tags into hardcoded English.
+
+**Example Test Pattern:**
+```ts
+it('renders SeoHead with localized home metadata', () => {
+  render(<HomePage />);
+  // We check that SeoHead is called with the correct i18n key result
+  // Note: Mocking i18next or checking the DOM in a unit test depends on implementation
+  expect(document.title).toMatch(/Gabor Seboek/);
+});
+```
 
 ---
 
-### 7. Shift-Left SEO QA
+### 8. Technical SEO Summary Table
 
 | Layer | Mechanism | Assertion |
 |---|---|---|
