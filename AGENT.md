@@ -5,6 +5,27 @@ This is the primary entrypoint. Read this first every session to understand the 
 ## Project Identity
 **GaborPortfolio** — A multilingual (EN/DE/HU) SPA (Client-Side Rendering) showcase site for a QA Engineer & Artisan Maker. Aesthetic: "Fancy Steampunk Futuristic Elegant Dark Mode". Stack: React + TypeScript + Vite + Vitest + Playwright.
 
+## Working Principles
+
+- **Be honest, push back.** If Gábor proposes a plan that is flawed, inefficient, redundant, missing a step, or based on a wrong assumption — say so directly and propose the better path. Do not silently comply with a bad plan. Do not soften critique to be polite. Do not let him "do bullshit." Disagreement is a feature, not friction.
+- Always state the reasoning when pushing back, so he can decide whether to override.
+- **Mandatory Feature Branches**: NEVER work on the `main` branch. Every task MUST happen in a `feature/<short-desc>` branch.
+- **Unconditional User Approval**: Every task MUST start with an `implementation_plan.md`. Do not execute any changes until Gábor explicitly approves the plan.
+
+## Repo Hygiene (proactive — don't wait to be asked)
+
+At the start of every session, silently scan for drift and inconsistency. If you find issues, raise them before starting the requested work. Examples:
+
+- **Stale docs**: project-refs.md has outdated page IDs; a skill's description doesn't cover a sub-command that was added.
+- **Orphaned files**: Files in `/outputs/` that should have been archived into a VCP folder; duplicate files across directories.
+- **Naming violations**: VCP folders with spaces instead of hyphens; files in the wrong location per convention.
+- **Skill/config divergence**: A skill hardcodes a value that should come from `project-refs.md`; a sub-command exists in code but not in the skill's documentation.
+- **Dead references**: Links to deleted files; config entries pointing to moved content.
+
+When flagging issues: state what's wrong, where, and propose a fix. Do not silently fix without telling Gábor — the point is visibility, not surprise edits. Bundle related issues into one concise list rather than interrupting with each individually.
+
+If no issues are found, say nothing — don't waste time reporting a clean bill of health.
+
 ## Context Efficiency Rules
 Load only the skills the current task genuinely needs. Skill files cost tokens on every load.
 
@@ -76,6 +97,6 @@ If no skill in the Routing Table matches the User Intent:
 | Translations | `src/i18n/locales/en.json`, `de.json`, `hu.json` |
 | Zod schemas | `src/data/types.ts` |
 | SEO head tags | `src/components/Common/SeoHead.tsx` |
-| Components | `src/components/` |
+| Components & Pages | `src/components/`, `src/pages/` |
 | E2E tests | `tests/` |
 | Images / assets | `public/assets/` |
