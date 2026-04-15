@@ -100,3 +100,58 @@ If no skill in the Routing Table matches the User Intent:
 | Components & Pages | `src/components/`, `src/pages/` |
 | E2E tests | `tests/` |
 | Images / assets | `public/assets/` |
+
+## System Architecture
+
+Current-state overview of the agentic framework. Update this diagram whenever a skill is added, removed, or renamed.
+
+```mermaid
+flowchart TD
+    classDef entry   fill:#8e44ad,stroke:#8e44ad,stroke-width:2px,color:white
+    classDef router  fill:#2c3e50,stroke:#2c3e50,stroke-width:2px,color:white
+    classDef skill   fill:#2ecc71,stroke:#27ae60,stroke-width:2px,color:white
+    classDef data    fill:#f1c40f,stroke:#f39c12,stroke-width:2px,color:black
+    classDef qa      fill:#e74c3c,stroke:#c0392b,stroke-width:2px,color:white
+
+    UserIntent(User Request):::entry
+
+    subgraph "Router — AGENT.md"
+        Router(Skill Routing Table):::router
+    end
+
+    subgraph "Domain Skills — .agent/skills/"
+        DS(design-system-expert):::skill
+        A11Y(accessibility-expert):::skill
+        SEO(seo-expert):::skill
+        I18N(i18n-guardian):::skill
+        QAS(qa-specialist):::skill
+        SC(skill-creator):::skill
+        LQR(lockscreen-qr-generator):::skill
+        DBG(desktop-background-generator):::skill
+    end
+
+    subgraph "Contract — src/data/"
+        Types("types.ts — Zod schemas"):::data
+        Projects("projects.ts / kpis.ts"):::data
+        Locales("i18n/locales/en · de · hu"):::data
+    end
+
+    subgraph "QA Pipeline"
+        Lint("npm run lint"):::qa
+        Unit("npm test -- --run"):::qa
+        E2E("npm run test:e2e"):::qa
+        DoD("Definition of Done ✅"):::qa
+    end
+
+    UserIntent --> Router
+    Router --> DS & A11Y & SEO & I18N & QAS & SC & LQR & DBG
+
+    DS & A11Y & I18N --> Types
+    DS & I18N --> Projects
+    I18N --> Locales
+    SEO --> Types
+
+    QAS --> Lint --> DoD
+    QAS --> Unit --> DoD
+    QAS --> E2E --> DoD
+```
