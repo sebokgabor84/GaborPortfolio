@@ -1,19 +1,7 @@
-import type { IconType } from 'react-icons';
+import { type KpiDefinition, validateKpis } from './types';
 import { FaBug, FaBeer, FaHammer, FaHome, FaUsers, FaEye, FaHive, FaBolt, FaBreadSlice, FaHeart } from 'react-icons/fa';
 
-export interface KpiDefinition {
-    id: string;
-    labelKey: string; // i18n key for the label
-    value: number;
-    unit?: string;
-    icon: IconType;
-    color: 'success' | 'gold' | 'copper';
-    enabled: boolean;
-    isDynamic?: boolean; // If true, value is managed by component state (e.g., Live Visitors)
-    projectId?: string;   // Optional ID of a featured project to link to
-}
-
-export const kpis: KpiDefinition[] = [
+export const kpis: KpiDefinition[] = validateKpis([
     // Tech Side
     { id: 'bugs', labelKey: 'cockpit.kpi_bugs', value: 1337, icon: FaBug, color: 'success', enabled: true, projectId: 'qa' },
     { id: 'uptime', labelKey: 'cockpit.kpi_uptime', value: 99.9, unit: '%', icon: FaEye, color: 'gold', enabled: true },
@@ -31,4 +19,4 @@ export const kpis: KpiDefinition[] = [
 
     // Dynamic
     { id: 'visitors', labelKey: 'cockpit.kpi_visitors', value: 1, icon: FaUsers, color: 'success', enabled: true, isDynamic: true },
-];
+]);

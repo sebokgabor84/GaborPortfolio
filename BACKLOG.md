@@ -15,11 +15,6 @@
 
 ## Refactor
 
-- `[ ]` **[REFACTOR]** Docs folder still holds documents that belong under `.agent/` — audit and move them _(added: 2026-04-15)_
-- `[ ]` **[REFACTOR]** ZOD approach (schema-first data integrity) is missing from `README.md` — document it _(added: 2026-04-15)_
-- `[ ]` **[REFACTOR]** Split `index.css` into CSS Modules per component _(added: 2026-04-15)_
-- `[ ]` **[REFACTOR]** Add `kpis.ts` types into `src/data/types.ts` to consolidate Zod schemas _(added: 2026-04-15)_
-
 ---
 
 ## Features
@@ -80,3 +75,8 @@
 - `[x]` **[QA]** Add `test-results/` to `.gitignore` _(done: ~2026-03-10)_
 - `[x]` **[QA]** Create ESLint rule for unified file/folder naming conventions _(done: ~2026-01-21)_
 - `[x]` **[AGENT]** Junior-dev explanation of `dist/`, `src/`, `App.tsx`, `index.css`, `main.tsx`, `setupTests.ts` _(done: ~2026-03-10)_
+- `[x]` **[REFACTOR]** Audit docs folder: move APaaS doc to .agent, delete stale lighthouse-audit.json, remove empty docs/ folder _(done: 2026-04-15)_
+- `[x]` **[REFACTOR]** Document Zod contract strategy in README.md and fix stale references _(done: 2026-04-15)_
+- `[x]` **[REFACTOR]** Split index.css into CSS Modules for Hint, AboutThisPage, and ProjectCard components _(done: 2026-04-15)_
+- `[x]` **[REFACTOR]** Add KpiDefinitionSchema to types.ts and enforce runtime validation in kpis.ts _(done: 2026-04-15)_
+

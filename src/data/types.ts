@@ -52,3 +52,29 @@ export const PageSeoPropsSchema = z.object({
 });
 
 export type PageSeoProps = z.infer<typeof PageSeoPropsSchema>;
+
+/**
+ * KpiDefinitionSchema (The Metrics Contract) 📊
+ * Enforces technical consistency for all portfolio metrics.
+ */
+export const KpiDefinitionSchema = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/),
+  labelKey: z.string().startsWith('cockpit.'),
+  value: z.number(),
+  unit: z.string().optional(),
+  icon: z.any(), // IconType cannot be easily Zod-validated as it's a function component
+  color: z.enum(['success', 'gold', 'copper']),
+  enabled: z.boolean(),
+  isDynamic: z.boolean().optional(),
+  projectId: z.string().optional(),
+});
+
+export type KpiDefinition = z.infer<typeof KpiDefinitionSchema>;
+
+/**
+ * Validates an array of KPI definitions against the schema.
+ */
+export const validateKpis = (data: unknown): KpiDefinition[] => {
+  return z.array(KpiDefinitionSchema).parse(data);
+};
+

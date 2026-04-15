@@ -153,74 +153,6 @@ h3 {
 }
 
 /* 
-  💡 Hint Component Styles (Nano Banana Pro)
-*/
-.hint-bubble {
-  position: absolute;
-  bottom: calc(100% + 12px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(18, 16, 16, 0.95);
-  color: var(--color-gold);
-  padding: 0.8rem 1.2rem;
-  border: 1px solid var(--color-copper);
-  border-radius: 4px;
-  font-family: var(--font-digital);
-  font-size: 0.85rem;
-  white-space: nowrap;
-  z-index: 2000;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 5px var(--color-copper-dim);
-  backdrop-filter: blur(8px);
-  animation: hintReveal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  pointer-events: none;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.hint-arrow {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 6px;
-  border-style: solid;
-  border-color: var(--color-copper) transparent transparent transparent;
-}
-
-@keyframes hintReveal {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(10px) scale(0.9);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0) scale(1);
-  }
-}
-
-.hint-pulse {
-  animation: hintPulseAction 0.4s ease-out;
-}
-
-@keyframes hintPulseAction {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0px var(--color-gold);
-  }
-
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px var(--color-gold);
-  }
-
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0px var(--color-gold);
-  }
-}
-
-/* 
   📖 Details/Summary (Native Collapsible)
 */
 html {
@@ -312,24 +244,6 @@ details summary:focus-visible {
   }
 }
 
-#about-this-page details {
-  background: transparent !important;
-  transition: background 0.3s ease;
-}
-
-#about-this-page details[open] {
-  background: var(--color-bg-panel) !important;
-}
-
-#about-this-page details summary {
-  background: rgba(184, 115, 51, 0.04) !important;
-  transition: background 0.3s ease;
-}
-
-#about-this-page details[open] summary {
-  background: rgba(184, 115, 51, 0.08) !important;
-}
-
 /* 🧊 Glassmorphism Utilities */
 .glass-panel {
   background: var(--glass-bg) !important;
@@ -361,23 +275,4 @@ details summary:focus-visible {
 .hud-content-layer {
   position: relative;
   z-index: 1;
-}
-
-/* 📱 Mobile Adjustments for Video Fallback */
-@media (max-width: 600px) {
-  .fallback-overlay {
-    padding: 1rem !important;
-  }
-
-  .fallback-hourglass {
-    width: 60px !important;
-    height: 60px !important;
-    margin-bottom: 0.5rem !important;
-  }
-
-  .fallback-text {
-    font-size: 0.85rem !important;
-    padding: 0 0.5rem !important;
-    line-height: 1.2 !important;
-  }
 }

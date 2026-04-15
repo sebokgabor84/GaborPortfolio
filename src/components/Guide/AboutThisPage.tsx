@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaRocket, FaChevronDown } from 'react-icons/fa';
+import styles from './AboutThisPage.module.css';
 
 export const AboutThisPage: React.FC = () => {
     const { t } = useTranslation();
@@ -9,24 +10,13 @@ export const AboutThisPage: React.FC = () => {
         <section
             id="about-this-page"
             aria-label={t('about.aria_label')}
-            className="glass-panel"
-            style={{
-                width: '100%',
-                maxWidth: '1200px',
-                margin: '2rem auto',
-                padding: '4rem clamp(1rem, 5vw, 2.5rem)',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                borderRadius: '12px',
-                borderBottom: '1px solid var(--color-copper-dim)',
-            }}
+            className={`${styles.aboutSection} glass-panel`}
         >
             <div style={{ maxWidth: '800px', width: '100%' }}>
             {/* Always Visible: Why This Page Exists (Now Collapsible) */}
             <details
+                className={styles.aboutDetails}
                 style={{
-                    background: 'var(--color-bg-panel)',
                     border: 'var(--border-metal)',
                     borderRadius: '8px',
                     boxShadow: 'var(--shadow-panel)',
@@ -35,6 +25,7 @@ export const AboutThisPage: React.FC = () => {
                 }}
             >
                 <summary
+                    className={styles.aboutSummary}
                     style={{
                         padding: 'clamp(1.5rem, 5vw, 2.5rem)',
                         cursor: 'pointer',
@@ -47,7 +38,6 @@ export const AboutThisPage: React.FC = () => {
                         fontSize: 'clamp(1rem, 4vw, 1.4rem)',
                         textTransform: 'uppercase',
                         letterSpacing: '1px',
-                        background: 'rgba(184, 115, 51, 0.06)',
                     }}
                 >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
@@ -136,8 +126,8 @@ export const AboutThisPage: React.FC = () => {
 
             {/* Collapsible: How This Page Builds Itself */}
             <details
+                className={styles.aboutDetails}
                 style={{
-                    background: 'var(--color-bg-panel)',
                     border: 'var(--border-metal)',
                     borderRadius: '8px',
                     boxShadow: 'var(--shadow-panel)',
@@ -146,6 +136,7 @@ export const AboutThisPage: React.FC = () => {
                 }}
             >
                 <summary
+                    className={styles.aboutSummary}
                     style={{
                         padding: 'clamp(1rem, 3vw, 1.5rem)',
                         cursor: 'pointer',
@@ -158,7 +149,6 @@ export const AboutThisPage: React.FC = () => {
                         fontSize: 'clamp(0.9rem, 3vw, 1.1rem)',
                         textTransform: 'uppercase',
                         letterSpacing: '1px',
-                        background: 'rgba(184, 115, 51, 0.06)',
                     }}
                 >
                     {t('about.build_title')}
@@ -177,8 +167,8 @@ export const AboutThisPage: React.FC = () => {
 
             {/* Collapsible: Playwright Self-Healing Setup */}
             <details
+                className={styles.aboutDetails}
                 style={{
-                    background: 'var(--color-bg-panel)',
                     border: 'var(--border-metal)',
                     borderRadius: '8px',
                     boxShadow: 'var(--shadow-panel)',
@@ -186,6 +176,7 @@ export const AboutThisPage: React.FC = () => {
                 }}
             >
                 <summary
+                    className={styles.aboutSummary}
                     style={{
                         padding: 'clamp(1rem, 3vw, 1.5rem)',
                         cursor: 'pointer',
@@ -198,7 +189,6 @@ export const AboutThisPage: React.FC = () => {
                         fontSize: 'clamp(0.9rem, 3vw, 1.1rem)',
                         textTransform: 'uppercase',
                         letterSpacing: '1px',
-                        background: 'rgba(184, 115, 51, 0.06)',
                     }}
                 >
                     {t('about.playwright_title')}

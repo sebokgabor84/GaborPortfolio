@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaPlay } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
+import styles from './ProjectCard.module.css';
 
 interface ProjectCardProps {
     id?: string;
@@ -117,21 +118,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 <FaPlay style={{ fontSize: '2rem', color: 'var(--color-gold)', marginLeft: '6px' }} aria-hidden="true" />
               </div>
             ) : (
-              <div
-                className="fallback-overlay"
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'rgba(18, 16, 16, 0.8)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  zIndex: 10,
-                  backdropFilter: 'blur(4px)',
-                  animation: 'fade-in-out 4s forwards',
-                  borderRadius: '12px'
-                }}
-              >
+              <div className={styles.fallbackOverlay}>
                 <span style={{
                   color: 'var(--color-gold)',
                   fontFamily: 'var(--font-heading)',
@@ -211,15 +198,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           ))}
         </div>
       </div>
-
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes fade-in-out {
-          0% { opacity: 0; }
-          10% { opacity: 1; }
-          90% { opacity: 1; }
-          100% { opacity: 0; }
-        }
-      `}} />
     </section>
   );
 };

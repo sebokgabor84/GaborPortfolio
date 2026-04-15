@@ -21,7 +21,7 @@ Recruiters asking *"Can you code, test, and architect?"* → **Just run this rep
 | Shift-Left Quality | A11y + linting baked into the pipeline |
 | 360° Validation | Playwright E2E suite covering all CUJs |
 | Agent-Native | Chrome MCP integration for live AI debugging |
-| Production-Grade Agentic Infra | 7-skill autonomous agent system (see below) |
+| Production-Grade Agentic Infra | 8-skill autonomous agent system (see below) |
 
 ---
 
@@ -36,6 +36,19 @@ Recruiters asking *"Can you code, test, and architect?"* → **Just run this rep
 | Unit Testing | Vitest | Jest-compatible, fast |
 | E2E | Playwright | Cross-browser, mobile + desktop |
 | SEO | Open Graph, Twitter Cards, JSON-LD | Full structured data |
+
+---
+
+## 🔐 Data Integrity — The Zod Contract Strategy
+
+Aesthetics are the face, but **Data Integrity** is the spine. We don't just use TypeScript for compile-time safety; we use **Zod** for runtime enforcement. This ensures that "Maker" creativity (adding new projects) never breaks "QA" stability (the SPA's core logic).
+
+### The Three Primary Contracts (`src/data/types.ts`):
+1.  **`ProjectDTOSchema`**: Guards project IDs (strict kebab-case), file paths (`/assets/thumb-*.webp`), and mandatory i18n keys.
+2.  **`SEOMetadataSchema`**: Enforces Lighthouse-compliant title lengths (max 60) and description ranges (50-160).
+3.  **`KpiDefinitionSchema`**: Validates the metrics structure, ensuring icons and color tokens remain within system bounds.
+
+Every data entry in `src/data/` is parsed through these schemas at build-time and runtime. If a human adds an image with the wrong suffix or a title that's too long, the pipeline fails immediately. **Zero drift. Zero regression.**
 
 ---
 
@@ -87,12 +100,11 @@ npm run optimize:assets # Auto-compresses and generates Retina images via sharp
 
 | Topic | Location |
 |---|---|
-| Agent router | `.agent/AGENT.md` |
+| Agent router | `AGENT.md` |
 | Skill definitions | `.agent/skills/*/SKILL.md` |
 | Debugging & MCP setup | `.agent/skills/qa-specialist/resources/debugging-guide.md` |
 | Project & KPI data | `src/data/projects.ts`, `src/data/kpis.ts` |
 | Zod contracts | `src/data/types.ts` |
-| Architecture diagrams | `docs/architecture/` |
 
 ---
 

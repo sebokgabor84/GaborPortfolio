@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import styles from './Hint.module.css';
 
 interface HintProps {
     children: React.ReactNode;
@@ -31,8 +32,8 @@ export const Hint: React.FC<HintProps> = ({ children, message }) => {
 
         // Pulse effect on click
         const target = e.currentTarget as HTMLElement;
-        target.classList.add('hint-pulse');
-        setTimeout(() => target.classList.remove('hint-pulse'), 400);
+        target.classList.add(styles.hintPulse);
+        setTimeout(() => target.classList.remove(styles.hintPulse), 400);
     };
 
     useEffect(() => {
@@ -46,14 +47,14 @@ export const Hint: React.FC<HintProps> = ({ children, message }) => {
             e.preventDefault();
             showHint();
             const target = e.currentTarget as HTMLElement;
-            target.classList.add('hint-pulse');
-            setTimeout(() => target.classList.remove('hint-pulse'), 400);
+            target.classList.add(styles.hintPulse);
+            setTimeout(() => target.classList.remove(styles.hintPulse), 400);
         }
     };
 
     return (
         <span
-            className="hint-container"
+            className={styles.hintContainer}
             onMouseEnter={showHint}
             onMouseLeave={hideHint}
             onFocus={showHint}
@@ -62,16 +63,15 @@ export const Hint: React.FC<HintProps> = ({ children, message }) => {
             onKeyDown={handleKeyDown}
             role="button"
             tabIndex={0}
-            style={{ position: 'relative', display: 'inline-flex', cursor: 'pointer' }}
         >
             {children}
             {isVisible && (
                 <span
-                    className="hint-bubble"
+                    className={styles.hintBubble}
                     role="tooltip"
                     aria-live="polite"
                 >
-                    <span className="hint-arrow" />
+                    <span className={styles.hintArrow} />
                     {message}
                 </span>
             )}

@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Hint } from './Hint';
+import styles from './Hint.module.css';
 
 describe('Hint Component', () => {
     it('renders children correctly', () => {
@@ -42,7 +43,7 @@ describe('Hint Component', () => {
         const container = screen.getByText('Test Button').parentElement!;
         fireEvent.click(container);
 
-        expect(container).toHaveClass('hint-pulse');
+        expect(container).toHaveClass(styles.hintPulse);
     });
 
     it('hides hint after delay on mobile (mobile simulation)', async () => {
