@@ -21,10 +21,36 @@ At the start of every session, silently scan for drift and inconsistency. If you
 - **Naming violations**: VCP folders with spaces instead of hyphens; files in the wrong location per convention.
 - **Skill/config divergence**: A skill hardcodes a value that should come from `project-refs.md`; a sub-command exists in code but not in the skill's documentation.
 - **Dead references**: Links to deleted files; config entries pointing to moved content.
+- **BACKLOG.md drift**: Items marked `[/]` with no active branch → reset to `[ ]`. Items `[ ]` older than 90 days → propose `[~]`. `[x]` items not yet moved to Archive → move them.
 
 When flagging issues: state what's wrong, where, and propose a fix. Do not silently fix without telling Gábor — the point is visibility, not surprise edits. Bundle related issues into one concise list rather than interrupting with each individually.
 
 If no issues are found, say nothing — don't waste time reporting a clean bill of health.
+
+## Backlog Protocol
+
+`BACKLOG.md` (repo root) is the single source of truth for all open work. The Agent MUST maintain it automatically using these three hooks:
+
+### Hook 1 — Session Start (silent)
+During the Repo Hygiene scan, also check `BACKLOG.md`:
+- `[/]` items with no matching active branch → reset to `[ ]`
+- `[ ]` items older than 90 days → flag for `[~]` deferral
+- `[x]` items outside the Archive section → move them to `## Archive`
+
+### Hook 2 — Task Completion (mandatory)
+Before every commit, the Agent MUST:
+1. Mark related `BACKLOG.md` items `[x]`
+2. Add any newly discovered tasks as `[ ]` items
+3. Include `BACKLOG.md` in the same commit as the completed work
+
+### Hook 3 — New Idea Capture (immediate)
+Whenever Gábor says *"we should…"*, *"idea:"*, *"what about…"*, or *"can we also…"*:
+1. Add the idea to `BACKLOG.md` as a `[ ]` item immediately
+2. Do NOT start working on it — confirm it is logged, then return to the current task
+3. New ideas start as `[?]` if they require a decision before becoming actionable
+
+> **Schema reminder**: `- [STATUS] **[CATEGORY]** Description — \`reference\` _(added: YYYY-MM-DD)_`
+> Valid statuses: `[ ]` open · `[/]` in progress · `[x]` done · `[?]` needs decision · `[~]` deferred
 
 ## Context Efficiency Rules
 Load only the skills the current task genuinely needs. Skill files cost tokens on every load.
@@ -92,6 +118,7 @@ If no skill in the Routing Table matches the User Intent:
 | What you're changing | Where to look |
 |---|---|
 | Agent router | `AGENT.md` |
+| Backlog / task tracking | `BACKLOG.md` |
 | Skill definitions | `.agent/skills/*/SKILL.md` |
 | Project data / KPIs | `src/data/projects.ts`, `src/data/kpis.ts` |
 | Translations | `src/i18n/locales/en.json`, `de.json`, `hu.json` |
