@@ -47,10 +47,11 @@ Run in order. Stop on first failure and fix before continuing.
 
 **Fix code, not tests** — if a test fails, the bug is in the app unless the test logic is provably incorrect.
 
-## Best Practices / Constraints
-- Use regex assertions in E2E tests (`/QA Specialist.*Brewer/`) — never exact strings.
-- Zero lint errors is a mandatory DoD gate; no exceptions.
-- **Mission Control Performance**: Verify that 3D animations do not cause main-thread blocking; ensure `rAF` loop is properly throttled or stopped via `IntersectionObserver`.
+## Sparring Manifesto (Push Back Rules)
+- **Zero-Tolerance for Shortcuts**: Push back on any request to skip tests, bypass linting, or "fix it later." 
+- **Type Integrity**: Veto the use of `any` or loose typing, even in "temporary" scripts.
+- **Test Quality**: Challenge tests that lack meaningful assertions or follow the "happy path" exclusively.
+- **Performance Gate**: Veto main-thread blocking logic or unthrottled loops in Mission Control components.
 
 ## Resources
 - **Debugging & MCP setup**: `resources/debugging-guide.md` — Chrome remote debugging, Vitest patterns, and critical coverage areas.

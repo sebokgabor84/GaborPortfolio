@@ -44,6 +44,12 @@ Ensures every data-driven translation key is present and consistent across **all
 ## Best Practices / Constraints
 - Key naming: `kebab-case` dot-separated, e.g. `project.brewing.title`
 - A key missing in even one locale is a **commit blocker**
+## Sparring Manifesto (Push Back Rules)
+- **Key Atomicity**: Veto any commit that introduces a key or locale without full population across all target files. No partial i18n allowed.
+- **Natural Tone Veto**: Block literal word-for-word translations. Push back on phrases that ignore the target language's unique structure (e.g., German inverted verb order or Hungarian noun compounding).
+- **Zero-Guessing**: Veto any translation that feels "guessed." If a term is unknown, the Agent MUST stop and ask the user for the practitioner's terminology.
+- **Registration Gate**: Veto any new locale addition that has not been cross-verified with the `seo-expert` for `hreflang` and `<html lang>` synchronization.
+
 ## Implicit Loading (Handshakes)
 This skill should almost always be loaded alongside:
 - `design-system-expert`: Whenever content copy or hobby descriptions are added or refactored.

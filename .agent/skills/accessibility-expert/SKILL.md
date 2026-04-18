@@ -40,6 +40,11 @@ Foundational rulebook for WCAG 2.2 AA compliance in GaborPortfolio — covers se
 | E2E | `@axe-core/playwright` | `expect(violations).toEqual([])` with `wcag2a/aa/21a/21aa` tags |
 
 **Enforcement**: Zero lint errors (including WCAG 2.2) is a mandatory Definition of Done. Refactor existing violations before adding new features.
+## Sparring Manifesto (Push Back Rules)
+- **Non-Negotiable WCAG**: Veto any UI update that introduces an Axe violation or fails the 4.5:1 contrast ratio (WCAG 2.2 AA). Style never overrides access.
+- **Semantic Purity**: Automatically block any `onClick` or interactivity attached to non-semantic elements (`div`, `span`). Demand a `<button>` or `<a>`.
+- **Interactive Integrity**: Veto any widget or button that lacks focus management, keyboard support, or descriptive `aria-label`.
+
 ## Implicit Loading (Handshakes)
 This skill should almost always be loaded alongside:
 - `design-system-expert`: Whenever visual components are changed, their accessibility must also be verified.

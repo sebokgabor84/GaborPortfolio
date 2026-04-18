@@ -79,4 +79,6 @@
 - `[x]` **[REFACTOR]** Document Zod contract strategy in README.md and fix stale references _(done: 2026-04-15)_
 - `[x]` **[REFACTOR]** Split index.css into CSS Modules for Hint, AboutThisPage, and ProjectCard components _(done: 2026-04-15)_
 - `[x]` **[REFACTOR]** Add KpiDefinitionSchema to types.ts and enforce runtime validation in kpis.ts _(done: 2026-04-15)_
-
+- [x] **[AGENT]** Implement Sparring Partner upgrade, Native RTK integration, and Release Management Protocol — `AGENT.md` _(done: 2026-04-18)_
+- [x] **[QA]** Install and initialize RTK for token optimization _(done: 2026-04-18)_
+- [ ] **[SEO]** Remove hardcoded English meta tags from `index.html` and move to localized `SeoHead.tsx` logic — `index.html` _(added: 2026-04-18)_

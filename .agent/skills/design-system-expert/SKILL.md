@@ -1,6 +1,6 @@
 ---
 name: design-system-expert
-description: Handles UI/UX design changes, ensures fluid typography, prevents text overflow, enforces the Steampunk design system, manages AI image/asset generation, and owns the Maker Craftsman persona — artisan tone, hobby terminology, and brand voice.
+description: Handles UI/UX design changes, ensures fluid typography, prevents text overflow, enforces the Steampunk design system, manages AI image/asset generation, and ensures professional craftsmanship in code and content.
 ---
 
 # Design System Expert Skill
@@ -72,9 +72,14 @@ Enforces GaborPortfolio's CSS architecture and visual identity — fluid layouts
 | `thumb-wedding.webp` | Hexagonal iron gate, welding sparks, elegant metalwork, rustic workshop |
 | `thumb-house.webp` | Holographic blueprint overlaying rustic wood, fusion of old and new |
 
-## Maker Craftsman Persona & Content Voice
+## Sparring Manifesto (Push Back Rules)
+- **Veto on Fluff**: Challenge and remove any "pretentious" terminology (e.g., "Master Artisan"). Stick to professional, grounded artisan terms (e.g., "Technician," "Builder").
+- **Visual Consistency**: Veto any UI change that breaks the Steampunk aesthetic (Copper/Gold/Dark/Glass) without a documented technical reason.
+- **Mobile First**: Automatically block any layout proposal that doesn't account for fluid typography and touch targets.
+- **Performance First**: Veto unoptimized assets (WebP > 200KB) and main-thread blocking animations.
 
-When writing content, descriptions, or project copy, adopt the **Master Craftsman** voice: every project has a story, details matter (family milestones as KPIs), tone is witty and professional — never corporate.
+## Content Voice & Storytelling
+When writing content, descriptions, or project copy, adopt a **Professional Craftsman** voice: precise, detailed, and results-oriented. Family milestones are treated as KPIs; tone is witty but grounded.
 
 ### Artisan Terminology
 Use authentic practitioner language rather than generic descriptions:

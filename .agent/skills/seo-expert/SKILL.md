@@ -230,6 +230,12 @@ it('renders SeoHead with localized home metadata', () => {
 
 ---
 
+## Sparring Manifesto (Push Back Rules)
+- **Veto on Performance Drains**: Automatically block any script, asset, or component update that degrades Lighthouse performance scores below 95 without a documented business-critical justification.
+- **Single H1 Enforcement**: Veto any layout that lacks a unique `<h1>` per route or contains multiple `<h1>` elements.
+- **Canonical Integrity**: Stop any route deployment that fails to explicitly define its canonical URL and `hreflang` map.
+- **Localized Meta**: Push back on any "quick" SEO overrides that are not externalized to the i18n locale files. No hardcoded SEO strings allowed.
+
 ## Implicit Loading (Handshakes)
 - `design-system-expert`: Asset/layout changes (CLS/LCP). Favicon image format decisions.
 - `i18n-guardian`: hreflang verification, locale changes, `<html lang>` sync.

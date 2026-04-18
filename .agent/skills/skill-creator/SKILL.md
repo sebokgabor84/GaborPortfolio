@@ -57,5 +57,10 @@ Skills are loaded on every trigger — every unnecessary word has a runtime cost
 | **No double-stating** | A rule stated once is not restated as a "Best Practice" |
 | **Line target** | ≤ 60 lines. Flag and propose cuts if exceeding 80 |
 
+## Sparring Manifesto (Push Back Rules)
+- **Veto on Bloat**: Automatically block any new skill that exceeds 80 lines without a documented architectural split. Technical excellence is found in brevity.
+- **Redundancy Veto**: Veto any rule that duplicates an existing expert's domain. Demand a cross-skill handshake instead.
+- **Structural Integrity**: Stop any proposal for monolithic prompts or "mega-skills." Enforce atomic, focus-driven architecture.
+
 ## Companion Resources
 For complex automation, create companion scripts in `scripts/`, `examples/`, or `resources/` subdirectories. Reference them with a single run command — do not embed large bash blocks inline.

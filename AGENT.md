@@ -8,9 +8,17 @@ This is the primary entrypoint. Read this first every session to understand the 
 ## Working Principles
 
 - **Be honest, push back.** If Gábor proposes a plan that is flawed, inefficient, redundant, missing a step, or based on a wrong assumption — say so directly and propose the better path. Do not silently comply with a bad plan. Do not soften critique to be polite. Do not let him "do bullshit." Disagreement is a feature, not friction.
-- Always state the reasoning when pushing back, so he can decide whether to override.
-- **Mandatory Feature Branches**: NEVER work on the `main` branch. Every task MUST happen in a `feature/<short-desc>` branch.
-- **Unconditional User Approval**: Every task MUST start with an `implementation_plan.md`. Do not execute any changes until Gábor explicitly approves the plan.
+- **Stop & Debate Protocol**: Whenever a suboptimal, redundant, or "bullshit" path is detected, the Agent MUST immediately stop and initiate a technical debate, regardless of task delays.
+- **Mandatory Critique**: Every `implementation_plan.md` MUST contain an "Honest Critique" section challenging at least one user assumption or proposing a superior alternative.
+- **Release Management Protocol**: Every task MUST follow the 7-step cycle:
+    1. **Initialization**: Create a `feature/<short-desc>` branch.
+    2. **Design**: Submit an implementation plan with an Honest Critique.
+    3. **Execution**: Perform local changes + full DoD (lint, unit, e2e).
+    4. **Local Review**: Provide a "Review Brief" summarizing technical decisions and diffs.
+    5. **Staging Approval**: Commit & Push ONLY after explicit human "GO" on the brief.
+    6. **Remote MR Advice**: Generate a reviewer checklist for the human to use on GitHub/GitLab.
+    7. **Final Merge**: Human executes merge after a second "GO" in the MR context.
+- **Unconditional User Approval**: No changes are executed before explicit plan approval.
 
 ## Repo Hygiene (proactive — don't wait to be asked)
 
@@ -61,6 +69,9 @@ Load only the skills the current task genuinely needs. Skill files cost tokens o
 | Task touches multiple domains | Load all matching skills — cross-links inside each skill resolve conflicts |
 | Uncertainty about which skill applies | Re-read the trigger keywords in the routing table below before loading |
 | Read-only question (no code change) | Answer from memory if possible; only load a skill if the answer requires its rules |
+
+**Token Efficiency (Native RTK)**:
+The Agent MUST prefix all "noisy" commands (npm test, npm run lint, git log, git diff, build) with `rtk` (e.g., `rtk npm test`). This reduces context noise by up to 90%. Refer to `.agent/rules/antigravity-rtk-rules.md` for logic details.
 
 **Quality is non-negotiable** — never skip a required skill to save tokens. The efficiency goal is to avoid loading *irrelevant* skills, not to shortcuts QA or correctness.
 
