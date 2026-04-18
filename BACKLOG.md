@@ -83,4 +83,6 @@
 - [x] **[QA]** Install and initialize RTK for token optimization _(done: 2026-04-18)_
 - [x] **[REFACTOR]** Fix production regressions: manual routing 404, CSS alignment bugs, and nested A11y interactive roles _(done: 2026-04-18)_
 - [x] **[FEATURE]** Implement funny QA-themed 404 Diagnostic HUD with localized messages and project logo — `NotFoundPage.tsx` _(done: 2026-04-18)_
-- [ ] **[SEO]** Remove hardcoded English meta tags from `index.html` and move to localized `SeoHead.tsx` logic — `index.html` _(added: 2026-04-18)_
+- [x] **[SEO]** Remove hardcoded English meta tags from `index.html` and move to localized `SeoHead.tsx` logic — `index.html` _(done: 2026-04-18)_
+- [x] **[QA]** Implement 95+ Performance Protocol and Web Vitals Audit suite — `vitals.spec.ts` _(done: 2026-04-18)_
+- [x] **[REFACTOR]** Zero-Flicker & Zero-Scroll 404 stabilization — `public/404.html` _(done: 2026-04-18)_
