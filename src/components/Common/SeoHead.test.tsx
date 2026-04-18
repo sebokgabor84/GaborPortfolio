@@ -68,4 +68,18 @@ describe('SeoHead Component', () => {
     expect(metaDescs.length).toBe(1);
     expect(metaDescs[0].getAttribute('content')).toBe('Updated SEO Description');
   });
+
+  it('injects noindex meta tag when noIndex prop is true', () => {
+    render(<SeoHead {...defaultProps} noIndex={true} />);
+    const robotsMeta = document.head.querySelector('meta[name="robots"]');
+    expect(robotsMeta).not.toBeNull();
+    expect(robotsMeta?.getAttribute('content')).toBe('noindex, nofollow');
+  });
+
+  it('injects index meta tag when noIndex prop is false or undefined', () => {
+    render(<SeoHead {...defaultProps} />);
+    const robotsMeta = document.head.querySelector('meta[name="robots"]');
+    expect(robotsMeta).not.toBeNull();
+    expect(robotsMeta?.getAttribute('content')).toBe('index, follow');
+  });
 });

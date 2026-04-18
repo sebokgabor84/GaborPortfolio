@@ -120,6 +120,7 @@ If no skill in the Routing Table matches the User Intent:
 | Any code change | `npm run lint` — 0 errors before commit |
 | Any component change | `npm test -- --run` | 20/20 pass |
 | Before push | `npm run test:e2e` | 32/32 pass |
+| Before push | `npm run test:vitals` | **Score ≥ 95** |
 | New project or KPI added | Update all locale files (EN, DE, HU) |
 | SEO change | Verify JSON-LD in `index.html` |
 | New image asset | Verify `webp`, ≤ 200 KB, stored in `public/assets/` |

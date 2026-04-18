@@ -49,6 +49,7 @@ export const PageSeoPropsSchema = z.object({
   ogImage: z.string().url("Must be a valid absolute URL"),
   locale: z.string(),
   jsonLd: z.any().optional(),
+  noIndex: z.boolean().optional(),
 });
 
 export type PageSeoProps = z.infer<typeof PageSeoPropsSchema>;

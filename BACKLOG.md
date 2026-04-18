@@ -81,4 +81,6 @@
 - `[x]` **[REFACTOR]** Add KpiDefinitionSchema to types.ts and enforce runtime validation in kpis.ts _(done: 2026-04-15)_
 - [x] **[AGENT]** Implement Sparring Partner upgrade, Native RTK integration, and Release Management Protocol — `AGENT.md` _(done: 2026-04-18)_
 - [x] **[QA]** Install and initialize RTK for token optimization _(done: 2026-04-18)_
+- [x] **[REFACTOR]** Fix production regressions: manual routing 404, CSS alignment bugs, and nested A11y interactive roles _(done: 2026-04-18)_
+- [x] **[FEATURE]** Implement funny QA-themed 404 Diagnostic HUD with localized messages and project logo — `NotFoundPage.tsx` _(done: 2026-04-18)_
 - [ ] **[SEO]** Remove hardcoded English meta tags from `index.html` and move to localized `SeoHead.tsx` logic — `index.html` _(added: 2026-04-18)_

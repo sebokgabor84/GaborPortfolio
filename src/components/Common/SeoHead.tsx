@@ -15,7 +15,7 @@ export const SeoHead: React.FC<PageSeoProps> = (props) => {
     }
   }
 
-  const { title, description, canonicalUrl, ogImage, locale, jsonLd } = props;
+  const { title, description, canonicalUrl, ogImage, locale, jsonLd, noIndex } = props;
 
   useEffect(() => {
     // 1. Update Document Title
@@ -52,6 +52,14 @@ export const SeoHead: React.FC<PageSeoProps> = (props) => {
         element!.setAttribute(key, value);
       });
     };
+
+    // 1.6 Robots (NoIndex handling)
+    if (noIndex) {
+      upsertTag("meta", { name: "robots", content: "noindex, nofollow" });
+    } else {
+      // Default to index if not explicitly turned off
+      upsertTag("meta", { name: "robots", content: "index, follow" });
+    }
 
     // 2. Standard Meta
     upsertTag("meta", { name: "description", content: description });

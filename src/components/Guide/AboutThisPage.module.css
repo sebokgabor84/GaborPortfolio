@@ -1,13 +1,13 @@
 .aboutSection {
   width: 100%;
-  maxWidth: 1200px;
+  max-width: 1200px;
   margin: 2rem auto;
   padding: 4rem clamp(1rem, 5vw, 2.5rem);
   display: flex;
-  flexDirection: column;
-  alignItems: center;
-  borderRadius: 12px;
-  borderBottom: 1px solid var(--color-copper-dim);
+  flex-direction: column;
+  align-items: center;
+  border-radius: 12px;
+  border-bottom: 1px solid var(--color-copper-dim);
 }
 
 .aboutDetails {

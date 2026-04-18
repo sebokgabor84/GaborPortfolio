@@ -25,16 +25,6 @@ export const Hint: React.FC<HintProps> = ({ children, message }) => {
         }
     };
 
-    const handleClick = (e: React.MouseEvent) => {
-        // Prevent navigation for placeholder links
-        e.preventDefault();
-        showHint();
-
-        // Pulse effect on click
-        const target = e.currentTarget as HTMLElement;
-        target.classList.add(styles.hintPulse);
-        setTimeout(() => target.classList.remove(styles.hintPulse), 400);
-    };
 
     useEffect(() => {
         return () => {
@@ -42,27 +32,14 @@ export const Hint: React.FC<HintProps> = ({ children, message }) => {
         };
     }, []);
 
-    const handleKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            showHint();
-            const target = e.currentTarget as HTMLElement;
-            target.classList.add(styles.hintPulse);
-            setTimeout(() => target.classList.remove(styles.hintPulse), 400);
-        }
-    };
 
     return (
         <span
             className={styles.hintContainer}
             onMouseEnter={showHint}
             onMouseLeave={hideHint}
-            onFocus={showHint}
+            onFocus={showHint} // Bubble up focus from interactive children
             onBlur={hideHint}
-            onClick={handleClick}
-            onKeyDown={handleKeyDown}
-            role="button"
-            tabIndex={0}
         >
             {children}
             {isVisible && (

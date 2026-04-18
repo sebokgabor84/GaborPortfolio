@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { FeaturedProjectsPage } from './pages/FeaturedProjectsPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 import { ScrollToTop } from './components/Common/ScrollToTop';
 import { LanguageDial } from './components/LanguageSwitch/LanguageDial';
 
@@ -25,6 +26,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/featured-projects" element={<FeaturedProjectsPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
       {/* Footer */}

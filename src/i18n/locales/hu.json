@@ -10,6 +10,16 @@
     "common": {
         "coming_soon": "Hamarosan elérhető"
     },
+    "error_404": {
+        "status": "Útvonal megszakítva",
+        "title": "Elveszve a mechanikus űrben",
+        "message": "Az automatizálási fogaskerekek kiugrottak a helyükről. A kért útvonal jelenleg nincs feltérképezve a műszaki pilótafülkénkben.",
+        "funny_tip": "Manuális beavatkozás szükséges: Még a legjobb szkriptek is belefutnak néha egy null referenciába.",
+        "cta_home": "Vissza a Mission Controlhoz",
+        "cta_projects": "Műszaki portfólió megtekintése",
+        "cta_code": "Manuális ellenőrzés (GitHub)",
+        "search_placeholder": "Hiányzó eszközök keresése..."
+    },
     "hero": {
         "name": "Sebők Gábor",
         "role": "QA Szakértő | Sörfőző | Méhész | Hegesztő | Kenyérsütő | Apa & Férj",

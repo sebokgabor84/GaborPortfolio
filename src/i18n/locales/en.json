@@ -10,6 +10,16 @@
     "common": {
         "coming_soon": "Coming Soon"
     },
+    "error_404": {
+        "status": "Route Disconnected",
+        "title": "Lost in the Mechanical Void",
+        "message": "The automation gears have jumped their tracks. The requested path is currently unmapped in our technical cockpit.",
+        "funny_tip": "Manual intervention required: Even the best scripts hit a null reference occasionally.",
+        "cta_home": "Back to Mission Control",
+        "cta_projects": "View Technical Portfolio",
+        "cta_code": "Manual Verification (GitHub)",
+        "search_placeholder": "Scan for missing assets..."
+    },
     "hero": {
         "name": "Gábor Sebők",
         "role": "QA Specialist | Beer Brewer | Beekeeper | Welder | Bread Maker | Father & Husband",

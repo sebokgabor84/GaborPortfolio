@@ -10,6 +10,16 @@
     "common": {
         "coming_soon": "Demnächst Verfügbar"
     },
+    "error_404": {
+        "status": "Route getrennt",
+        "title": "Verloren in der mechanischen Leere",
+        "message": "Die Automatisierungsgetriebe sind aus den Fugen geraten. Der angeforderte Pfad ist derzeit in unserem technischen Cockpit nicht erfasst.",
+        "funny_tip": "Manuelles Eingreifen erforderlich: Selbst die besten Skripte stoßen gelegentlich auf eine Nullreferenz.",
+        "cta_home": "Zurück zur Mission Control",
+        "cta_projects": "Technisches Portfolio ansehen",
+        "cta_code": "Manuelle Verifizierung (GitHub)",
+        "search_placeholder": "Suche nach fehlenden Assets..."
+    },
     "hero": {
         "name": "Gábor Sebők",
         "role": "QA Spezialist | Bierbrauer | Imker | Schweißer | Brotbäcker | Vater & Ehemann",
