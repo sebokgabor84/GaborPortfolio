@@ -4,7 +4,7 @@
         "home_desc": "Senior QA-Spezialist mit Expertise in E-Commerce-Automatisierung, Zahlungsgateways und Playwright-Tests. Auch ein leidenschaftlicher Handwerker.",
         "projects_title": "Ausgewählte Projekte | Gabor Seboek",
         "projects_desc": "Entdecken Sie meine technischen Projekte und Handwerker-Leidenschaften, einschließlich Testautomatisierung, Bierbrauen und mehr.",
-        "schema_person_desc": "QA-Spezialist mit Expertise in E-Commerce-Automatisierung, Playwright und Cypress. Leidenschaftlicher Handwerker: Braumeister, Imker, Schweißer und Bäcker.",
+        "schema_person_desc": "QA-Leader und Framework-Architekt. Leidenschaftlicher physischer Handwerker: Schweißer, Imker, Brauer und Vater, der der nächsten Generation beibringt: 'Zweimal messen, einmal schneiden'.",
         "schema_collection_desc": "Eine Sammlung von Gabor Seboeks ausgewählten Projekten, die Testautomatisierung und persönliche Handwerksprojekte hervorheben."
     },
     "common": {
@@ -79,7 +79,14 @@
     "about": {
         "aria_label": "Über diese Seite",
         "title": "Warum existiert diese Seite?",
-        "intro": "Das ist kein Template. Das ist eine Demonstration — gebaut von einem QA-Ingenieur, der am Wochenende hexagonale Hochzeitstore schweißt, 50-Liter-Chargen Craft-Bier braut und um 4 Uhr morgens Sauerteigbrot backt. Wenn Ihr Portfolio mit einem Drag-and-Drop-Builder erstellt wurde... sollten wir reden.",
+        "intro": "Das ist kein Template. Das ist eine Demonstration — entwickelt von einem QA-Spezialisten und Wochenend-Handwerker. Wenn Ihr Portfolio mit einem Drag-and-Drop-Builder erstellt wurde... sollten wir reden.",
+        "aboutme_title": "Der Ingenieur hinter den Zahnrädern",
+        "aboutme_leader_title": "Der QA-Leader",
+        "aboutme_leader_p": "Ich baue Automatisierungs-Frameworks mit einer unternehmerischen Denkweise – mit Fokus auf Wartbarkeit, ROI und vollständige User Journeys. Meine Führungsphilosophie: In der Ruhe liegt die Kraft. Vertrauen ist gut; ein Team zu befähigen ist besser.",
+        "aboutme_artisan_title": "Der physische Handwerker",
+        "aboutme_artisan_p": "Digitale Frameworks erfordern Logik, aber meine physischen Handwerke halten mich geerdet. Ich benutze immer noch das allererste Schweißgerät, das ich je gekauft habe, und meistere die rohe, pragmatische Kunst des Elektrodenschweißens. Neben der Pflege von drei Bienenstöcken für meinen Weinberg, braue ich auf einer 50L-Anlage, die ich von Grund auf selbst konstruiert habe.",
+        "aboutme_father_title": "Der Vater",
+        "aboutme_father_p": "Ich backe Sauerteigbrot aus Biertreber, während meine Kinder mir helfen. Ich bringe ihnen handwerkliche Fähigkeiten bei und die wichtigste Regel: 'Zweimal messen, einmal schneiden'.",
         "stack_ai": "🤖 Entwickelt mit KI-gestützter Entwicklung (Antigravity + Chrome MCP)",
         "stack_arch": "🏗️ React + TypeScript + Vite — kein Tailwind, reines CSS-Handwerk",
         "stack_deploy": "🚀 Auto-Deployment über Vercel bei jedem Git Push",

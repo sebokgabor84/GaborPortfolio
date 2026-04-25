@@ -26,6 +26,7 @@
 
 ## Content
 
+- `[x]` **[CONTENT]** Add "About Me" collapsible to the about-this-page section, extracting bio from the intro text — `feature/about-me-collapsible` _(added: 2026-04-25)_
 - `[ ]` **[CONTENT]** Brewing company: rename "Aether & Brass Brewing" to "gabor.seboek Brewing Company" in the generated image — `public/assets/thumb-brewing.webp` _(added: 2026-04-15)_
 - `[ ]` **[CONTENT]** Beekeeper: replace the face in the image with Gábor's — `public/assets/thumb-beekeeping.webp` _(added: 2026-04-15)_
 - `[ ]` **[CONTENT]** Add proper stories to all projects — current stories are placeholders _(added: 2026-04-15)_

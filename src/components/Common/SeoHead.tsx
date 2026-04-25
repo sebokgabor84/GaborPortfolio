@@ -96,7 +96,7 @@ export const SeoHead: React.FC<PageSeoProps> = (props) => {
       // if every page overrides them hook-style, but React Router v7 framework
       // might just hydrate over anyway.
     };
-  }, [title, description, canonicalUrl, ogImage, locale]);
+  }, [title, description, canonicalUrl, ogImage, locale, noIndex]);
 
   return (
     <>

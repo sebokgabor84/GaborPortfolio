@@ -124,6 +124,59 @@ export const AboutThisPage: React.FC = () => {
                 </div>
             </details>
 
+            {/* Collapsible: About Me */}
+            <details
+                className={styles.aboutDetails}
+                style={{
+                    border: 'var(--border-metal)',
+                    borderRadius: '8px',
+                    boxShadow: 'var(--shadow-panel)',
+                    marginBottom: '1rem',
+                    overflow: 'hidden',
+                }}
+            >
+                <summary
+                    className={styles.aboutSummary}
+                    style={{
+                        padding: 'clamp(1rem, 3vw, 1.5rem)',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        listStyle: 'none',
+                        color: 'var(--color-gold)',
+                        fontFamily: 'var(--font-heading)',
+                        fontSize: 'clamp(0.9rem, 3vw, 1.1rem)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px',
+                    }}
+                >
+                    {t('about.aboutme_title')}
+                    <FaChevronDown style={{ fontSize: '0.8rem', flexShrink: 0 }} />
+                </summary>
+                <div style={{
+                    padding: 'clamp(1rem, 3vw, 2rem)',
+                    color: 'var(--color-text-main)',
+                    lineHeight: '1.7',
+                    fontSize: 'clamp(0.9rem, 2.5vw, 1rem)',
+                }}>
+                    <h4 style={{ color: 'var(--color-copper)', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)' }}>
+                        {t('about.aboutme_leader_title')}
+                    </h4>
+                    <p style={{ marginBottom: '1.5rem' }}>{t('about.aboutme_leader_p')}</p>
+
+                    <h4 style={{ color: 'var(--color-copper)', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)' }}>
+                        {t('about.aboutme_artisan_title')}
+                    </h4>
+                    <p style={{ marginBottom: '1.5rem' }}>{t('about.aboutme_artisan_p')}</p>
+
+                    <h4 style={{ color: 'var(--color-copper)', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)' }}>
+                        {t('about.aboutme_father_title')}
+                    </h4>
+                    <p>{t('about.aboutme_father_p')}</p>
+                </div>
+            </details>
+
             {/* Collapsible: How This Page Builds Itself */}
             <details
                 className={styles.aboutDetails}

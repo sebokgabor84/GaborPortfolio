@@ -40,8 +40,9 @@ test.describe('Web Vitals Regression Guard (95+ Target)', () => {
                     let clsValue = 0;
                     new PerformanceObserver((entryList) => {
                         for (const entry of entryList.getEntries()) {
-                            if (!(entry as any).hadRecentInput) {
-                                clsValue += (entry as any).value;
+                            const shift = entry as PerformanceEntry & { hadRecentInput?: boolean; value?: number };
+                            if (!shift.hadRecentInput) {
+                                clsValue += shift.value || 0;
                             }
                         }
                     }).observe({ type: 'layout-shift', buffered: true });
@@ -57,7 +58,6 @@ test.describe('Web Vitals Regression Guard (95+ Target)', () => {
 
             console.log(`Metrics for ${path}:`, metrics);
 
-            const routeBaseline = path === '/non-existent-path' ? baseline.routes['/404'] : (baseline.routes as any)[path];
             const globalTarget = baseline.target.metrics;
 
             // Enforcement Gates

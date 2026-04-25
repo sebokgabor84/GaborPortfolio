@@ -4,7 +4,7 @@
         "home_desc": "Senior QA Specialist with expertise in eCommerce automation, payment gateways, and Playwright testing. Also a passionate craftsman.",
         "projects_title": "Featured Projects | Gabor Seboek",
         "projects_desc": "Explore my technical projects and master craftsman passions including Test Automation, Master Brewing, and more.",
-        "schema_person_desc": "QA Specialist with expertise in eCommerce automation, Playwright, and Cypress. Passionate craftsman: Master Brewer, Beekeeper, Welder, and Artisan Bread Maker.",
+        "schema_person_desc": "QA Leader and framework architect. Passionate physical artisan: welder, beekeeper, brewer, and father teaching the next generation to 'measure twice, cut once'.",
         "schema_collection_desc": "A collection of featured projects by Gabor Seboek, highlighting Test Automation alongside personal master craftsman projects."
     },
     "common": {
@@ -79,7 +79,14 @@
     "about": {
         "aria_label": "About this page",
         "title": "Why Does This Page Exist?",
-        "intro": "This isn't a template. It's a showcase — built by a QA engineer who welds hexagonal wedding gates on weekends, brews 50-liter batches of craft beer, and bakes sourdough bread at 4 AM. If your portfolio was built with a drag-and-drop builder... we should talk.",
+        "intro": "This isn't a template. It's a showcase — engineered by a QA Specialist and weekend Artisan. If your portfolio was built with a drag-and-drop builder... we should talk.",
+        "aboutme_title": "The Engineer Behind The Gears",
+        "aboutme_leader_title": "The QA Leader",
+        "aboutme_leader_p": "I build automation frameworks with an entrepreneurial mindset—focusing on maintainability, ROI, and full user journeys. My leadership philosophy: Steady precision yields the best results. Trust is good; empowering a team is better.",
+        "aboutme_artisan_title": "The Physical Artisan",
+        "aboutme_artisan_p": "Digital frameworks require logic, but my physical crafts keep my hands grounded. I still use the very first welding machine I ever bought, mastering the raw, pragmatic art of electrode welding. Alongside managing three beehives for my vineyard, I brew on 50L equipment I engineered from scratch.",
+        "aboutme_father_title": "The Father",
+        "aboutme_father_p": "I bake sourdough using spent brewing grains with my kids helping. I'm teaching them capability and the maker's rule: 'Measure twice, cut once.'",
         "stack_ai": "🤖 Built with AI-assisted development (Antigravity + Chrome MCP)",
         "stack_arch": "🏗️ React + TypeScript + Vite — zero Tailwind, pure CSS craftsmanship",
         "stack_deploy": "🚀 Auto-deploys via Vercel on every git push",
