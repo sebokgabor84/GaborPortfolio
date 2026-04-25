@@ -87,7 +87,7 @@ Before performing any task, the Agent MUST:
 | Trigger keywords / context | Load skill |
 |---|---|
 | CSS, layout, mobile, overflow, flexbox, grid, image, asset, thumbnail, Steampunk, animation, content copy, hobby description, artisan, Mission Control, Zero-Selector, rAF, 3D Carousel, 60fps, IntersectionObserver, refactor component, new feature | `design-system-expert` |
-| SEO, meta, Open Graph, hreflang, Lighthouse, LCP, CLS, JSON-LD, robots, sitemap, SPA SEO, performance, page update, asset change, loading speed, rendering | `seo-expert` |
+| SEO, meta, Open Graph, hreflang, Lighthouse, LCP, CLS, JSON-LD, robots, sitemap, SPA SEO, performance, page update, asset change, loading speed, rendering, bio update, structured data, schema | `seo-expert` |
 | WCAG, accessibility, aria, a11y, axe, screen reader, contrast, keyboard, skip-link, UI refactor, component logic, html structure, interactive element | `accessibility-expert` |
 | translation, locale, i18n, language, EN/DE/HU, titleKey, descKey, labelKey, new language, text change, copy update, data change | `i18n-guardian` |
 | test, lint, TypeScript, E2E, Playwright, Vitest, unit test, type error, DoD, commit, push, build | `qa-specialist` |
@@ -100,6 +100,7 @@ When the task involves these high-level actions, LOAD ALL listed skills immediat
 | **New Component / Page** | `design-system-expert` + `accessibility-expert` + `i18n-guardian` + `seo-expert` |
 | **Refactoring UI Logic** | `design-system-expert` + `accessibility-expert` + `qa-specialist` |
 | **Adding New Project/KPI** | `design-system-expert` + `i18n-guardian` + `seo-expert` |
+| **Content / Bio Update** | `design-system-expert` + `i18n-guardian` + `seo-expert` |
 | new skill, refactor rules, legacy prompt, create agent file | `skill-creator` |
 | lock screen, wallpaper, QR code, mobile background | `lockscreen-qr-generator` |
 
