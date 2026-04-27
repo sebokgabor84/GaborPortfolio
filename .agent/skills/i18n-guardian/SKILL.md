@@ -35,6 +35,7 @@ Ensures every data-driven translation key is present and consistent across **all
 - [ ] No locale file contains orphaned keys not referenced by any data file
 
 ## Translation Quality Guidelines
+- **Idiom Translation Protocol (Native First)**: Never use literal word-for-word translation. Always find the native cultural equivalent (e.g., matching English 'Steady precision' to German 'In der Ruhe liegt die Kraft'). Optimize for the persona's tone (witty but professional engineer) rather than dictionary accuracy.
 - **No plug & play**: Do not translate word-for-word. Restructure sentences to read naturally in the target language — German inverts clause order; Hungarian compounds nouns differently.
 - **Cultural fit**: Adapt idioms. Witty phrases like "Bugs Squashed" must be re-crafted, not literally translated.
 - **Jargon split**: Tech terms (`E2E`, `Zod`) stay in English universally. Craft/hobby terms use the authentic terminology a practitioner in that country would use.

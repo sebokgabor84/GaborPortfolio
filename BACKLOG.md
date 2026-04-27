@@ -15,6 +15,8 @@
 
 ## Refactor
 
+- `[ ]` **[REFACTOR]** Review the Portfolio Benchmark report (`portfolio_benchmarks.md`), extract actionable items, and store the document permanently in `docs/` _(added: 2026-04-25)_
+
 ---
 
 ## Features
