@@ -21,6 +21,7 @@
 
 ## Features
 
+- `[x]` **[FEATURE]** Migrate social links in `SocialDock.tsx` to Vercel CLI environment variables to demonstrate IaC best practices _(added: 2026-05-01)_
 - `[ ]` **[FEATURE]** Master prompt → evolve into a sellable framework: any human can spin up their own portfolio in minutes using this as a base _(added: 2026-04-15)_
 - `[ ]` **[FEATURE]** Add `published` status to projects (alongside `enabled`) — unpublished projects rendered in greyscale to signal WIP _(added: 2026-04-15)_
 

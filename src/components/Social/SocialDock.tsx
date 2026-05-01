@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaLinkedin, FaInstagram, FaFacebook, FaTiktok, FaXTwitter, FaGithub } from 'react-icons/fa6';
+import { FaLinkedin, FaInstagram, FaFacebook, FaTiktok, FaXTwitter, FaGithub, FaXing } from 'react-icons/fa6';
 import { Hint } from '../Common/Hint';
 import { useTranslation } from 'react-i18next';
 
@@ -66,11 +66,12 @@ export const SocialDock: React.FC = () => {
       }}
     >
       <SocialIcon href="https://github.com/sebokgabor84/GaborPortfolio" icon={<FaGithub />} label="GitHub Repository" />
-      <SocialIcon href="https://linkedin.com" icon={<FaLinkedin />} label="LinkedIn" comingSoon comingSoonMessage={t('common.coming_soon')} />
-      <SocialIcon href="https://instagram.com" icon={<FaInstagram />} label="Instagram" comingSoon comingSoonMessage={t('common.coming_soon')} />
-      <SocialIcon href="https://facebook.com" icon={<FaFacebook />} label="Facebook" comingSoon comingSoonMessage={t('common.coming_soon')} />
-      <SocialIcon href="https://tiktok.com" icon={<FaTiktok />} label="TikTok" comingSoon comingSoonMessage={t('common.coming_soon')} />
-      <SocialIcon href="https://twitter.com" icon={<FaXTwitter />} label="X (Twitter)" comingSoon comingSoonMessage={t('common.coming_soon')} />
+      <SocialIcon href={import.meta.env.VITE_SOCIAL_LINKEDIN || "https://linkedin.com"} icon={<FaLinkedin />} label="LinkedIn" comingSoon={!import.meta.env.VITE_SOCIAL_LINKEDIN} comingSoonMessage={t('common.coming_soon')} />
+      <SocialIcon href={import.meta.env.VITE_SOCIAL_XING || "https://xing.com"} icon={<FaXing />} label="Xing" comingSoon={!import.meta.env.VITE_SOCIAL_XING} comingSoonMessage={t('common.coming_soon')} />
+      <SocialIcon href={import.meta.env.VITE_SOCIAL_INSTAGRAM || "https://instagram.com"} icon={<FaInstagram />} label="Instagram" comingSoon={!import.meta.env.VITE_SOCIAL_INSTAGRAM} comingSoonMessage={t('common.coming_soon')} />
+      <SocialIcon href={import.meta.env.VITE_SOCIAL_FACEBOOK || "https://facebook.com"} icon={<FaFacebook />} label="Facebook" comingSoon={!import.meta.env.VITE_SOCIAL_FACEBOOK} comingSoonMessage={t('common.coming_soon')} />
+      <SocialIcon href={import.meta.env.VITE_SOCIAL_TIKTOK || "https://tiktok.com"} icon={<FaTiktok />} label="TikTok" comingSoon={!import.meta.env.VITE_SOCIAL_TIKTOK} comingSoonMessage={t('common.coming_soon')} />
+      <SocialIcon href={import.meta.env.VITE_SOCIAL_TWITTER || "https://twitter.com"} icon={<FaXTwitter />} label="X (Twitter)" comingSoon={!import.meta.env.VITE_SOCIAL_TWITTER} comingSoonMessage={t('common.coming_soon')} />
     </nav>
   );
 };
