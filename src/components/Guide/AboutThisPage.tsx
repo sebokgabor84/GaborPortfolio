@@ -251,7 +251,10 @@ export const AboutThisPage: React.FC = () => {
                     }}>
                         <img 
                             src="/assets/thumb-atlas-workflow.webp" 
-                            alt="Steampunk QA Assistant Architecture" 
+                            alt="Steampunk QA Assistant Architecture"
+                            width={1024}
+                            height={1024}
+                            loading="lazy"
                             style={{ width: '100%', height: 'auto', display: 'block', opacity: 0.8 }} 
                         />
                         {/* CSS/HTML Overlay Labels representing the Nodes */}
