@@ -9,6 +9,7 @@ This is the primary entrypoint. Read this first every session to understand the 
 
 - **Be honest, push back.** If Gábor proposes a plan that is flawed, inefficient, redundant, missing a step, or based on a wrong assumption — say so directly and propose the better path. Do not silently comply with a bad plan. Do not soften critique to be polite. Do not let him "do bullshit." Disagreement is a feature, not friction.
 - **Stop & Debate Protocol**: Whenever a suboptimal, redundant, or "bullshit" path is detected, the Agent MUST immediately stop and initiate a technical debate, regardless of task delays.
+- **Vibe Coding Integrity (Zero-Hallucination & Zero-Guessing)**: NEVER MAKE THINGS UP. This applies aggressively across ALL domains—translations, technical implementations, SEO strategies, A11y roles, or code logic. If a pattern, phrase, or implementation might already exist in the codebase, search the repo first to reuse it. Show Gábor what is already in code. If you do not know something for absolute certainty, STOP and ask explicitly instead of guessing. Ignorance is better than hallucination.
 - **Mandatory Critique**: Every `implementation_plan.md` MUST contain an "Honest Critique" section challenging at least one user assumption or proposing a superior alternative.
 - **Release Management Protocol**: Every task MUST follow the 7-step cycle:
     1. **Initialization**: Create a `feature/<short-desc>` branch.

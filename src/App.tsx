@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { HomePage } from './pages/HomePage';
 import { FeaturedProjectsPage } from './pages/FeaturedProjectsPage';
 import { NotFoundPage } from './pages/NotFoundPage';
@@ -7,6 +8,7 @@ import { ScrollToTop } from './components/Common/ScrollToTop';
 import { LanguageDial } from './components/LanguageSwitch/LanguageDial';
 
 const App: React.FC = () => {
+  const { t } = useTranslation();
   React.useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -39,7 +41,8 @@ const App: React.FC = () => {
           marginTop: '4rem',
         }}
       >
-        <p>&copy; {new Date().getFullYear()} Gabor Seboek. Professional Portfolio</p>
+        <p style={{ marginBottom: '0.5rem', fontStyle: 'italic', fontSize: '0.9em' }}>{t('footer.changelog')}</p>
+        <p>&copy; {new Date().getFullYear()} Gabor Seboek. {t('footer.rights')} {t('footer.tagline')}</p>
       </footer>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaRocket, FaChevronDown } from 'react-icons/fa';
+import { FaRocket, FaChevronDown, FaUserCog, FaLaptopCode, FaShieldAlt } from 'react-icons/fa';
 import styles from './AboutThisPage.module.css';
 
 export const AboutThisPage: React.FC = () => {
@@ -68,7 +68,7 @@ export const AboutThisPage: React.FC = () => {
                         flexDirection: 'column',
                         gap: '0.6rem',
                     }}>
-                        {['stack_ai', 'stack_arch', 'stack_deploy', 'stack_testing', 'stack_a11y', 'stack_i18n'].map((key) => (
+                        {['stack_arch', 'stack_deploy', 'stack_testing', 'stack_a11y', 'stack_i18n'].map((key) => (
                             <li key={key} style={{
                                 color: 'var(--color-text-dim)',
                                 fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',
@@ -151,7 +151,12 @@ export const AboutThisPage: React.FC = () => {
                         letterSpacing: '1px',
                     }}
                 >
-                    {t('about.aboutme_title')}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                        <FaUserCog style={{ color: 'var(--color-gold)', fontSize: '1.4rem', flexShrink: 0 }} />
+                        <h3 style={{ margin: 0, fontSize: 'inherit', color: 'inherit' }}>
+                            {t('about.aboutme_title')}
+                        </h3>
+                    </div>
                     <FaChevronDown style={{ fontSize: '0.8rem', flexShrink: 0 }} />
                 </summary>
                 <div style={{
@@ -177,7 +182,7 @@ export const AboutThisPage: React.FC = () => {
                 </div>
             </details>
 
-            {/* Collapsible: How This Page Builds Itself */}
+            {/* Collapsible: How I Work (Combined) */}
             <details
                 className={styles.aboutDetails}
                 style={{
@@ -204,7 +209,12 @@ export const AboutThisPage: React.FC = () => {
                         letterSpacing: '1px',
                     }}
                 >
-                    {t('about.build_title')}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                        <FaLaptopCode style={{ color: 'var(--color-gold)', fontSize: '1.4rem', flexShrink: 0 }} />
+                        <h3 style={{ margin: 0, fontSize: 'inherit', color: 'inherit' }}>
+                            {t('about.how_i_work_title')}
+                        </h3>
+                    </div>
                     <FaChevronDown style={{ fontSize: '0.8rem', flexShrink: 0 }} />
                 </summary>
                 <div style={{
@@ -213,8 +223,50 @@ export const AboutThisPage: React.FC = () => {
                     lineHeight: '1.7',
                     fontSize: 'clamp(0.9rem, 2.5vw, 1rem)',
                 }}>
-                    <p>{t('about.build_p1')}</p>
-                    <p>{t('about.build_p2')}</p>
+                    <p style={{ color: 'var(--color-copper)', marginBottom: '1.5rem', fontStyle: 'italic', fontSize: '1.05em' }}>
+                        {t('about.how_i_work_header')}
+                    </p>
+                    
+                    <p style={{ marginBottom: '1rem' }}>
+                        {t('about.how_i_work_intro')}
+                    </p>
+                    <ul style={{ paddingLeft: '0', marginBottom: '2rem', display: 'flex', flexDirection: 'column', gap: '0.6rem', listStyle: 'none' }}>
+                        <li>{t('about.how_i_work_claude')}</li>
+                    </ul>
+
+                    <ul style={{ paddingLeft: '0', marginBottom: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.6rem', listStyle: 'none' }}>
+                        <li>{t('about.atlas_problem')}</li>
+                        <li>{t('about.atlas_pattern')}</li>
+                    </ul>
+
+                    {/* Steampunk Diagram with HTML Overlay */}
+                    <div style={{
+                        position: 'relative',
+                        width: '100%',
+                        borderRadius: '6px',
+                        overflow: 'hidden',
+                        border: '1px solid var(--color-copper-dim)',
+                        marginBottom: '1.5rem',
+                        backgroundColor: '#121010'
+                    }}>
+                        <img 
+                            src="/assets/thumb-atlas-workflow.webp" 
+                            alt="Steampunk QA Assistant Architecture" 
+                            style={{ width: '100%', height: 'auto', display: 'block', opacity: 0.8 }} 
+                        />
+                        {/* CSS/HTML Overlay Labels representing the Nodes */}
+                        <div style={{ position: 'absolute', top: '15%', left: '8%', width: '25%', textAlign: 'center' }}>
+                            <p style={{ color: 'var(--color-gold)', fontSize: 'clamp(0.6rem, 1.5vw, 0.9rem)', textShadow: '0 2px 4px #000', margin: 0, fontWeight: 'bold' }}>Jira / Confluence / Meetings</p>
+                        </div>
+                        <div style={{ position: 'absolute', top: '45%', left: '35%', width: '30%', textAlign: 'center' }}>
+                            <p style={{ color: 'var(--color-gold)', fontSize: 'clamp(0.7rem, 2vw, 1.1rem)', textShadow: '0 2px 4px #000', margin: 0, fontWeight: 'bold' }}>Claude QA Assistant<br/><span style={{fontSize: '0.8em', color: 'var(--color-copper)'}}>(Requirement Builder, Meeting Sync, Manage Test Case)</span></p>
+                        </div>
+                        <div style={{ position: 'absolute', top: '55%', right: '5%', width: '25%', textAlign: 'center' }}>
+                            <p style={{ color: 'var(--color-gold)', fontSize: 'clamp(0.6rem, 1.5vw, 0.9rem)', textShadow: '0 2px 4px #000', margin: 0, fontWeight: 'bold' }}>Git Source of Truth<br/><span style={{fontSize: '0.8em', color: 'var(--color-copper)'}}>(Schema Validation)</span></p>
+                        </div>
+                    </div>
+
+                    <p style={{ listStyle: 'none' }}>{t('about.atlas_outcome')}</p>
                 </div>
             </details>
 
@@ -244,7 +296,12 @@ export const AboutThisPage: React.FC = () => {
                         letterSpacing: '1px',
                     }}
                 >
-                    {t('about.playwright_title')}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                        <FaShieldAlt style={{ color: 'var(--color-gold)', fontSize: '1.4rem', flexShrink: 0 }} />
+                        <h3 style={{ margin: 0, fontSize: 'inherit', color: 'inherit' }}>
+                            {t('about.playwright_title')}
+                        </h3>
+                    </div>
                     <FaChevronDown style={{ fontSize: '0.8rem', flexShrink: 0 }} />
                 </summary>
                 <div style={{
